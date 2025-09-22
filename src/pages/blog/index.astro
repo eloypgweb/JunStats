@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import totaltemporada from '../../assets/totaltemporada.png';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -84,12 +85,31 @@ const posts = (await getCollection('blog')).sort(
 					font-size: 1.563em;
 				}
 			}
+			.table {
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+			.table-title {
+				font-size: 1.5rem;
+				margin-bottom: 0.5rem;
+				margin-top: 0.5rem;
+			}
+			.table-img {
+				/* width: 100%; */
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
+			<h2>Estadísticas totales de temporada:</h2>
 			<section>
+				<div class="table">
+					<h3 class="table-title">Tabla total de temporada</h3>
+					<img src={totaltemporada.src} alt="tabla de estadísticas totales de temporada" class="table-img"/>
+				</div>
 				<ul>
 					{
 						posts.map((post) => (
