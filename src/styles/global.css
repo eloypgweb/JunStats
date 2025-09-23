@@ -170,11 +170,11 @@ hr {
 
 /* Estilos para las tablas de jornadas */
 .jornada-table {
-	width: 100%; /* Usa todo el ancho del contenedor */
+	width: 100%;
 	border-collapse: collapse;
-	margin: 20px 0; /* Centrado natural dentro del contenedor */
+	margin: 0 auto;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	table-layout: auto; /* Permite que las columnas se ajusten automáticamente */
+	table-layout: auto;
 }
 
 /* Estilos para el header de la jornada con imagen */
@@ -193,9 +193,9 @@ hr {
 }
 
 .jornada-table th {
-	background-color: #1e40af; /* Azul */
+	background-color: #1e40af;
 	color: white;
-	padding: 12px 8px; /* Matching the td padding */
+	padding: 12px 8px;
 	text-align: center;
 	border-bottom: 2px solid #1e3a8a;
 	white-space: nowrap;
@@ -203,61 +203,140 @@ hr {
 
 .jornada-table th,
 .jornada-table td {
-	padding: 12px 8px; /* Padding más compacto horizontalmente */
+	padding: 12px 8px;
 	border-bottom: 1px solid #ddd;
-	text-align: center; /* Centrar el contenido de las celdas */
-	white-space: nowrap; /* Evitar que el texto se parta en varias líneas */
+	text-align: center;
+	white-space: nowrap;
 }
 
 /* Columnas específicas con anchos especiales */
-.jornada-table th:nth-child(1), /* Número */
+.jornada-table th:nth-child(1), 
 .jornada-table td:nth-child(1) {
 	width: 60px;
 }
 
-.jornada-table th:nth-child(2), /* Jugador */
+.jornada-table th:nth-child(2), 
 .jornada-table td:nth-child(2) {
 	width: 150px;
-	text-align: left; /* Nombres alineados a la izquierda */
+	text-align: left;
 }
 
 .jornada-table tbody tr:nth-child(odd) {
-	background-color: #dbeafe; /* Azul clarito */
+	background-color: #dbeafe;
 }
 
 .jornada-table tbody tr:nth-child(even) {
-	background-color: #f8fafc; /* Blanco/gris muy claro */
+	background-color: #f8fafc;
 }
 
 .jornada-table tbody tr:hover {
-	background-color: #bfdbfe; /* Azul claro en hover */
+	background-color: #bfdbfe;
 }
 
 /* Contenedor responsivo para la tabla */
 .table-container {
 	width: 100%;
-	overflow-x: visible; /* Sin scroll horizontal */
 	margin: 20px 0;
 	display: flex;
 	justify-content: center;
-	padding: 0 2em; /* Añadir un poco de padding a los lados */
+	padding: 0 1rem;
 }
 
 .table-container .jornada-table {
-	width: 100%;
-	max-width: 1200px; /* Ancho máximo para evitar que sea demasiado ancha */
-	margin: 0;
+	max-width: 1200px;
 }
 
-/* Estilos responsivos para dispositivos móviles */
+/* Cards para móviles - ocultas por defecto */
+.mobile-cards {
+	display: none;
+}
+
+.player-card {
+	background: white;
+	margin: 15px 0;
+	padding: 15px;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	border-left: 4px solid #1e40af;
+}
+
+.player-card:nth-child(odd) {
+	background-color: #dbeafe;
+}
+
+.player-name {
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #1e40af;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.player-number {
+	background: #1e40af;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 20px;
+	font-size: 0.9em;
+}
+
+.stats-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 8px;
+	margin-top: 10px;
+}
+
+.stat-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 0;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.stat-label {
+	font-weight: 600;
+	color: #374151;
+}
+
+.stat-value {
+	color: #1e40af;
+	font-weight: bold;
+}
+
+/* Responsive: Móviles */
 @media (max-width: 768px) {
+	.table-container {
+		padding: 0;
+	}
+	
 	.jornada-table {
-		min-width: 600px; /* Menor en móviles */
-		font-size: 14px; /* Texto más pequeño */
+		display: none;
+	}
+	
+	.mobile-cards {
+		display: block;
+		padding: 0 1rem;
+	}
+}
+
+/* Responsive: Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+	.table-container {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		padding: 0;
+	}
+	
+	.jornada-table {
+		font-size: 13px;
+		min-width: 700px;
 	}
 	
 	.jornada-table th,
 	.jornada-table td {
-		padding: 8px 10px; /* Menos padding en móviles */
+		padding: 8px 6px;
 	}
 }
