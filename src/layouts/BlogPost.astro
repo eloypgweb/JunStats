@@ -37,6 +37,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				padding: 1em;
 				color: rgb(var(--gray-dark));
 			}
+			
+			/* Permitir que las tablas usen todo el ancho disponible */
+			.prose .table-container,
+			.prose .jornada-header {
+				width: 100vw;
+				max-width: calc(100vw - 4em);
+				margin-left: calc(50% - 50vw + 2em);
+				margin-right: calc(50% - 50vw + 2em);
+			}
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
@@ -58,32 +67,32 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 	<body>
 		<Header />
-		<!--<main>
-			
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+			<main>
+				
+				<article>
+					<div class="hero-image">
+						{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
 					</div>
-					<slot />
-				</div>
-			</article>
-			
-		</main>-->
+					<div class="prose">
+						<div class="title">
+							<div class="date">
+								<FormattedDate date={pubDate} />
+								{
+									updatedDate && (
+										<div class="last-updated-on">
+											Last updated on <FormattedDate date={updatedDate} />
+										</div>
+									)
+								}
+							</div>
+							<h1>{title}</h1>
+							<hr />
+						</div>
+						<slot />
+					</div>
+				</article>
+				
+			</main>
 		<Footer />
 	</body>
 </html>

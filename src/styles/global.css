@@ -49,6 +49,20 @@ main {
 	margin: auto;
 	padding: 3em 1em;
 }
+
+/* Ajuste especial para contenido con tablas anchas */
+main.wide-content {
+	width: auto;
+	max-width: calc(100% - 2em);
+	min-width: 720px;
+}
+
+/* También podemos usar :has si el navegador lo soporta */
+main:has(.jornada-table) {
+	width: auto;
+	max-width: calc(100% - 2em);
+	min-width: 720px;
+}
 h1,
 h2,
 h3,
@@ -152,4 +166,98 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+/* Estilos para las tablas de jornadas */
+.jornada-table {
+	width: 100%; /* Usa todo el ancho del contenedor */
+	border-collapse: collapse;
+	margin: 20px 0; /* Centrado natural dentro del contenedor */
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	table-layout: auto; /* Permite que las columnas se ajusten automáticamente */
+}
+
+/* Estilos para el header de la jornada con imagen */
+.jornada-header {
+	text-align: center;
+	margin: 2em 0;
+	padding: 1em;
+}
+
+.jornada-header img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	margin: 0 auto;
+}
+
+.jornada-table th {
+	background-color: #1e40af; /* Azul */
+	color: white;
+	padding: 12px 8px; /* Matching the td padding */
+	text-align: center;
+	border-bottom: 2px solid #1e3a8a;
+	white-space: nowrap;
+}
+
+.jornada-table th,
+.jornada-table td {
+	padding: 12px 8px; /* Padding más compacto horizontalmente */
+	border-bottom: 1px solid #ddd;
+	text-align: center; /* Centrar el contenido de las celdas */
+	white-space: nowrap; /* Evitar que el texto se parta en varias líneas */
+}
+
+/* Columnas específicas con anchos especiales */
+.jornada-table th:nth-child(1), /* Número */
+.jornada-table td:nth-child(1) {
+	width: 60px;
+}
+
+.jornada-table th:nth-child(2), /* Jugador */
+.jornada-table td:nth-child(2) {
+	width: 150px;
+	text-align: left; /* Nombres alineados a la izquierda */
+}
+
+.jornada-table tbody tr:nth-child(odd) {
+	background-color: #dbeafe; /* Azul clarito */
+}
+
+.jornada-table tbody tr:nth-child(even) {
+	background-color: #f8fafc; /* Blanco/gris muy claro */
+}
+
+.jornada-table tbody tr:hover {
+	background-color: #bfdbfe; /* Azul claro en hover */
+}
+
+/* Contenedor responsivo para la tabla */
+.table-container {
+	width: 100%;
+	overflow-x: visible; /* Sin scroll horizontal */
+	margin: 20px 0;
+	display: flex;
+	justify-content: center;
+	padding: 0 2em; /* Añadir un poco de padding a los lados */
+}
+
+.table-container .jornada-table {
+	width: 100%;
+	max-width: 1200px; /* Ancho máximo para evitar que sea demasiado ancha */
+	margin: 0;
+}
+
+/* Estilos responsivos para dispositivos móviles */
+@media (max-width: 768px) {
+	.jornada-table {
+		min-width: 600px; /* Menor en móviles */
+		font-size: 14px; /* Texto más pequeño */
+	}
+	
+	.jornada-table th,
+	.jornada-table td {
+		padding: 8px 10px; /* Menos padding en móviles */
+	}
 }
