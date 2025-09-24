@@ -38,14 +38,67 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				color: rgb(var(--gray-dark));
 			}
 			
-			/* Permitir que las tablas usen todo el ancho disponible */
+			/* Responsive: permitir que las tablas y contenido usen el ancho disponible */
 			.prose .table-container,
 			.prose .jornada-header {
-				width: 100vw;
-				max-width: calc(100vw - 4em);
-				margin-left: calc(50% - 50vw + 2em);
-				margin-right: calc(50% - 50vw + 2em);
+				width: 100%;
+				max-width: 100%;
+				margin-left: 0;
+				margin-right: 0;
 			}
+			
+			/* Ajustes específicos para móviles - más específicos */
+			@media (max-width: 768px) {
+				html {
+					overflow-x: hidden;
+				}
+				
+				body {
+					overflow-x: hidden;
+					width: 100%;
+					margin: 0;
+					padding: 0;
+				}
+				
+				main {
+					width: 100% !important;
+					max-width: 100% !important;
+					min-width: unset !important;
+					margin: 0 !important;
+					padding: 0 !important;
+					box-sizing: border-box;
+				}
+				
+				.prose {
+					width: 100% !important;
+					max-width: 100% !important;
+					margin: 0 !important;
+					padding: 1rem !important;
+					box-sizing: border-box;
+				}
+				
+				.prose .table-container,
+				.prose .jornada-header,
+				.prose .mobile-cards {
+					width: 100% !important;
+					max-width: 100% !important;
+					margin: 0 !important;
+					padding: 0 !important;
+					box-sizing: border-box;
+				}
+				
+				.hero-image {
+					width: 100% !important;
+					padding: 0 1rem;
+					box-sizing: border-box;
+				}
+				
+				.hero-image img {
+					width: 90% !important;
+					max-width: 400px !important;
+				}
+			}
+			
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;

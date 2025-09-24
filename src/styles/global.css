@@ -144,9 +144,30 @@ hr {
 @media (max-width: 720px) {
 	body {
 		font-size: 18px;
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
 	}
 	main {
-		padding: 1em;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: unset !important;
+		margin: 0 !important;
+		padding: 1em !important;
+		box-sizing: border-box;
+	}
+	
+	/* Forzar que el contenido ocupe el 100% */
+	main.wide-content {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: unset !important;
+	}
+	
+	main:has(.jornada-table) {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: unset !important;
 	}
 }
 
@@ -339,8 +360,23 @@ hr {
 
 /* Responsive: Móviles */
 @media (max-width: 768px) {
+	body {
+		font-size: 18px;
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden; /* Evitar scroll horizontal */
+	}
+	
+	main {
+		padding: 1em;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	
 	.table-container {
 		padding: 0;
+		width: 100%;
+		box-sizing: border-box;
 	}
 	
 	.jornada-table {
@@ -349,7 +385,15 @@ hr {
 	
 	.mobile-cards {
 		display: block;
-		padding: 0 1rem;
+		padding: 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	
+	.player-card {
+		margin: 15px 0;
+		width: 100%;
+		box-sizing: border-box;
 	}
 }
 
