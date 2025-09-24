@@ -3,10 +3,15 @@ import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
 import Layout from '../layouts/BlogPost.astro';
 import campobasket from '../assets/campobasket.jpg';
 import transiVideo from '../assets/jugadas/TRANSI1.mp4';
+import transiVideoWebM from '../assets/jugadas/TRANSI1.webm';
 import blindVideo from '../assets/jugadas/FONDO-BLIND.mp4';
+import blindVideoWebM from '../assets/jugadas/FONDO-BLIND.webm';
 import shortVideo from '../assets/jugadas/BANDA-SHORT.mp4';
+import shortVideoWebM from '../assets/jugadas/BANDA-SHORT.webm';
 import hammerVideo from '../assets/jugadas/HAMMER.mp4';
+import hammerVideoWebM from '../assets/jugadas/HAMMER.webm';
 import palmaVideo from '../assets/jugadas/PALMA.mp4';
+import palmaVideoWebM from '../assets/jugadas/PALMA.webm';
 ---
 
 <Layout
@@ -35,9 +40,18 @@ import palmaVideo from '../assets/jugadas/PALMA.mp4';
 		<h2>Transi 1</h2>
 		<p>Jugada en situación de transición. 5 abiertos.</p>
 		<div class="hero-image">
-			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+			<video 
+				controls 
+				width="100%" 
+				style="border-radius: 12px; box-shadow: var(--box-shadow);"
+				preload="metadata"
+				playsinline
+				muted>
+				<!-- Formato WebM para mejor compresión -->
+				<source src={transiVideoWebM} type="video/webm" />
+				<!-- Formato MP4 como fallback -->
 				<source src={transiVideo} type="video/mp4" />
-				Tu navegador no soporta el elemento video.
+				<p>Tu navegador no soporta el elemento video. <a href={transiVideo} target="_blank">Descargar video</a></p>
 			</video>
 		</div>
 		<p><b>Situación tras rebote o saque de fondo rápido</b>.</p>
@@ -54,9 +68,18 @@ import palmaVideo from '../assets/jugadas/PALMA.mp4';
 		<h2>Blind</h2>
 		<p>Jugada de fondo.</p>
 		<div class="hero-image">
-			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+			<video 
+				controls 
+				width="100%" 
+				style="border-radius: 12px; box-shadow: var(--box-shadow);"
+				preload="metadata"
+				playsinline
+				muted>
+				<!-- Formato WebM para mejor compresión -->
+				<source src={blindVideoWebM} type="video/webm" />
+				<!-- Formato MP4 como fallback -->
 				<source src={blindVideo} type="video/mp4" />
-				Tu navegador no soporta el elemento video.
+				<p>Tu navegador no soporta el elemento video. <a href={blindVideo} target="_blank">Descargar video</a></p>
 			</video>
 		</div>
 		<p><b>Situación que si se hace bien, siempre se saca ventaja</b>.</p>
@@ -80,9 +103,18 @@ import palmaVideo from '../assets/jugadas/PALMA.mp4';
 		<h2>Short</h2>
 		<p>Jugada de banda.</p>
 		<div class="hero-image">
-			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+			<video 
+				controls 
+				width="100%" 
+				style="border-radius: 12px; box-shadow: var(--box-shadow);"
+				preload="metadata"
+				playsinline
+				muted>
+				<!-- Formato WebM para mejor compresión -->
+				<source src={shortVideoWebM} type="video/webm" />
+				<!-- Formato MP4 como fallback -->
 				<source src={shortVideo} type="video/mp4" />
-				Tu navegador no soporta el elemento video.
+				<p>Tu navegador no soporta el elemento video. <a href={shortVideo} target="_blank">Descargar video</a></p>
 			</video>
 		</div>
 		<p><b>Situación de saque de banda</b>.</p>
@@ -113,9 +145,18 @@ import palmaVideo from '../assets/jugadas/PALMA.mp4';
 		<h2>Palma</h2>
 		<p>Jugada de banda.</p>
 		<div class="hero-image">
-			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+			<video 
+				controls 
+				width="100%" 
+				style="border-radius: 12px; box-shadow: var(--box-shadow);"
+				preload="metadata"
+				playsinline
+				muted>
+				<!-- Formato WebM para mejor compresión -->
+				<source src={palmaVideoWebM} type="video/webm" />
+				<!-- Formato MP4 como fallback -->
 				<source src={palmaVideo} type="video/mp4" />
-				Tu navegador no soporta el elemento video.
+				<p>Tu navegador no soporta el elemento video. <a href={palmaVideo} target="_blank">Descargar video</a></p>
 			</video>
 		</div>
 		<p><b>Jugada en estático</b>.</p>
@@ -139,9 +180,18 @@ import palmaVideo from '../assets/jugadas/PALMA.mp4';
 		<h2>Hammer</h2>
 		<p>Jugada en estático.</p>
 		<div class="hero-image">
-			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+			<video 
+				controls 
+				width="100%" 
+				style="border-radius: 12px; box-shadow: var(--box-shadow);"
+				preload="metadata"
+				playsinline
+				muted>
+				<!-- Formato WebM para mejor compresión -->
+				<source src={hammerVideoWebM} type="video/webm" />
+				<!-- Formato MP4 como fallback -->
 				<source src={hammerVideo} type="video/mp4" />
-				Tu navegador no soporta el elemento video.
+				<p>Tu navegador no soporta el elemento video. <a href={hammerVideo} target="_blank">Descargar video</a></p>
 			</video>
 		</div>
 		<p>Nos colocamos en situación de <b>3 abiertos y 2 interior en poste alto</b>.</p>
