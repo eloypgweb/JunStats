@@ -336,6 +336,49 @@ hr {
 	filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.5));
 }
 
+/* Estilos para jugadores sancionados en la tabla */
+.sancionado-row {
+	background-color: #fef2f2 !important;
+	border-left: 4px solid #dc2626 !important;
+}
+
+.sancionado-row:hover {
+	background-color: #fee2e2 !important;
+}
+
+.sancionado-cell {
+	text-align: center !important;
+	padding: 20px 8px !important;
+	vertical-align: middle;
+	background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.sancionado-badge {
+	display: inline-block;
+	background: #dc2626;
+	color: white;
+	padding: 8px 16px;
+	border-radius: 20px;
+	font-weight: bold;
+	font-size: 0.9em;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+	animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+	0% {
+		box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+	}
+	50% {
+		box-shadow: 0 4px 16px rgba(220, 38, 38, 0.5);
+	}
+	100% {
+		box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+	}
+}
+
 /* Corona encima del nombre */
 .mvp-crown-top {
 	font-size: 1.4em;
