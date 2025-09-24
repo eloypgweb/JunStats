@@ -2,7 +2,11 @@
 import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
 import Layout from '../layouts/BlogPost.astro';
 import campobasket from '../assets/campobasket.jpg';
-import transi from '../assets/transi.jpg';
+import transiVideo from '../assets/jugadas/TRANSI1.mp4';
+import blindVideo from '../assets/jugadas/FONDO-BLIND.mp4';
+import shortVideo from '../assets/jugadas/BANDA-SHORT.mp4';
+import hammerVideo from '../assets/jugadas/HAMMER.mp4';
+import palmaVideo from '../assets/jugadas/PALMA.mp4';
 ---
 
 <Layout
@@ -11,16 +15,299 @@ import transi from '../assets/transi.jpg';
 	pubDate={new Date('September 01 2025')}
 	heroImage={campobasket}
 >
-	<p>
+
+	<!-- Índice de jugadas -->
+	<div class="jugadas-index">
+		<h3>🏀 Índice de Jugadas</h3>
+		<div class="jugadas-buttons">
+			<a href="#transi1" class="jugada-btn">⚡ Transi 1</a>
+			<a href="#blind" class="jugada-btn">👁️ Blind</a>
+			<a href="#short" class="jugada-btn">🏃 Short</a>
+			<a href="#palma" class="jugada-btn disabled">🖐️ Palma</a>
+			<a href="#hammer" class="jugada-btn disabled">🔨 Hammer</a>
+		</div>
+	</div>	<p>
 		Aquí veremos las jugadas que tenemos por el momento y usaremos a lo largo de la temporada.
 		Los vídeos y/o fotos irán acompañados de una descripción para que entendamos la situación y ventajas.
 	</p>
 
-	<h2>Transi</h2>
-	<p>Jugada en situación de transición. 5 abiertos.</p>
-	<div class="hero-image">
-		<img src={campobasket.src} alt="Transi" />
+	<div class="transi1" id="transi1">
+		<h2>Transi 1</h2>
+		<p>Jugada en situación de transición. 5 abiertos.</p>
+		<div class="hero-image">
+			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+				<source src={transiVideo} type="video/mp4" />
+				Tu navegador no soporta el elemento video.
+			</video>
+		</div>
+		<p><b>Situación tras rebote o saque de fondo rápido</b>.</p>
+		<p>Tras rebote o saque rápido, <b>balón al manejador</b>. Importante recibir en la <b>altura de tiro libre</b>.</p>
+		<p>El manejador va en bote mientras todos pasamos de campo y nos colocamos en situación de <b>5 abiertos</b>.
+		<b>El tráiler</b> (jugador que va cayendo por calle central) <b>lanza corte al aro</b>, si recibe el balón, acaba.
+		Pero si no recibe, deberá caer a <b>poste bajo de lado contrario</b>.</p>
+		<p>En ese instante del corte, los jugadores aplican <b>normas de spacing</b>, reemplazando las posiciones.
+		Hay pase a cabecera y en cuanto se suelta el balón, vamos a <b>bloquear a esquina de lado fuerte</b>. Si sacamos ventaja y se puede
+		dar el pase, se acaba. Si no, se <b>invierte balón</b> a lado contrario y <b>damos espacio para que se juegue el 2x2</b>.
+		En caso de que el <b>poste tenga ventaja</b>, se juega el pase, si no, se <b>juega bloqueo directo</b>. Aplicamos <b>lectura de ventajas</b>.</p>
 	</div>
-	<p>Descripcion de la jugada, lectura de ventajas etc etc etc</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	<div class="fondo-blind" id="blind">
+		<h2>Blind</h2>
+		<p>Jugada de fondo.</p>
+		<div class="hero-image">
+			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+				<source src={blindVideo} type="video/mp4" />
+				Tu navegador no soporta el elemento video.
+			</video>
+		</div>
+		<p><b>Situación que si se hace bien, siempre se saca ventaja</b>.</p>
+		<p>Situación que puede venir por fuera del rival, una falta que sea saque de fondo o incluso por un tapón que nos llevemos
+		y saquemos de fondo.</p>
+		<p>Nos colocamos:
+			<ul>
+				<li>1 en 45º lado contrario</li>
+				<li>2 sacador</li>
+				<li>3 en semicírculo de la zona</li>
+				<li>4 en 45º de lado fuerte</li>
+				<li>5 en altura de TL o algo más atrás</li>
+			</ul>
+			3 pone un <b>bloqueo ciego orientando</b> a 5, para <b>después de pinchar hacer el roll al aro</b>.
+			<b>Esa es la opción que queremos</b>, y SIEMPRE se saca ventaja si se hace bien.
+		</p>
+		<p>En caso de que no salga, el <b>4 iría a cabecera a poner un bloqueo para que el 1 lo pille en carrera y recibir un
+		pase de seguridad</b>. Empieza jugada.</p>
+	</div>
+	<div class="banda-short" id="short">
+		<h2>Short</h2>
+		<p>Jugada de banda.</p>
+		<div class="hero-image">
+			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+				<source src={shortVideo} type="video/mp4" />
+				Tu navegador no soporta el elemento video.
+			</video>
+		</div>
+		<p><b>Situación de saque de banda</b>.</p>
+		<p>Situación que puede venir por fuera del rival o una falta que sea saque de banda.</p>
+		<p>Nos colocamos:
+			<ul>
+				<li>1 en 45º lado contrario</li>
+				<li>2 sacador</li>
+				<li>3 en esquina</li>
+				<li>4 poste bajo</li>
+				<li>5 entre TL y T3</li>
+			</ul>
+			4 pone un <b>bloqueo indirecto orientando</b> a 5, para <b>después de pinchar, hacer otro bloqueo seguido a 1</b>.
+			
+		</p>
+		<p>En caso de que no reciba ni el 5 en el corte ni el 1 en el bloqueo indirecto, el <b>3 que está en esquina, trabaja
+		con su defensor para recibir rápido</b>. Empieza jugada.</p>
+	</div>
+	<div class="palma locked" id="palma">
+		<div class="coming-soon-overlay">
+			<div class="coming-soon-content">
+				<span class="coming-soon-emoji">🔒</span>
+				<h3>Coming Soon...</h3>
+				<p>Esta jugada aún no ha sido entrenada con el equipo</p>
+			</div>
+		</div>
+		<div class="locked-content">
+		<h2>Palma</h2>
+		<p>Jugada de banda.</p>
+		<div class="hero-image">
+			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+				<source src={palmaVideo} type="video/mp4" />
+				Tu navegador no soporta el elemento video.
+			</video>
+		</div>
+		<p><b>Jugada en estático</b>.</p>
+		<p>Nos colocamos: manejador con balón en cabecera; tirador debajo del aro; grandes en postes medios; apoyo en TL.</p>
+		<p><b>tirador juega con fintas</b> para finalmente salir por cualquiera de los dos lados y hacer un <b>carretón hacia 45º</b>.
+		En el momento que el tirador se decanta por un lado, simultáneamente el jugador de apoyo en TL se abre con un cambio de 
+		ritmo al otro 45º.</p>
+		<p><b>La primera opción es recibir con espacio y hacer el tiro</b>, si no, los <b>postes hacen un intercambio con un bloqueo</b>
+		y se juega el balón interior. <b>A partir de ahí, aplicamos normas de spacing</b>.</p>
+		</div>
+	</div>
+	<div class="hammer locked" id="hammer">
+		<div class="coming-soon-overlay">
+			<div class="coming-soon-content">
+				<span class="coming-soon-emoji">🔒</span>
+				<h3>Coming Soon...</h3>
+				<p>Esta jugada aún no ha sido entrenada con el equipo</p>
+			</div>
+		</div>
+		<div class="locked-content">
+		<h2>Hammer</h2>
+		<p>Jugada en estático.</p>
+		<div class="hero-image">
+			<video controls width="100%" style="border-radius: 12px; box-shadow: var(--box-shadow);">
+				<source src={hammerVideo} type="video/mp4" />
+				Tu navegador no soporta el elemento video.
+			</video>
+		</div>
+		<p>Nos colocamos en situación de <b>3 abiertos y 2 interior en poste alto</b>.</p>
+		<p><b>Balón empieza en 45º, que será el tirador</b>. Damos pase a cabecera, vamos en bote a 45º de lado contrario 
+		y el que dió el pase lanza corte. Si no recibe, va a poner un <b>bloqueo directo a esquina de balón</b>. Acto seguido, vuelve 
+		a debajo del aro, para <b>pillar un ascensor con los 2 interiores que bloquean a la altura de TL</b>.</p>
+		</div>
+	</div>
+	
 </Layout>
+
+<style>
+	/* Scroll suave global */
+	html {
+		scroll-behavior: smooth;
+	}
+
+	/* Estilos para el índice de jugadas */
+	.jugadas-index {
+		background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+		border: 2px solid #1e40af;
+		border-radius: 12px;
+		padding: 20px;
+		margin: 30px 0;
+		text-align: center;
+		box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+	}
+
+	.jugadas-index h3 {
+		color: #1e40af;
+		margin-bottom: 15px;
+		font-size: 1.3em;
+	}
+
+	.jugadas-buttons {
+		display: flex;
+		gap: 15px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.jugada-btn {
+		display: inline-block;
+		background: #1e40af;
+		color: white;
+		padding: 12px 20px;
+		text-decoration: none;
+		border-radius: 25px;
+		font-weight: bold;
+		font-size: 1em;
+		transition: all 0.3s ease;
+		box-shadow: 0 3px 8px rgba(30, 64, 175, 0.3);
+		border: 2px solid transparent;
+	}
+
+	.jugada-btn:hover {
+		background: #1e3a8a;
+		transform: translateY(-2px);
+		box-shadow: 0 5px 15px rgba(30, 64, 175, 0.4);
+		color: white;
+	}
+
+	.jugada-btn:active {
+		transform: translateY(0);
+	}
+
+	/* Botones deshabilitados */
+	.jugada-btn.disabled {
+		background: #6b7280;
+		color: #9ca3af;
+		cursor: not-allowed;
+		opacity: 0.6;
+		pointer-events: none;
+		box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
+	}
+
+	.jugada-btn.disabled:hover {
+		background: #6b7280;
+		transform: none;
+		box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
+	}
+
+	/* Estilos para secciones bloqueadas */
+	.locked {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.locked-content {
+		filter: blur(1.5px);
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	.coming-soon-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.95);
+		z-index: 10;
+		backdrop-filter: blur(2px);
+	}
+
+	.coming-soon-content {
+		text-align: center;
+		padding: 40px 20px;
+		background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+		border: 2px dashed #9ca3af;
+		border-radius: 15px;
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+		max-width: 300px;
+	}
+
+	.coming-soon-emoji {
+		font-size: 3em;
+		display: block;
+		margin-bottom: 10px;
+		animation: lockPulse 2s infinite;
+	}
+
+	.coming-soon-content h3 {
+		color: #374151;
+		margin: 10px 0;
+		font-size: 1.5em;
+	}
+
+	.coming-soon-content p {
+		color: #6b7280;
+		font-style: italic;
+		margin: 0;
+		font-size: 0.9em;
+	}
+
+	@keyframes lockPulse {
+		0%, 100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scale(1.1);
+			opacity: 0.8;
+		}
+	}
+
+	/* Espaciado para las secciones de jugadas */
+	.transi1, .fondo-blind, .banda-short, .palma, .hammer {
+		margin-top: 50px;
+		padding-top: 20px;
+		scroll-margin-top: 100px; /* Espacio para el header fijo si lo hay */
+	}
+
+	/* Responsive para móviles */
+	@media (max-width: 768px) {
+		.jugadas-buttons {
+			flex-direction: column;
+			align-items: center;
+		}
+		
+		.jugada-btn {
+			width: 80%;
+			max-width: 250px;
+		}
+	}
+</style>
