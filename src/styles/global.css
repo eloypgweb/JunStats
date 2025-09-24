@@ -336,6 +336,15 @@ hr {
 	filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.5));
 }
 
+/* Corona en la tabla (escritorio/tablet) */
+.mvp-crown-table {
+	font-size: 1.1em;
+	margin-right: 6px;
+	animation: bounce 2s infinite;
+	display: inline-block;
+	filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.5));
+}
+
 /* Estilos para jugadores sancionados en la tabla */
 .sancionado-row {
 	background-color: #fef2f2 !important;
