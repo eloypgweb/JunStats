@@ -1,15 +1,9 @@
 # 🏀 JunStats
 
-
-
 > **Plataforma de estadísticas y análisis del equipo de baloncesto Junior C Masculino del CDE Leganés**
 > **Plataforma de estadísticas del Junior C Masculino del CDE Leganés**
 
-
-
 ## 📖 Descripción
-
-
 
 **JunStats** es una aplicación web moderna desarrollada con **Astro** que permite visualizar y analizar las estadísticas del equipo de baloncesto Junior C Masculino del Club Deportivo Elemental Leganés.**JunStats** es una aplicación web moderna desarrollada con Astro que permite visualizar y analizar las estadísticas del equipo de baloncesto Junior C Masculino del Club Deportivo Elemental Leganés.
 
@@ -79,19 +73,19 @@ La plataforma ofrece una experiencia responsive y elegante para consultar estad�
 
 - **🔍 SEO optimizado** - Sitemap automático y RSS feed
 
-### 🎨 **Experiencia de Usuario**├── src/
+### 🎨 **Experiencia de Usuario**
 
 ## 🚀 Inicio Rápido
 
-- **Cards interactivas** en móviles con información completa│   ├── components/
+- **Cards interactivas** en móviles con información completa
 
 ### Prerrequisitos
 
-- **Tablas profesionales** en escritorio y tablets│   ├── content/
+- **Móvil, tablet o PC**
 
 - **Node.js** 18+ 
 
-- **npm**, **yarn** o **pnpm**- **Animaciones suaves** para coronas MVP y elementos sancionados│   ├── layouts/
+- **npm**, **yarn** o **pnpm**- **Animaciones suaves** para coronas MVP y elementos sancionados
 
 ### Por Jugador y Jornada
 
@@ -101,7 +95,7 @@ La plataforma ofrece una experiencia responsive y elegante para consultar estad�
 
 - **🎳 TL** - Tiros libres (metidos/intentados)
 
-- **🤝 Assists** - Pases de gol
+- **🤝 Assists** - Pases con canasta
 
 - **🔄 Rebotes** - Capturas ofensivas y defensivas
 
