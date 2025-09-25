@@ -6,7 +6,8 @@
     "pubDate": "2025-09-21",
     "heroImage": "/src/assets/jornadas/presJ1.png",
     "opponent": "San Martín de la Vega",
-    "slug": "jornada1"
+    "slug": "jornada1",
+    "available": true
   },
   {
     "id": "jornada2", 
@@ -15,6 +16,7 @@
     "pubDate": "2025-09-28",
     "heroImage": "/src/assets/jornadas/presJ2.png",
     "opponent": "Getafe B",
-    "slug": "jornada2"
+    "slug": "jornada2",
+    "available": false
   }
 ]
