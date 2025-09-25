@@ -1,0 +1,20 @@
+[
+  {
+    "id": "jornada1",
+    "title": "Jornada 1",
+    "description": "Resumen de la primera jornada de la temporada.",
+    "pubDate": "2025-09-21",
+    "heroImage": "/src/assets/jornadas/presJ1.png",
+    "opponent": "San Martín de la Vega",
+    "slug": "jornada1"
+  },
+  {
+    "id": "jornada2", 
+    "title": "Jornada 2",
+    "description": "Resumen de la segunda jornada de la temporada.",
+    "pubDate": "2025-09-28",
+    "heroImage": "/src/assets/jornadas/presJ2.png",
+    "opponent": "Getafe B",
+    "slug": "jornada2"
+  }
+]

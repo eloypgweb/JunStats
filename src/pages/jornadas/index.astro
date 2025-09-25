@@ -1,16 +1,31 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import totaltemporada from '../../assets/totaltemporada.png';
+import jornadas from '../../data/jornadas.json';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+// Importar las imágenes dinámicamente
+import presJ1 from '../../assets/jornadas/presJ1.png';
+import presJ2 from '../../assets/jornadas/presJ2.png';
+
+// Mapear las imágenes
+const imageMap: Record<string, any> = {
+	'/src/assets/jornadas/presJ1.png': presJ1,
+	'/src/assets/jornadas/presJ2.png': presJ2,
+};
+
+// Ordenar jornadas por fecha (más recientes primero)
+const sortedJornadas = jornadas
+	.map(jornada => ({
+		...jornada,
+		pubDate: new Date(jornada.pubDate),
+		heroImage: imageMap[jornada.heroImage]
+	}))
+	.sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
 ---
 
 <!doctype html>
@@ -104,7 +119,7 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-			<h2>Estadísticas totales de temporada:</h2>
+			<h2>Estadísticas de la temporada:</h2>
 			<section>
 				<div class="table">
 					<h3 class="table-title">Tabla total de temporada</h3>
@@ -112,15 +127,15 @@ const posts = (await getCollection('blog')).sort(
 				</div>
 				<ul>
 					{
-						posts.map((post) => (
+						sortedJornadas.map((jornada) => (
 							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+								<a href={`/jornadas/${jornada.slug}/`}>
+									{jornada.heroImage && (
+										<Image width={720} height={360} src={jornada.heroImage} alt="" />
 									)}
-									<h4 class="title">{post.data.title}</h4>
+									<h4 class="title">{jornada.title}</h4>
 									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
+										<FormattedDate date={jornada.pubDate} />
 									</p>
 								</a>
 							</li>
