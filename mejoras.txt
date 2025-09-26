@@ -1,0 +1,73 @@
+MEJORAS PARA WEB JUNSTATS
+
+🎯 MEJORAS PROPUESTAS
+1. FUNCIONALIDADES TÉCNICAS DE ALTO IMPACTO
+📊 Dashboard de Comparativa de Jugadores
+
+¿Qué? Página que permita comparar estadísticas entre 2-3 jugadores seleccionados
+¿Por qué? Los entrenadores y jugadores necesitan análisis comparativo para tomar decisiones tácticas y de rotación
+📈 Gráficos de Evolución Temporal
+
+¿Qué? Gráficos que muestren la evolución de estadísticas clave por jornada (puntos, valoración, eficiencia)
+¿Por qué? Visualizar tendencias es crucial para detectar mejoras o bajadas de rendimiento
+🏆 Ranking/Clasificación de Jugadores
+
+¿Qué? Página con clasificaciones por diferentes métricas (máximo anotador, mejor valoración, más assists, etc.)
+¿Por qué? Gamifica las estadísticas y motiva a los jugadores a mejorar
+2. MEJORAS DE EXPERIENCIA DE USUARIO
+🔍 Buscador/Filtros Avanzados
+
+¿Qué? Sistema de búsqueda y filtros para encontrar estadísticas específicas (por jugador, jornada, rango de fechas)
+¿Por qué? Con más jornadas, será difícil navegar sin herramientas de búsqueda
+📱 PWA (Progressive Web App)
+
+¿Qué? Convertir la web en una PWA instalable con funcionalidad offline básica
+¿Por qué? Los entrenadores podrían acceder desde el banquillo sin conexión perfecta
+🌙 Modo Oscuro/Claro
+
+¿Qué? Toggle entre tema claro y oscuro
+¿Por qué? Mejora la experiencia en diferentes condiciones de luz y preferencias personales
+3. FUNCIONALIDADES DE CONTENIDO
+📊 Estadísticas de Equipo
+
+¿Qué? Página con estadísticas agregadas del equipo completo por jornada y temporada
+¿Por qué? Ver el rendimiento global es importante para análisis táctico general
+🎯 Predicciones/Objetivos
+
+¿Qué? Sistema simple de objetivos por jugador y seguimiento de cumplimiento
+¿Por qué? Establece metas claras y ayuda al desarrollo individual
+📝 Sistema de Comentarios/Notas
+
+¿Qué? Permitir añadir notas o comentarios a partidos específicos (solo admin)
+¿Por qué? Contexto importante sobre lesiones, condiciones especiales, etc.
+4. MEJORAS TÉCNICAS Y DE RENDIMIENTO
+⚡ Precarga Inteligente
+
+¿Qué? Precargar las jornadas más recientes y videos más vistos
+¿Por qué? Mejora la experiencia de usuario en conexiones lentas
+📊 Metadatos Mejorados para SEO
+
+¿Qué? Meta tags específicos para cada jornada, Open Graph mejorado
+¿Por qué? Mejor visibilidad cuando se comparta en redes sociales
+5. FUNCIONALIDADES FUTURAS AVANZADAS
+📈 Análisis con IA Simple
+
+¿Qué? Sugerencias automáticas basadas en patrones (ej: "Hugo ha mejorado su valoración un 15% respecto a las 3 jornadas anteriores")
+¿Por qué? Aporta valor analítico sin complejidad excesiva
+🏀 Heatmaps de Posiciones
+
+¿Qué? Visualización de dónde son más efectivos los jugadores
+¿Por qué? Información táctica valiosa para entrenadores
+🎯 RECOMENDACIÓN PRIORIZADA
+FASE 1 (Impacto Alto, Esfuerzo Medio)
+Dashboard de Comparativa de Jugadores
+Ranking/Clasificación de Jugadores
+Modo Oscuro/Claro
+FASE 2 (Impacto Medio-Alto, Esfuerzo Medio)
+Estadísticas de Equipo
+Gráficos de Evolución
+Buscador/Filtros
+FASE 3 (Funcionalidades Avanzadas)
+PWA
+Sistema de Notas
+Predicciones/Objetivos
