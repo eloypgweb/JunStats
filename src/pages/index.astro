@@ -142,7 +142,7 @@ import totalTemporada from '../assets/totaltemporada.png';
 
 	/* Hero Section */
 	.hero {
-		background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+		background: linear-gradient(135deg, var(--hero-bg-start) 0%, var(--hero-bg-middle) 50%, var(--hero-bg-end) 100%);
 		padding: 80px 20px;
 		min-height: 70vh;
 		display: flex;
@@ -176,7 +176,7 @@ import totalTemporada from '../assets/totaltemporada.png';
 	.hero-title {
 		font-size: 4rem;
 		font-weight: 800;
-		color: white;
+		color: rgb(var(--hero-text));
 		margin-bottom: 20px;
 		display: flex;
 		align-items: center;
@@ -184,7 +184,7 @@ import totalTemporada from '../assets/totaltemporada.png';
 	}
 
 	.gradient-text {
-		background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+		background: linear-gradient(45deg, var(--hero-accent), var(--hero-accent-hover), #d97706);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -197,7 +197,7 @@ import totalTemporada from '../assets/totaltemporada.png';
 
 	.hero-subtitle {
 		font-size: 1.4rem;
-		color: rgba(255, 255, 255, 0.9);
+		color: var(--hero-text-secondary);
 		margin-bottom: 40px;
 		line-height: 1.6;
 	}
@@ -221,28 +221,29 @@ import totalTemporada from '../assets/totaltemporada.png';
 	}
 
 	.btn-primary {
-		background: #fbbf24;
-		color: #1e40af;
+		background: var(--hero-accent);
+		color: var(--hero-accent-text);
 		box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
 	}
 
 	.btn-primary:hover {
-		background: #f59e0b;
+		background: var(--hero-accent-hover);
 		transform: translateY(-2px);
 		box-shadow: 0 12px 35px rgba(251, 191, 36, 0.4);
 	}
 
 	.btn-secondary {
 		background: transparent;
-		color: white;
-		border: 2px solid rgba(255, 255, 255, 0.3);
+		color: rgb(var(--hero-text));
+		border: 2px solid rgba(var(--hero-text), 0.3);
 		backdrop-filter: blur(10px);
 	}
 
 	.btn-secondary:hover {
-		background: rgba(255, 255, 255, 0.1);
-		border-color: rgba(255, 255, 255, 0.5);
+		background: rgba(var(--hero-text), 0.1);
+		border-color: rgba(var(--hero-text), 0.5);
 		transform: translateY(-2px);
+		color: rgb(var(--hero-text));
 	}
 
 	.hero-image {
@@ -274,7 +275,7 @@ import totalTemporada from '../assets/totaltemporada.png';
 
 	.team-badge {
 		background: rgba(251, 191, 36, 0.9);
-		color: #1e40af;
+		color: var(--hero-accent-text);
 		padding: 8px 16px;
 		border-radius: 20px;
 		font-weight: bold;
@@ -292,13 +293,13 @@ import totalTemporada from '../assets/totaltemporada.png';
 		font-size: 2.5rem;
 		text-align: center;
 		margin-bottom: 50px;
-		color: #1e40af;
+		color: var(--accent);
 	}
 
 	/* Stats Preview Section */
 	.stats-preview {
 		padding: 100px 0;
-		background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+		background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
 	}
 
 	.features-grid {
@@ -308,18 +309,18 @@ import totalTemporada from '../assets/totaltemporada.png';
 	}
 
 	.feature-card {
-		background: white;
+		background: var(--card-bg);
 		padding: 40px 30px;
 		border-radius: 20px;
 		text-align: center;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-		transition: transform 0.3s ease;
-		border-top: 4px solid #1e40af;
+		box-shadow: 0 10px 30px rgba(var(--shadow-color), 0.1);
+		transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+		border-top: 4px solid var(--accent);
 	}
 
 	.feature-card:hover {
 		transform: translateY(-10px);
-		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+		box-shadow: 0 20px 50px rgba(var(--shadow-color), 0.15);
 	}
 
 	.feature-icon {
@@ -329,12 +330,12 @@ import totalTemporada from '../assets/totaltemporada.png';
 
 	.feature-card h3 {
 		font-size: 1.5rem;
-		color: #1e40af;
+		color: var(--accent);
 		margin-bottom: 15px;
 	}
 
 	.feature-card p {
-		color: #64748b;
+		color: rgb(var(--text-secondary));
 		line-height: 1.6;
 		margin-bottom: 20px;
 	}
@@ -352,7 +353,7 @@ import totalTemporada from '../assets/totaltemporada.png';
 	/* Team Info Section */
 	.team-info {
 		padding: 100px 0;
-		background: white;
+		background: var(--bg-primary);
 	}
 
 	.team-content {
@@ -365,7 +366,7 @@ import totalTemporada from '../assets/totaltemporada.png';
 	.team-description {
 		font-size: 1.2rem;
 		line-height: 1.8;
-		color: #4b5563;
+		color: rgb(var(--text-secondary));
 		margin-bottom: 40px;
 	}
 
@@ -383,13 +384,13 @@ import totalTemporada from '../assets/totaltemporada.png';
 		display: block;
 		font-size: 3rem;
 		font-weight: 800;
-		color: #1e40af;
+		color: var(--accent);
 		line-height: 1;
 	}
 
 	.stat-label {
 		font-size: 0.9rem;
-		color: #64748b;
+		color: rgb(var(--text-muted));
 		text-transform: uppercase;
 		font-weight: 600;
 		letter-spacing: 1px;
@@ -404,18 +405,18 @@ import totalTemporada from '../assets/totaltemporada.png';
 		height: 200px;
 		object-fit: contain;
 		border-radius: 20px;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 10px 30px rgba(var(--shadow-color), 0.1);
 	}
 
 	/* Quote Section */
 	.quote-section {
 		padding: 80px 0;
-		background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+		background: linear-gradient(135deg, var(--section-quote-bg-start) 0%, var(--section-quote-bg-end) 100%);
 	}
 
 	.hero-quote {
 		text-align: center;
-		color: white;
+		color: rgb(var(--hero-text));
 		max-width: 800px;
 		margin: 0 auto;
 	}
@@ -449,12 +450,12 @@ import totalTemporada from '../assets/totaltemporada.png';
 	/* CTA Section */
 	.cta-section {
 		padding: 100px 0;
-		background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+		background: linear-gradient(135deg, var(--section-cta-bg-start) 0%, var(--section-cta-bg-end) 100%);
 	}
 
 	.cta-content {
 		text-align: center;
-		color: #1e40af;
+		color: var(--section-cta-text);
 	}
 
 	.cta-content h2 {
@@ -482,13 +483,13 @@ import totalTemporada from '../assets/totaltemporada.png';
 
 	.btn-outline {
 		background: transparent;
-		border: 3px solid #1e40af;
-		color: #1e40af;
+		border: 3px solid var(--section-cta-text);
+		color: var(--section-cta-text);
 	}
 
 	.btn-outline:hover {
-		background: #1e40af;
-		color: white;
+		background: var(--section-cta-text);
+		color: var(--section-cta-bg-start);
 	}
 
 	/* Responsive */

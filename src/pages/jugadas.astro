@@ -211,17 +211,17 @@ import palmaVideoWebM from '../assets/jugadas/PALMA.webm';
 
 	/* Estilos para el índice de jugadas */
 	.jugadas-index {
-		background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
-		border: 2px solid #1e40af;
+		background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(var(--border-light), 0.3) 100%);
+		border: 2px solid var(--accent);
 		border-radius: 12px;
 		padding: 20px;
 		margin: 30px 0;
 		text-align: center;
-		box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+		box-shadow: 0 4px 12px rgba(var(--accent), 0.1);
 	}
 
 	.jugadas-index h3 {
-		color: #1e40af;
+		color: var(--accent);
 		margin-bottom: 15px;
 		font-size: 1.3em;
 	}
@@ -235,23 +235,23 @@ import palmaVideoWebM from '../assets/jugadas/PALMA.webm';
 
 	.jugada-btn {
 		display: inline-block;
-		background: #1e40af;
-		color: white;
+		background: var(--accent);
+		color: rgb(var(--text-inverse));
 		padding: 12px 20px;
 		text-decoration: none;
 		border-radius: 25px;
 		font-weight: bold;
 		font-size: 1em;
 		transition: all 0.3s ease;
-		box-shadow: 0 3px 8px rgba(30, 64, 175, 0.3);
+		box-shadow: 0 3px 8px rgba(var(--accent), 0.3);
 		border: 2px solid transparent;
 	}
 
 	.jugada-btn:hover {
-		background: #1e3a8a;
+		background: var(--accent-dark);
 		transform: translateY(-2px);
-		box-shadow: 0 5px 15px rgba(30, 64, 175, 0.4);
-		color: white;
+		box-shadow: 0 5px 15px rgba(var(--accent), 0.4);
+		color: rgb(var(--text-inverse));
 	}
 
 	.jugada-btn:active {
@@ -260,18 +260,18 @@ import palmaVideoWebM from '../assets/jugadas/PALMA.webm';
 
 	/* Botones deshabilitados */
 	.jugada-btn.disabled {
-		background: #6b7280;
-		color: #9ca3af;
+		background: rgb(var(--text-muted));
+		color: rgba(var(--text-muted), 0.7);
 		cursor: not-allowed;
 		opacity: 0.6;
 		pointer-events: none;
-		box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
+		box-shadow: 0 2px 4px rgba(var(--text-muted), 0.2);
 	}
 
 	.jugada-btn.disabled:hover {
-		background: #6b7280;
+		background: rgb(var(--text-muted));
 		transform: none;
-		box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
+		box-shadow: 0 2px 4px rgba(var(--text-muted), 0.2);
 	}
 
 	/* Estilos para secciones bloqueadas */
@@ -303,10 +303,10 @@ import palmaVideoWebM from '../assets/jugadas/PALMA.webm';
 	.coming-soon-content {
 		text-align: center;
 		padding: 40px 20px;
-		background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-		border: 2px dashed #9ca3af;
+		background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+		border: 2px dashed rgba(var(--text-muted), 0.5);
 		border-radius: 15px;
-		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 8px 25px rgba(var(--shadow-color), 0.1);
 		max-width: 300px;
 	}
 
@@ -318,13 +318,13 @@ import palmaVideoWebM from '../assets/jugadas/PALMA.webm';
 	}
 
 	.coming-soon-content h3 {
-		color: #374151;
+		color: rgb(var(--text-primary));
 		margin: 10px 0;
 		font-size: 1.5em;
 	}
 
 	.coming-soon-content p {
-		color: #6b7280;
+		color: rgb(var(--text-secondary));
 		font-style: italic;
 		margin: 0;
 		font-size: 0.9em;
