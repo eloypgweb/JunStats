@@ -1,0 +1,23 @@
+/* Estilos específicos para página 404 */
+body {
+	background: #f8fafc;
+	color: #222;
+}
+
+h1 {
+	font-size: 6rem;
+	color: #e53e3e;
+}
+
+a {
+	color: #3182ce;
+}
+
+a.button {
+	background: #3182ce;
+	color: #fff;
+}
+
+a.button:hover {
+	background: #2563eb;
+}

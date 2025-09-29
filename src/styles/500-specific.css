@@ -1,0 +1,23 @@
+/* Estilos específicos para página 500 */
+body {
+	font-family: system-ui, sans-serif;
+	background: #f8f8f8;
+	color: #222;
+}
+
+h1 {
+	color: #d32f2f;
+}
+
+h2 {
+	font-size: 2rem;
+	margin: 0.5em 0 1em 0;
+}
+
+p {
+	color: #555;
+}
+
+a {
+	color: #1976d2;
+}

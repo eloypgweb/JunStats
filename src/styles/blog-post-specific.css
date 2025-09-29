@@ -1,0 +1,19 @@
+/* Estilos específicos para BlogPost */
+.hero-image {
+	width: 100%;
+}
+
+.hero-image img {
+	display: block;
+	margin: 0 auto;
+	border-radius: 12px;
+	box-shadow: var(--box-shadow);
+	width: 30%;
+}
+
+@media (max-width: 768px) {
+	.hero-image img {
+		width: 90% !important;
+		max-width: 400px !important;
+	}
+}

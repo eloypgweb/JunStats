@@ -4,6 +4,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import '../styles/post-layout-base.css';
+import '../styles/jornada-post-specific.css';
 
 interface Props {
 	title: string;
@@ -19,119 +21,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-				max-width: 1200px;
-				margin: 0 auto 1.5rem auto;
-				position: relative;
-				aspect-ratio: 2 / 1; /* Forzar relación 2:1 uniforme */
-				overflow: hidden;
-			}
-			.hero-image img {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			
-			/* Responsive: permitir que las tablas y contenido usen el ancho disponible */
-			.prose .table-container,
-			.prose .jornada-header {
-				width: 100%;
-				max-width: 100%;
-				margin-left: 0;
-				margin-right: 0;
-			}
-			
-			/* Ajustes específicos para móviles - más específicos */
-			@media (max-width: 768px) {
-				html {
-					overflow-x: hidden;
-				}
-				
-				body {
-					overflow-x: hidden;
-					width: 100%;
-					margin: 0;
-					padding: 0;
-				}
-				
-				main {
-					width: 100% !important;
-					max-width: 100% !important;
-					min-width: unset !important;
-					margin: 0 !important;
-					padding: 0 !important;
-					box-sizing: border-box;
-				}
-				
-				.prose {
-					width: 100% !important;
-					max-width: 100% !important;
-					margin: 0 !important;
-					padding: 1rem !important;
-					box-sizing: border-box;
-				}
-				
-				.prose .table-container,
-				.prose .jornada-header,
-				.prose .mobile-cards {
-					width: 100% !important;
-					max-width: 100% !important;
-					margin: 0 !important;
-					padding: 0 !important;
-					box-sizing: border-box;
-				}
-				
-				.hero-image {
-					width: 100% !important;
-					padding: 0 1rem;
-					box-sizing: border-box;
-				}
-				
-				.hero-image img {
-					position: absolute;
-					width: 100% !important;
-					max-width: 100% !important;
-					height: 100% !important;
-					object-fit: cover;
-				}
-			}
-			
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
 
 	<body>

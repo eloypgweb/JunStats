@@ -1,0 +1,30 @@
+/* Estilos específicos para JornadaPost */
+.hero-image {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto 1.5rem auto;
+	position: relative;
+	aspect-ratio: 2 / 1; /* Forzar relación 2:1 uniforme */
+	overflow: hidden;
+}
+
+.hero-image img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 12px;
+	box-shadow: var(--box-shadow);
+}
+
+@media (max-width: 768px) {
+	.hero-image img {
+		position: absolute;
+		width: 100% !important;
+		max-width: 100% !important;
+		height: 100% !important;
+		object-fit: cover;
+	}
+}

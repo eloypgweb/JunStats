@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import JornadaPost from '../../layouts/JornadaPost.astro';
 import presJ2 from '../../assets/jornadas/presJ2.png';
+import '../../styles/jornadas-shared.css';
 ---
 
 <JornadaPost 
@@ -377,11 +378,3 @@ import presJ2 from '../../assets/jornadas/presJ2.png';
     </div>
   </div>
 </JornadaPost>
-
-<style>
-    .match-info h3 {
-        text-align: center;
-        margin-bottom: 2rem;
-        color: rgb(var(--accent));
-    }
-</style>
