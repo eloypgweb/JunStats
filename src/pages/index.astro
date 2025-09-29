@@ -6,6 +6,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import juncmr from '../assets/juncmr.jpeg';
 import logoLega from '../assets/logolega.jpg';
 import totalTemporada from '../assets/totaltemporada.png';
+import campoBasket from '../assets/campobasket.jpg';
+import presJ2 from '../assets/jornadas/presJ2.png';
 ---
 
 <!doctype html>
@@ -37,6 +39,62 @@ import totalTemporada from '../assets/totaltemporada.png';
 					<img src={juncmr.src} alt="Equipo Junior C Masculino" />
 					<div class="image-overlay">
 						<span class="team-badge">Temporada 2025-26</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Latest Match Section -->
+		<section class="latest-match">
+			<div class="container">
+				<div class="latest-match-content">
+					<div class="latest-match-info">
+						<div class="match-badge">
+							<span class="match-icon">🔥</span>
+							<span>Última Jornada Disponible</span>
+						</div>
+						<h2 class="latest-match-title">
+							<span class="gradient-text">Jornada 2</span>
+							vs Torrejón Basket Azul
+						</h2>
+						<p class="latest-match-description">
+							¡Descubre las estadísticas completas de nuestro segundo encuentro de la temporada! 
+							Análisis detallado del rendimiento de cada jugador, jugadas clave y momentos decisivos 
+							que marcaron la diferencia en la cancha.
+						</p>
+						<div class="match-highlights">
+							<div class="highlight-item">
+								<span class="highlight-icon">📊</span>
+								<span>Estadísticas completas</span>
+							</div>
+							<div class="highlight-item">
+								<span class="highlight-icon">👑</span>
+								<span>MVP de la jornada</span>
+							</div>
+						</div>
+						<div class="latest-match-actions">
+							<a href="/jornadas/jornada2" class="btn btn-primary btn-large">
+								📊 Ver Estadísticas Completas
+							</a>
+						</div>
+					</div>
+					<div class="latest-match-visual">
+						<div class="match-image-container">
+							<img src={presJ2.src} alt="Jornada 2 vs Torrejón Basket Azul" class="match-preview" />
+							<div class="match-overlay">
+								<div class="match-result">
+									<span class="result-label">Jornada 2</span>
+									<span class="result-date">28 Sep 2025</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Basketball decoration moved outside the content grid -->
+				<div class="basketball-decoration-container">
+					<div class="basketball-decoration">
+						<div class="basketball-icon">🏀</div>
+						<div class="court-lines"></div>
 					</div>
 				</div>
 			</div>
@@ -296,6 +354,237 @@ import totalTemporada from '../assets/totaltemporada.png';
 		color: var(--accent);
 	}
 
+	/* Latest Match Section */
+	.latest-match {
+		padding: 100px 0;
+		background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.latest-match::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="%23ffffff05"/><circle cx="30" cy="30" r="1" fill="%23ffffff05"/><circle cx="70" cy="20" r="1" fill="%23ffffff05"/><circle cx="90" cy="60" r="1" fill="%23ffffff05"/><circle cx="50" cy="80" r="1" fill="%23ffffff05"/></svg>') repeat;
+		pointer-events: none;
+		opacity: 0.5;
+	}
+
+	[data-theme="dark"] .latest-match::before {
+		background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="%23ffffff10"/><circle cx="30" cy="30" r="1" fill="%23ffffff10"/><circle cx="70" cy="20" r="1" fill="%23ffffff10"/><circle cx="90" cy="60" r="1" fill="%23ffffff10"/><circle cx="50" cy="80" r="1" fill="%23ffffff10"/></svg>') repeat;
+	}
+
+	.latest-match-content {
+		display: grid;
+		grid-template-columns: 1.2fr 1fr;
+		gap: 80px;
+		align-items: center;
+		position: relative;
+		z-index: 2;
+	}
+
+	.match-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		background: linear-gradient(45deg, #ef4444, #f97316);
+		color: white;
+		padding: 12px 20px;
+		border-radius: 25px;
+		font-weight: 600;
+		font-size: 0.9rem;
+		margin-bottom: 25px;
+		box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+		animation: pulse-glow 2s infinite;
+	}
+
+	.match-icon {
+		font-size: 1.1rem;
+		animation: flame-flicker 1.5s infinite;
+	}
+
+	.latest-match-title {
+		font-size: 3rem;
+		font-weight: 800;
+		color: rgb(var(--text-primary));
+		margin-bottom: 25px;
+		line-height: 1.2;
+	}
+
+	.latest-match-description {
+		font-size: 1.2rem;
+		line-height: 1.7;
+		color: rgb(var(--text-secondary));
+		margin-bottom: 35px;
+	}
+
+	.match-highlights {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		margin-bottom: 40px;
+	}
+
+	.highlight-item {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+		padding: 12px 0;
+		border-bottom: 1px solid rgba(var(--border-light), 0.8);
+	}
+
+	.highlight-item:last-child {
+		border-bottom: none;
+	}
+
+	.highlight-icon {
+		font-size: 1.3rem;
+		width: 30px;
+		text-align: center;
+	}
+
+	.highlight-item span:last-child {
+		color: rgb(var(--text-secondary));
+		font-weight: 500;
+	}
+
+	.latest-match-actions {
+		display: flex;
+		gap: 20px;
+		flex-wrap: wrap;
+	}
+
+	.latest-match-visual {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.basketball-decoration-container {
+		position: absolute;
+		bottom: 20px;
+		right: 5%;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.match-image-container {
+		position: relative;
+		width: 100%;
+		max-width: 400px;
+		aspect-ratio: 16/9;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 20px 60px rgba(var(--shadow-color), 0.15);
+		transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.match-preview {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		transition: transform 0.3s ease;
+	}
+
+	.match-image-container:hover {
+		transform: perspective(1000px) rotateY(-2deg) rotateX(2deg) scale(1.02);
+		box-shadow: 0 25px 70px rgba(var(--shadow-color), 0.25);
+	}
+
+	.match-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(45deg, rgba(59, 130, 246, 0.9), rgba(239, 68, 68, 0.9));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	[data-theme="dark"] .match-overlay {
+		background: linear-gradient(45deg, rgba(30, 64, 175, 0.9), rgba(220, 38, 38, 0.9));
+	}
+
+	.match-image-container:hover .match-overlay {
+		opacity: 1;
+	}
+
+	.match-result {
+		text-align: center;
+		color: white;
+		font-weight: bold;
+	}
+
+	.result-label {
+		display: block;
+		font-size: 1.5rem;
+		margin-bottom: 5px;
+	}
+
+	.result-date {
+		font-size: 1rem;
+		opacity: 0.9;
+	}
+
+	.basketball-decoration {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0.9;
+	}
+
+	.basketball-icon {
+		font-size: 4rem;
+		animation: basketball-bounce 3s infinite ease-in-out;
+		filter: drop-shadow(0 10px 20px rgba(251, 191, 36, 0.3));
+	}
+
+	.court-lines {
+		position: absolute;
+		width: 150px;
+		height: 150px;
+		border: 3px solid var(--accent);
+		border-radius: 50%;
+		opacity: 0.3;
+		animation: court-pulse 4s infinite;
+	}
+
+	.court-lines::before,
+	.court-lines::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border: 2px solid var(--accent);
+		border-radius: 50%;
+		opacity: 0.5;
+	}
+
+	.court-lines::before {
+		width: 100px;
+		height: 100px;
+		animation: court-pulse 4s infinite 0.5s;
+	}
+
+	.court-lines::after {
+		width: 50px;
+		height: 50px;
+		animation: court-pulse 4s infinite 1s;
+	}
+
 	/* Stats Preview Section */
 	.stats-preview {
 		padding: 100px 0;
@@ -547,6 +836,53 @@ import totalTemporada from '../assets/totaltemporada.png';
 			flex-direction: column;
 			align-items: center;
 		}
+
+		.latest-match-content {
+			grid-template-columns: 1fr;
+			gap: 50px;
+			text-align: center;
+		}
+
+		.latest-match-title {
+			font-size: 2.2rem;
+		}
+
+		.latest-match-actions {
+			justify-content: center;
+		}
+
+		.match-image-container {
+			transform: none;
+		}
+
+		.match-image-container:hover {
+			transform: scale(1.02);
+		}
+
+		.basketball-decoration-container {
+			position: static;
+			margin-top: 30px;
+			opacity: 0.9;
+		}
+
+		.basketball-icon {
+			font-size: 3rem;
+		}
+
+		.court-lines {
+			width: 120px;
+			height: 120px;
+		}
+
+		.court-lines::before {
+			width: 80px;
+			height: 80px;
+		}
+
+		.court-lines::after {
+			width: 40px;
+			height: 40px;
+		}
 	}
 
 	@keyframes bounce {
@@ -558,6 +894,47 @@ import totalTemporada from '../assets/totaltemporada.png';
 		}
 		60% {
 			transform: translateY(-5px);
+		}
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% {
+			box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+		}
+		50% {
+			box-shadow: 0 12px 35px rgba(239, 68, 68, 0.5);
+		}
+	}
+
+	@keyframes flame-flicker {
+		0%, 100% {
+			transform: scale(1) rotate(0deg);
+		}
+		25% {
+			transform: scale(1.1) rotate(2deg);
+		}
+		75% {
+			transform: scale(0.95) rotate(-1deg);
+		}
+	}
+
+	@keyframes basketball-bounce {
+		0%, 100% {
+			transform: translateY(0px);
+		}
+		50% {
+			transform: translateY(-15px);
+		}
+	}
+
+	@keyframes court-pulse {
+		0%, 100% {
+			transform: translate(-50%, -50%) scale(1);
+			opacity: 0.3;
+		}
+		50% {
+			transform: translate(-50%, -50%) scale(1.1);
+			opacity: 0.1;
 		}
 	}
 </style>
