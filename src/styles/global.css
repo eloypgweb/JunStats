@@ -9,6 +9,11 @@
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
 	--accent-hover: #1e40af;
+
+	/* Estado AUSENTE (pastel amarillo suave) */
+	--ausente-bg: #fff9e6; /* fondo muy suave */
+	--ausente-bg-hover: #fef3c7; /* un poco más intenso al hover */
+	--ausente-color: #fbbf24; /* similar a mvp pero menos saturado como borde/badge */
 	
 	/* Colores de fondo */
 	--bg-primary: #ffffff;
@@ -44,6 +49,7 @@
 	--sancion-bg: #fef2f2;
 	--sancion-bg-hover: #fee2e2;
 	--sancion-color: #dc2626;
+	--sancion-text: #7f1d1d; /* texto sobre fondo claro sanción */
 	
 	/* Colores específicos para hero section */
 	--hero-bg-start: #1e40af;
@@ -105,8 +111,13 @@
 	--mvp-color: #fbbf24;
 	--mvp-shadow: rgba(255, 215, 0, 0.3);
 	--sancion-bg: #450a0a;
-	--sancion-bg-hover: #7c2d12;
-	--sancion-color: #f87171;
+	--sancion-bg-hover: #5e1d1d; /* un poco más claro que mezcla previa para legibilidad */
+	--sancion-color: #f87171; /* rojo suave badge */
+	--sancion-text: #fee2e2; /* texto claro sobre rojo oscuro */
+	/* Estado AUSENTE en oscuro (amarillo tostado) */
+	--ausente-bg: #3a2f0b;
+	--ausente-bg-hover: #4d3d10;
+	--ausente-color: #facc15;
 	
 	/* Colores para hero section en modo oscuro */
 	--hero-bg-start: #0f172a;
@@ -486,7 +497,7 @@ hr {
 .sancionado-badge {
 	display: inline-block;
 	background: var(--sancion-color);
-	color: rgb(var(--text-inverse));
+	color: var(--sancion-text, rgb(var(--text-inverse)));
 	padding: 8px 16px;
 	border-radius: 20px;
 	font-weight: bold;
@@ -507,6 +518,55 @@ hr {
 	100% {
 		box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
 	}
+}
+
+/* Estilos para jugadores ausentes en la tabla */
+.ausente-row {
+	background-color: var(--ausente-bg) !important;
+	border-left: 4px solid var(--ausente-color) !important;
+}
+
+.ausente-row:hover {
+	background-color: var(--ausente-bg-hover) !important;
+}
+
+.ausente-cell {
+	text-align: center !important;
+	padding: 20px 8px !important;
+	vertical-align: middle;
+	background: linear-gradient(135deg, var(--ausente-bg) 0%, var(--ausente-bg-hover) 100%);
+}
+
+.ausente-badge {
+	display: inline-block;
+	background: var(--ausente-color);
+	color: #1e293b; /* contraste sobre amarillo claro */
+	padding: 8px 16px;
+	border-radius: 20px;
+	font-weight: bold;
+	font-size: 0.9em;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	box-shadow: 0 2px 8px rgba(251, 191, 36, 0.35);
+	animation: pulseAbsent 3s infinite;
+}
+
+@keyframes pulseAbsent {
+	0% { box-shadow: 0 2px 8px rgba(251, 191, 36, 0.25); }
+	50% { box-shadow: 0 4px 16px rgba(251, 191, 36, 0.45); }
+	100% { box-shadow: 0 2px 8px rgba(251, 191, 36, 0.25); }
+}
+
+/* Versión móvil card ausente */
+.ausente-card {
+	background: linear-gradient(135deg, var(--ausente-bg) 0%, var(--ausente-bg-hover) 100%);
+	border: 1px solid var(--ausente-color);
+}
+
+.ausente-mobile {
+	justify-content: center;
+	align-items: center;
+	display: flex;
 }
 
 /* Corona encima del nombre */

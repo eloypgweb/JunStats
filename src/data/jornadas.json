@@ -15,8 +15,18 @@
     "description": "Resumen de la segunda jornada de la temporada.",
     "pubDate": "2025-09-28",
     "heroImage": "/src/assets/jornadas/presJ2.png",
-    "opponent": "Getafe B",
+    "opponent": "Torrejón Basket Azul",
     "slug": "jornada2",
+    "available": true
+  }
+  ,{
+    "id": "jornada3",
+    "title": "Jornada 3",
+    "description": "Resumen de la tercera jornada de la temporada.",
+    "pubDate": "2025-10-04",
+    "heroImage": "/src/assets/jornadas/presJ3.png",
+    "opponent": "Colegio Los Sauces",
+    "slug": "jornada3",
     "available": false
   }
 ]

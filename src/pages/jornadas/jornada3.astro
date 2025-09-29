@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import JornadaPost from '../../layouts/JornadaPost.astro';
+import presJ3 from '../../assets/jornadas/presJ3.png';
+---
+
+<JornadaPost 
+  title="Jornada 3"
+  description="Resumen de la tercera jornada de la temporada."
+  pubDate={new Date('2025-10-04')}
+  heroImage={presJ3}
+>
+  <div class="match-info">
+    <h3>VS: Colegio Los Sauces</h3>
+  </div>
+
+  <div class="table-container">
+    <table class="jornada-table">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Jugador</th>
+                <th>Puntos</th>
+                <th>T2</th>
+                <th>T3</th>
+                <th>TL Metidos</th>
+                <th>TL Intentados</th>
+                <th>Assists</th>
+                <th>Reb</th>
+                <th>Robos</th>
+                <th>Pérdidas</th>
+                <th>Faltas</th>
+                <th>Valoración</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rellenar estadísticas reales tras el partido -->
+            <tr>
+                <td colspan="13" style="text-align:center;opacity:.7;">Estadísticas pendientes...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mobile-cards">
+        <div class="player-card">
+            <div class="player-name">(Jugador) <span class="player-number">00</span></div>
+            <div class="stats-grid">
+                <div class="stat-item"><span class="stat-label">Puntos:</span><span class="stat-value">-</span></div>
+                <div class="stat-item"><span class="stat-label">Valoración:</span><span class="stat-value">-</span></div>
+                <div class="stat-item"><span class="stat-label">T2:</span><span class="stat-value">-</span></div>
+                <div class="stat-item"><span class="stat-label">T3:</span><span class="stat-value">-</span></div>
+                <div class="stat-item"><span class="stat-label">TL:</span><span class="stat-value">-/ -</span></div>
+                <div class="stat-item"><span class="stat-label">Assists:</span><span class="stat-value">-</span></div>
+                <div class="stat-item"><span class="stat-label">Rebotes:</span><span class="stat-value">-</span></div>
+                <div class="stat-item"><span class="stat-label">Robos:</span><span class="stat-value">-</span></div>
+                <div class="stat-item"><span class="stat-label">Pérdidas:</span><span class="stat-value">-</span></div>
+                <div class="stat-item"><span class="stat-label">Faltas:</span><span class="stat-value">-</span></div>
+            </div>
+        </div>
+    </div>
+  </div>
+</JornadaPost>
+
+<style>
+    .match-info h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: rgb(var(--accent));
+    }
+</style>

@@ -27,13 +27,21 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			}
 			.hero-image {
 				width: 100%;
+				max-width: 1200px;
+				margin: 0 auto 1.5rem auto;
+				position: relative;
+				aspect-ratio: 2 / 1; /* Forzar relación 2:1 uniforme */
+				overflow: hidden;
 			}
 			.hero-image img {
-				display: block;
-				margin: 0 auto;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
 				border-radius: 12px;
 				box-shadow: var(--box-shadow);
-				width: 30%;
 			}
 			.prose {
 				width: 720px;
@@ -99,8 +107,11 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				}
 				
 				.hero-image img {
-					width: 90% !important;
-					max-width: 400px !important;
+					position: absolute;
+					width: 100% !important;
+					max-width: 100% !important;
+					height: 100% !important;
+					object-fit: cover;
 				}
 			}
 			
