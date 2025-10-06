@@ -163,11 +163,8 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-color: var(--bg-primary);
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
+	/* Full-page smooth background gradient to ensure visual consistency */
+	background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 	color: rgb(var(--text-primary));
 	font-size: 20px;
 	line-height: 1.7;

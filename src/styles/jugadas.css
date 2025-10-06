@@ -111,18 +111,19 @@ html {
 
 /* Botones deshabilitados */
 .jugada-btn.disabled {
-	background: rgb(var(--text-muted));
-	color: rgba(var(--text-muted), 0.7);
+	background: rgba(255, 255, 255, 0.06); /* ligero fondo neutro */
+	color: rgb(var(--text-primary)); /* texto oscuro y legible */
+	border: 2px dashed rgba(var(--text-muted), 0.25);
 	cursor: not-allowed;
-	opacity: 0.6;
-	pointer-events: none;
-	box-shadow: 0 2px 4px rgba(var(--text-muted), 0.2);
+	opacity: 1; /* mantener legibilidad */
+	pointer-events: none; /* sigue sin poder clickar */
+	box-shadow: none;
 }
 
 .jugada-btn.disabled:hover {
-	background: rgb(var(--text-muted));
+	background: rgba(255, 255, 255, 0.06);
 	transform: none;
-	box-shadow: 0 2px 4px rgba(var(--text-muted), 0.2);
+	box-shadow: none;
 }
 
 /* Estilos para secciones bloqueadas */

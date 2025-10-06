@@ -30,7 +30,8 @@ import '../styles/jugadas.css';
 			<a href="#blind" class="jugada-btn">👁️ Blind</a>
 			<a href="#short" class="jugada-btn">🏃 Short</a>
 			<a href="#palma" class="jugada-btn">🖐️ Palma</a>
-			<a href="#hammer" class="jugada-btn disabled">🔨 Hammer</a>
+			<a href="#hammer" class="jugada-btn">🔨 Hammer</a>
+			<a href="#line" class="jugada-btn disabled">📏 Line</a>
 		</div>
 	</div>	<p>
 		Aquí veremos las jugadas que tenemos por el momento y usaremos a lo largo de la temporada.
@@ -160,15 +161,7 @@ import '../styles/jugadas.css';
 		<p><b>La primera opción es recibir con espacio y hacer el tiro</b>, si no, los <b>postes hacen un intercambio con un bloqueo</b>
 		y se juega el balón interior. <b>A partir de ahí, aplicamos normas de spacing</b>.</p>
 	</div>
-	<div class="hammer locked" id="hammer">
-		<div class="coming-soon-overlay">
-			<div class="coming-soon-content">
-				<span class="coming-soon-emoji">🔒</span>
-				<h3>Coming Soon...</h3>
-				<p>Esta jugada aún no ha sido entrenada con el equipo</p>
-			</div>
-		</div>
-		<div class="locked-content">
+	<div class="hammer" id="hammer">
 		<h2>Hammer</h2>
 		<p>Jugada en estático.</p>
 		<div class="hero-image">
@@ -189,8 +182,36 @@ import '../styles/jugadas.css';
 		<p>Nos colocamos en situación de <b>3 abiertos y 2 interior en poste alto</b>.</p>
 		<p><b>Balón empieza en 45º, que será el tirador</b>. Damos pase a cabecera, vamos en bote a 45º de lado contrario 
 		y el que dió el pase lanza corte. Si no recibe, va a poner un <b>bloqueo directo a esquina de balón</b>. Acto seguido, vuelve 
-		a debajo del aro, para <b>pillar un ascensor con los 2 interiores que bloquean a la altura de TL</b>.</p>
+		a debajo del aro, para <b>pillar un ascensor con los 2 interiores que bloquean a la altura de TL</b>. 💵 Cash 💵</p>
+	</div>
+
+	<div class="line locked" id="line">
+		<div class="coming-soon-overlay">
+			<div class="coming-soon-content">
+				<span class="coming-soon-emoji">🔒</span>
+				<h3>Coming Soon...</h3>
+				<p>Esta jugada aún no ha sido entrenada con el equipo</p>
+			</div>
 		</div>
+		<div class="locked-content">
+			<h2>Line</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<div class="hero-image">
+				<video 
+					controls 
+					width="100%" 
+					style="border-radius: 12px; box-shadow: var(--box-shadow);"
+					preload="metadata"
+					playsinline
+					muted>
+					<!-- Placeholder: usar vídeo de Hammer -->
+					<source src={hammerVideoWebM} type="video/webm" />
+					<source src={hammerVideo} type="video/mp4" />
+					<p>Tu navegador no soporta el elemento video. <a href={hammerVideo} target="_blank">Descargar video</a></p>
+				</video>
+			</div>
+		</div>
+	</div>
 	</div>
 
 </Layout>
