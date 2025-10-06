@@ -1,0 +1,342 @@
+/* Estilos para la página de galería */
+
+/* Hero Section */
+.gallery-hero {
+	text-align: center;
+	padding: 2rem 2rem 3rem;
+	margin-bottom: 2rem;
+}
+
+.gallery-hero h1 {
+	font-size: 2.5rem;
+	margin: 0 0 0.5rem 0;
+	font-weight: 700;
+	color: rgb(var(--text-primary));
+}
+
+.gallery-hero p {
+	font-size: 1.1rem;
+	margin: 0;
+	color: rgb(var(--text-secondary));
+}
+
+/* Container */
+.gallery-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 2rem 4rem;
+}
+
+/* Grid de álbumes */
+.albums-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 2rem;
+	padding: 2rem 0;
+}
+
+/* Cards de álbumes */
+.album-card {
+	background: var(--bg-secondary);
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 20px rgba(var(--shadow-color), 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.album-card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 8px 30px rgba(var(--shadow-color), 0.2);
+}
+
+.album-link {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}
+
+.album-cover {
+	position: relative;
+	height: 200px;
+	overflow: hidden;
+}
+
+.album-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.album-card:hover .album-image {
+	transform: scale(1.05);
+}
+
+.album-overlay {
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	padding: 0.5rem 0.75rem;
+	border-radius: 20px;
+	backdrop-filter: blur(10px);
+	transform: translateY(50px);
+	opacity: 0;
+	transition: all 0.3s ease;
+}
+
+.album-card:hover .album-overlay {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.photo-count {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+}
+
+.album-info {
+	padding: 1.5rem;
+}
+
+.album-title {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.3rem;
+	font-weight: 600;
+	color: rgb(var(--text-primary));
+}
+
+.album-description {
+	margin: 0;
+	color: rgb(var(--text-secondary));
+	font-size: 0.95rem;
+	line-height: 1.4;
+}
+
+/* Modal */
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.9);
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(5px);
+}
+
+.modal.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.modal-content {
+	position: relative;
+	max-width: 90vw;
+	max-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#modalImage {
+	max-width: 100%;
+	max-height: 80vh;
+	object-fit: contain;
+	border-radius: 8px;
+	box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-info {
+	background: var(--bg-primary);
+	padding: 1rem 2rem;
+	border-radius: 8px;
+	margin-top: 1rem;
+	text-align: center;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-info h3 {
+	margin: 0;
+	color: rgb(var(--text-primary));
+	font-size: 1.2rem;
+}
+
+/* Botones del modal */
+.modal-controls {
+	position: absolute;
+	top: -60px;
+	right: 0;
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.download-btn {
+	background: rgba(255, 255, 255, 0.1);
+	border: none;
+	color: white;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(10px);
+}
+
+.download-btn:hover {
+	background: rgba(255, 255, 255, 0.2);
+	transform: scale(1.1);
+}
+
+.close-modal {
+	background: rgba(255, 255, 255, 0.1);
+	border: none;
+	color: white;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(10px);
+}
+
+.close-modal:hover {
+	background: rgba(255, 255, 255, 0.2);
+	transform: scale(1.1);
+}
+
+.modal-navigation {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	transform: translateY(-50%);
+	display: flex;
+	justify-content: space-between;
+	padding: 0 -60px;
+	pointer-events: none;
+}
+
+.nav-btn {
+	background: rgba(255, 255, 255, 0.1);
+	border: none;
+	color: white;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(10px);
+	pointer-events: all;
+}
+
+.nav-btn:hover {
+	background: rgba(255, 255, 255, 0.2);
+	transform: scale(1.1);
+}
+
+.prev-btn {
+	margin-left: -60px;
+}
+
+.next-btn {
+	margin-right: -60px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.gallery-hero {
+		padding: 1.5rem 1rem 2rem;
+	}
+	
+	.gallery-hero h1 {
+		font-size: 2rem;
+	}
+	
+	.gallery-hero p {
+		font-size: 1rem;
+	}
+	
+	.gallery-container {
+		padding: 0 1rem 2rem;
+	}
+	
+	.albums-grid {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+	
+	.album-cover {
+		height: 180px;
+	}
+}
+
+@media (max-width: 480px) {
+	.albums-grid {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+	
+	.album-info {
+		padding: 1rem;
+	}
+	
+	.album-title {
+		font-size: 1.1rem;
+	}
+	
+	.album-description {
+		font-size: 0.9rem;
+	}
+}
+
+/* Mejoras para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+	.gallery-item,
+	.gallery-image,
+	.gallery-overlay,
+	.view-btn,
+	.modal,
+	.close-modal,
+	.nav-btn {
+		transition: none;
+	}
+	
+	.gallery-item:hover {
+		transform: none;
+	}
+	
+	.gallery-item:hover .gallery-image {
+		transform: none;
+	}
+}
+
+/* Focus states para accesibilidad */
+.gallery-item:focus-within,
+.view-btn:focus,
+.download-btn:focus,
+.close-modal:focus,
+.nav-btn:focus {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}

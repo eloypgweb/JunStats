@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import '../styles/galeria.css';
+
+// Estructura de álbumes de fotos
+const albumsData = [
+	{
+		id: "vs-torrejon",
+		title: "VS Torrejón Basket Azul",
+		description: "Jornada 2 - 28 de Septiembre",
+		coverImage: "/src/assets/fotos/vsTorrejon/lega-torre1.jpeg",
+		photoCount: 18,
+		date: "2025-09-28"
+	},
+	// {
+	// 	id: "vs-sauces", 
+	// 	title: "VS Colegio Los Sauces",
+	// 	description: "Jornada 3 - 4 de Octubre",
+	// 	coverImage: "/src/assets/juncmejorada.jpeg",
+	// 	photoCount: 0,
+	// 	date: "2025-10-04"
+	// },
+	// {
+	// 	id: "entrenamiento",
+	// 	title: "Entrenamientos",
+	// 	description: "Sesiones de entrenamiento del equipo",
+	// 	coverImage: "/src/assets/juncmr.jpeg", 
+	// 	photoCount: 0,
+	// 	date: "2025-09-15"
+	// },
+	// {
+	// 	id: "vs-carabanchel",
+	// 	title: "VS Distrito Carabanchel",
+	// 	description: "Jornada 4 - Próximo partido",
+	// 	coverImage: "/src/assets/logolega.jpg",
+	// 	photoCount: 0,
+	// 	date: "2025-10-11"
+	// },
+	// {
+	// 	id: "celebracion",
+	// 	title: "Celebración del Equipo",
+	// 	description: "Momentos de celebración y convivencia",
+	// 	coverImage: "/src/assets/totaltemporada.png",
+	// 	photoCount: 0,
+	// 	date: "2025-10-01"
+	// },
+	// {
+	// 	id: "concentracion",
+	// 	title: "Concentración Pre-liga",
+	// 	description: "Preparación y concentración del equipo",
+	// 	coverImage: "/src/assets/campobasket.jpg",
+	// 	photoCount: 0,
+	// 	date: "2025-09-10"
+	// }
+];
+
+// Ordenar álbumes por fecha (más recientes primero)
+const sortedAlbums = albumsData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={`Galería - ${SITE_TITLE}`} description="Galería de fotos del equipo y momentos destacados de la temporada." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="gallery-hero">
+				<h1>Galería de Fotos</h1>
+				<p>Momentos destacados de la temporada y del equipo</p>
+			</section>
+
+			<section class="gallery-container">
+				<div class="albums-grid">
+					{sortedAlbums.map((album) => (
+						<div class="album-card">
+							<a href={`/galeria/${album.id}`} class="album-link">
+								<div class="album-cover">
+									<img 
+										src={album.coverImage}
+										alt={album.title}
+										loading="lazy"
+										class="album-image"
+									/>
+									<div class="album-overlay">
+										<div class="photo-count">
+											<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 22 21 22H3C2.46957 22 1.96086 21.7893 1.58579 21.4142C1.21071 21.0391 1 20.5304 1 20V6C1 5.46957 1.21071 4.96086 1.58579 4.58579C1.96086 4.21071 2.46957 4 3 4H7L9 2H15L17 4H21C21.5304 4 22.0391 4.21071 22.4142 4.58579C22.7893 4.96086 23 5.46957 23 6V19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												<circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
+											</svg>
+											<span>{album.photoCount} fotos</span>
+										</div>
+									</div>
+								</div>
+								<div class="album-info">
+									<h3 class="album-title">{album.title}</h3>
+									<p class="album-description">{album.description}</p>
+								</div>
+							</a>
+						</div>
+					))}
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

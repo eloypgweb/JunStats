@@ -86,12 +86,6 @@ nav a:hover {
 	}
 	
 	.internal-links {
-		display: flex;
-		gap: 0.5rem;
-	}
-	
-	.internal-links a {
-		padding: 0.8em 0.4em;
-		font-size: 0.9rem;
+		display: none;
 	}
 }
