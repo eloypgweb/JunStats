@@ -16,8 +16,9 @@ export async function getStaticPaths() {
 function getVsTorrejonPhotos() {
   const photos = [];
   for (let i = 1; i <= 18; i++) {
+    // Resolver la ruta del asset con new URL para que funcione en build (sensible a mayúsculas en Linux)
     photos.push({
-      src: `/src/assets/fotos/vsTorrejon/lega-torre${i}.jpeg`,
+      src: new URL(`../../assets/fotos/vsTorrejon/lega-torre${i}.jpeg`, import.meta.url).href,
       title: `VS Torrejón - Foto ${i}`,
       description: `Momento destacado del partido contra Torrejón Basket Azul (${i}/18)`
     });

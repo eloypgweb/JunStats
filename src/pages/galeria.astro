@@ -7,12 +7,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import '../styles/galeria.css';
 
 // Estructura de álbumes de fotos
+// Usar `new URL(..., import.meta.url).href` para que Astro incluya los assets en el build
 const albumsData = [
 	{
 		id: "vs-torrejon",
 		title: "VS Torrejón Basket Azul",
 		description: "Jornada 2 - 28 de Septiembre",
-		coverImage: "/src/assets/fotos/vsTorrejon/lega-torre1.jpeg",
+		coverImage: new URL('../assets/fotos/vsTorrejon/lega-torre1.jpeg', import.meta.url).href,
 		photoCount: 18,
 		date: "2025-09-28"
 	},
