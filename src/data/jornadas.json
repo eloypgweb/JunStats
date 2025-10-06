@@ -27,6 +27,16 @@
     "heroImage": "/src/assets/jornadas/presJ3.png",
     "opponent": "Colegio Los Sauces",
     "slug": "jornada3",
+    "available": true
+  }
+  ,{
+    "id": "jornada4",
+    "title": "Jornada 4",
+    "description": "Resumen de la cuarta jornada de la temporada.",
+    "pubDate": "2025-10-11",
+    "heroImage": "/src/assets/jornadas/presJ4.png",
+    "opponent": "Distrito Carabanchel",
+    "slug": "jornada4",
     "available": false
   }
 ]
