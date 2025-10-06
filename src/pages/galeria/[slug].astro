@@ -12,18 +12,33 @@ export async function getStaticPaths() {
   ];
 }
 
-// Función para generar fotos del VS Torrejón
+// Importar explícitamente las 18 imágenes para que Astro genere URLs correctas
+import t1 from '../../assets/fotos/vsTorrejon/lega-torre1.jpeg';
+import t2 from '../../assets/fotos/vsTorrejon/lega-torre2.jpeg';
+import t3 from '../../assets/fotos/vsTorrejon/lega-torre3.jpeg';
+import t4 from '../../assets/fotos/vsTorrejon/lega-torre4.jpeg';
+import t5 from '../../assets/fotos/vsTorrejon/lega-torre5.jpeg';
+import t6 from '../../assets/fotos/vsTorrejon/lega-torre6.jpeg';
+import t7 from '../../assets/fotos/vsTorrejon/lega-torre7.jpeg';
+import t8 from '../../assets/fotos/vsTorrejon/lega-torre8.jpeg';
+import t9 from '../../assets/fotos/vsTorrejon/lega-torre9.jpeg';
+import t10 from '../../assets/fotos/vsTorrejon/lega-torre10.jpeg';
+import t11 from '../../assets/fotos/vsTorrejon/lega-torre11.jpeg';
+import t12 from '../../assets/fotos/vsTorrejon/lega-torre12.jpeg';
+import t13 from '../../assets/fotos/vsTorrejon/lega-torre13.jpeg';
+import t14 from '../../assets/fotos/vsTorrejon/lega-torre14.jpeg';
+import t15 from '../../assets/fotos/vsTorrejon/lega-torre15.jpeg';
+import t16 from '../../assets/fotos/vsTorrejon/lega-torre16.jpeg';
+import t17 from '../../assets/fotos/vsTorrejon/lega-torre17.jpeg';
+import t18 from '../../assets/fotos/vsTorrejon/lega-torre18.jpeg';
+
 function getVsTorrejonPhotos() {
-  const photos = [];
-  for (let i = 1; i <= 18; i++) {
-    // Resolver la ruta del asset con new URL para que funcione en build (sensible a mayúsculas en Linux)
-    photos.push({
-      src: new URL(`../../assets/fotos/vsTorrejon/lega-torre${i}.jpeg`, import.meta.url).href,
-      title: `VS Torrejón - Foto ${i}`,
-      description: `Momento destacado del partido contra Torrejón Basket Azul (${i}/18)`
-    });
-  }
-  return photos;
+  const list = [t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18];
+  return list.map((mod, idx) => ({
+    src: (mod as any).default ?? (mod as any).src ?? mod,
+    title: `VS Torrejón - Foto ${idx + 1}`,
+    description: `Momento destacado del partido contra Torrejón Basket Azul (${idx + 1}/18)`
+  }));
 }
 
 // Definir álbumes con sus fotos
@@ -574,19 +589,27 @@ const hasPhotos = album.photos.length > 0;
         const currentPhoto = getCurrentPhoto();
         if (currentPhoto) {
           try {
+            // Intentar descargar vía fetch + blob
             const response = await fetch(currentPhoto.src);
+            if (!response.ok) throw new Error('Network response was not ok');
             const blob = await response.blob();
             const url = URL.createObjectURL(blob);
-            
+
+            // Detectar extensión real de la URL (fallback a .jpg)
+            const extMatch = currentPhoto.src.match(/\.([a-zA-Z0-9]+)(?:\?|#|$)/);
+            const ext = extMatch ? extMatch[1] : 'jpg';
+
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${currentPhoto.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.jpg`;
+            a.download = `${currentPhoto.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.${ext}`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
           } catch (error) {
-            console.error('Error al descargar la imagen:', error);
+            console.warn('Descarga automática falló, abriendo en nueva pestaña como fallback', error);
+            // Fallback: abrir la imagen en nueva pestaña (útil en iOS donde download puede no funcionar)
+            window.open(currentPhoto.src, '_blank');
           }
         }
       });

@@ -6,14 +6,16 @@ import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import '../styles/galeria.css';
 
+// Cargar portada mediante import para que Astro/Vite produzcan la URL correcta en build
+import coverVsTorrejon from '../assets/fotos/vsTorrejon/lega-torre1.jpeg';
+
 // Estructura de álbumes de fotos
-// Usar `new URL(..., import.meta.url).href` para que Astro incluya los assets en el build
 const albumsData = [
 	{
 		id: "vs-torrejon",
 		title: "VS Torrejón Basket Azul",
 		description: "Jornada 2 - 28 de Septiembre",
-		coverImage: new URL('../assets/fotos/vsTorrejon/lega-torre1.jpeg', import.meta.url).href,
+		coverImage: coverVsTorrejon,
 		photoCount: 18,
 		date: "2025-09-28"
 	},
@@ -83,7 +85,7 @@ const sortedAlbums = albumsData.sort((a, b) => new Date(b.date).getTime() - new 
 							<a href={`/galeria/${album.id}`} class="album-link">
 								<div class="album-cover">
 									<img 
-										src={album.coverImage}
+										src={album.coverImage?.src ?? album.coverImage}
 										alt={album.title}
 										loading="lazy"
 										class="album-image"
