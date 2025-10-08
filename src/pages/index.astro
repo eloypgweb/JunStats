@@ -188,5 +188,7 @@ import '../styles/index.css';
 		</section>
 
 		<Footer />
+		<!-- Trigger server-side visitor cookie on first page load via a hidden request to /api/visitor -->
+		<img src="/api/visitor" alt="" aria-hidden="true" style="display:none;width:1px;height:1px;" />
 	</body>
 </html>
