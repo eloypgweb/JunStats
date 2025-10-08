@@ -12,6 +12,8 @@ import hammerVideo from '../assets/jugadas/HAMMER.mp4';
 import hammerVideoWebM from '../assets/jugadas/HAMMER.webm';
 import palmaVideo from '../assets/jugadas/PALMA.mp4';
 import palmaVideoWebM from '../assets/jugadas/PALMA.webm';
+import chainVideo from '../assets/jugadas/CHAIN.mp4';
+import chainVideoWebM from '../assets/jugadas/CHAIN.webm';
 import '../styles/jugadas.css';
 ---
 
@@ -31,7 +33,7 @@ import '../styles/jugadas.css';
 			<a href="#short" class="jugada-btn">🏃 Short</a>
 			<a href="#palma" class="jugada-btn">🖐️ Palma</a>
 			<a href="#hammer" class="jugada-btn">🔨 Hammer</a>
-			<a href="#line" class="jugada-btn disabled">📏 Line</a>
+			<a href="#chain" class="jugada-btn">🔗 Chain</a>
 		</div>
 	</div>	<p>
 		Aquí veremos las jugadas que tenemos por el momento y usaremos a lo largo de la temporada.
@@ -39,7 +41,7 @@ import '../styles/jugadas.css';
 	</p>
 
 	<div class="transi1" id="transi1">
-		<h2>Transi 1</h2>
+		<h1>Transi 1</h1>
 		<p>Jugada en situación de transición. 5 abiertos.</p>
 		<div class="hero-image">
 			<video 
@@ -67,7 +69,7 @@ import '../styles/jugadas.css';
 		En caso de que el <b>poste tenga ventaja</b>, se juega el pase, si no, se <b>juega bloqueo directo</b>. Aplicamos <b>lectura de ventajas</b>.</p>
 	</div>
 	<div class="fondo-blind" id="blind">
-		<h2>Blind</h2>
+		<h1>Blind</h1>
 		<p>Jugada de fondo.</p>
 		<div class="hero-image">
 			<video 
@@ -102,7 +104,7 @@ import '../styles/jugadas.css';
 		pase de seguridad</b>. Empieza jugada.</p>
 	</div>
 	<div class="banda-short" id="short">
-		<h2>Short</h2>
+		<h1>Short</h1>
 		<p>Jugada de banda.</p>
 		<div class="hero-image">
 			<video 
@@ -136,7 +138,7 @@ import '../styles/jugadas.css';
 		con su defensor para recibir rápido</b>. Empieza jugada.</p>
 	</div>
 	<div class="palma" id="palma">
-		<h2>Palma</h2>
+		<h1>Palma</h1>
 		<p>Jugada de banda.</p>
 		<div class="hero-image">
 			<video 
@@ -162,7 +164,7 @@ import '../styles/jugadas.css';
 		y se juega el balón interior. <b>A partir de ahí, aplicamos normas de spacing</b>.</p>
 	</div>
 	<div class="hammer" id="hammer">
-		<h2>Hammer</h2>
+		<h1>Hammer</h1>
 		<p>Jugada en estático.</p>
 		<div class="hero-image">
 			<video 
@@ -185,32 +187,28 @@ import '../styles/jugadas.css';
 		a debajo del aro, para <b>pillar un ascensor con los 2 interiores que bloquean a la altura de TL</b>. 💵 Cash 💵</p>
 	</div>
 
-	<div class="line locked" id="line">
-		<div class="coming-soon-overlay">
-			<div class="coming-soon-content">
-				<span class="coming-soon-emoji">🔒</span>
-				<h3>Coming Soon...</h3>
-				<p>Esta jugada aún no ha sido entrenada con el equipo</p>
-			</div>
+	<div class="chain" id="chain">
+		<h1>Chain</h1>
+		<p>Jugada de fondo con bloqueo indirecto para caída de grande a zona.</p>
+		<div class="hero-image">
+			<video 
+				controls 
+				width="100%" 
+				style="border-radius: 12px; box-shadow: var(--box-shadow);"
+				preload="metadata"
+				playsinline
+				muted>
+				<!-- Formato WebM para mejor compresión -->
+				<source src={chainVideoWebM} type="video/webm" />
+				<!-- Formato MP4 como fallback -->
+				<source src={chainVideo} type="video/mp4" />
+				<p>Tu navegador no soporta el elemento video. <a href={chainVideo} target="_blank">Descargar video</a></p>
+			</video>
 		</div>
-		<div class="locked-content">
-			<h2>Line</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			<div class="hero-image">
-				<video 
-					controls 
-					width="100%" 
-					style="border-radius: 12px; box-shadow: var(--box-shadow);"
-					preload="metadata"
-					playsinline
-					muted>
-					<!-- Placeholder: usar vídeo de Hammer -->
-					<source src={hammerVideoWebM} type="video/webm" />
-					<source src={hammerVideo} type="video/mp4" />
-					<p>Tu navegador no soporta el elemento video. <a href={hammerVideo} target="_blank">Descargar video</a></p>
-				</video>
-			</div>
-		</div>
+		<p>Nos colocamos en una <b>línea</b> en el <b>lado de balón</b>.</p>
+		<p>Primer jugador <b>elige una esquina a la que salir</b>, para que acto seguido, el segundo <b>salga a la esquina contraria</b>.</p>
+		<p>Después de eso, tercer jugador se gira para hacer un bloqueo indirecto al último jugador, que <b>caerá con todo a aro</b> para intentar recibir y meter canasta.</p>
+		<p>Si no puede recibir la caída, <b>tenemos esquinas ocupadas</b> para un posible pase y si tenemos espacio, tiro.</p>
 	</div>
 	</div>
 
