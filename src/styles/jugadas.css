@@ -212,3 +212,35 @@ html {
 		max-width: 250px;
 	}
 }
+
+/* Botón flotante "subir" */
+.back-to-top {
+	position: fixed;
+	right: 20px;
+	bottom: 24px;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--accent);
+	color: rgb(var(--text-inverse));
+	border: none;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+	cursor: pointer;
+	transform: translateY(10px) scale(0.95);
+	opacity: 0;
+	transition: all 200ms ease;
+	z-index: 2000;
+}
+.back-to-top svg { display: block; }
+.back-to-top:focus { outline: 2px solid rgba(255,255,255,0.25); }
+.back-to-top.show {
+	transform: translateY(0) scale(1);
+	opacity: 1;
+}
+
+@media (max-width: 480px) {
+	.back-to-top { right: 12px; bottom: 18px; width: 44px; height: 44px; }
+}

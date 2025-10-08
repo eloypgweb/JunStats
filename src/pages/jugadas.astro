@@ -212,4 +212,29 @@ import '../styles/jugadas.css';
 	</div>
 	</div>
 
+	<!-- Botón flotante: Subir al inicio -->
+	<button id="backToTop" class="back-to-top" aria-label="Subir al inicio" title="Subir al inicio">
+		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			<path d="M12 4L12 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M5 11L12 4L19 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>
+	</button>
+
+	<script>
+		// Mostrar/ocultar botón y scroll suave al top
+		(function(){
+			const btn = document.getElementById('backToTop');
+			if(!btn) return;
+			const showAt = 300; // px
+			window.addEventListener('scroll', () => {
+				if (window.scrollY > showAt) btn.classList.add('show');
+				else btn.classList.remove('show');
+			});
+			btn.addEventListener('click', () => {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+				btn.blur();
+			});
+		})();
+	</script>
+
 </Layout>
