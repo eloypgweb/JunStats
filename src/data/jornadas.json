@@ -37,6 +37,6 @@
     "heroImage": "/src/assets/jornadas/presJ4.png",
     "opponent": "Distrito Carabanchel",
     "slug": "jornada4",
-    "available": false
+    "available": true
   }
 ]
