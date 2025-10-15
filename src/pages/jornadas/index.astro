@@ -6,6 +6,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import totaltemporada from '../../assets/totaltemporada.png';
+import promediostemporada from '../../assets/promediostemporada.png';
 import jornadas from '../../data/jornadas.json';
 import '../../styles/jornadas-index.css';
 
@@ -43,12 +44,8 @@ const sortedJornadas = jornadas
 	<body>
 		<Header />
 		<main>
-			<h2>Estadísticas de la temporada:</h2>
+			<!-- <h2>Estadísticas de la temporada:</h2> -->
 			<section>
-				<div class="table">
-					<h3 class="table-title">Tabla total de temporada</h3>
-					<img src={totaltemporada.src} alt="tabla de estadísticas totales de temporada" class="table-img"/>
-				</div>
 				<ul>
 					{
 						sortedJornadas.map((jornada) => (
@@ -89,6 +86,14 @@ const sortedJornadas = jornadas
 						))
 					}
 				</ul>
+				<div class="table">
+					<h3 class="table-title">Tabla total de temporada</h3>
+					<img src={totaltemporada.src} alt="tabla de estadísticas totales de temporada" class="table-img"/>
+				</div>
+				<div class="table">
+					<h3 class="table-title">Tabla promedios de temporada</h3>
+					<img src={promediostemporada.src} alt="tabla de estadísticas promedios de temporada" class="table-img"/>
+				</div>
 			</section>
 		</main>
 		<Footer />
