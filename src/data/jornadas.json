@@ -5,6 +5,7 @@
     "description": "Resumen de la primera jornada de la temporada.",
     "pubDate": "2025-09-21",
     "heroImage": "/src/assets/jornadas/presJ1.png",
+    "time": "18:00",
     "opponent": "San Martín de la Vega",
     "slug": "jornada1",
     "available": true
@@ -15,6 +16,7 @@
     "description": "Resumen de la segunda jornada de la temporada.",
     "pubDate": "2025-09-28",
     "heroImage": "/src/assets/jornadas/presJ2.png",
+    "time": "16:00",
     "opponent": "Torrejón Basket Azul",
     "slug": "jornada2",
     "available": true
@@ -25,6 +27,7 @@
     "description": "Resumen de la tercera jornada de la temporada.",
     "pubDate": "2025-10-04",
     "heroImage": "/src/assets/jornadas/presJ3.png",
+    "time": "12:00",
     "opponent": "Colegio Los Sauces",
     "slug": "jornada3",
     "available": true
@@ -35,8 +38,20 @@
     "description": "Resumen de la cuarta jornada de la temporada.",
     "pubDate": "2025-10-11",
     "heroImage": "/src/assets/jornadas/presJ4.png",
+    "time": "17:45",
     "opponent": "Distrito Carabanchel",
     "slug": "jornada4",
     "available": true
+  }
+  ,{
+    "id": "jornada5",
+    "title": "Jornada 5",
+    "description": "Resumen de la quinta jornada de la temporada.",
+    "pubDate": "2025-10-19",
+    "heroImage": "/src/assets/jornadas/presJ5.png",
+    "time": "13:00",
+    "opponent": "CB Fuenlabrada",
+    "slug": "jornada5",
+    "available": false
   }
 ]
