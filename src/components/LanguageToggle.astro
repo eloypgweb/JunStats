@@ -1,0 +1,83 @@
+---
+// Componente para cambiar entre idiomas
+import '../styles/LanguageToggle.css';
+---
+
+<div class="language-toggle">
+	<button 
+		class="language-btn language-toggle-btn"
+		type="button"
+		aria-label="Cambiar idioma"
+		title="Cambiar entre español e inglés"
+	>
+		<span class="es-flag">🇪🇸</span>
+		<span class="us-flag">🇺🇸</span>
+	</button>
+</div>
+
+<script>
+	// Tipos para el idioma
+	type Language = 'es' | 'en';
+
+	// Función para obtener el idioma preferido
+	function getPreferredLanguage(): Language {
+		// Primero verificar si hay un idioma guardado
+		if (typeof localStorage !== 'undefined') {
+			const savedLang = localStorage.getItem('language') as Language;
+			if (savedLang && (savedLang === 'es' || savedLang === 'en')) {
+				return savedLang;
+			}
+		}
+		
+		// Si no hay idioma guardado, usar español por defecto
+		return 'es';
+	}
+
+	// Función para aplicar el idioma
+	function setLanguage(lang: Language): void {
+		document.documentElement.setAttribute('data-language', lang);
+		if (typeof localStorage !== 'undefined') {
+			localStorage.setItem('language', lang);
+		}
+		
+		// Actualizar el estado visual de todos los botones
+		const buttons = document.querySelectorAll('.language-toggle-btn');
+		buttons.forEach(button => {
+			button.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+			button.classList.toggle('en-mode', lang === 'en');
+		});
+	}
+
+	// Función para alternar idioma
+	function toggleLanguage(): void {
+		const currentLang = document.documentElement.getAttribute('data-language') as Language;
+		const newLang: Language = currentLang === 'en' ? 'es' : 'en';
+		setLanguage(newLang);
+	}
+
+	// Inicializar el idioma al cargar la página
+	function initLanguage(): void {
+		const lang = getPreferredLanguage();
+		setLanguage(lang);
+		
+		// Añadir event listener a todos los botones
+		const buttons = document.querySelectorAll('.language-toggle-btn');
+		buttons.forEach(button => {
+			button.addEventListener('click', toggleLanguage);
+		});
+	}
+
+	// Aplicar idioma inmediatamente
+	const lang = getPreferredLanguage();
+	document.documentElement.setAttribute('data-language', lang);
+
+	// Inicializar cuando el DOM esté listo
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initLanguage);
+	} else {
+		initLanguage();
+	}
+
+	// Para navegación con Astro (SPA mode)
+	document.addEventListener('astro:page-load', initLanguage);
+</script>

@@ -2,6 +2,7 @@
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from './LanguageToggle.astro';
 import HamburgerMenu from './HamburgerMenu.astro';
 import '../styles/Header.css';
 ---
@@ -48,6 +49,7 @@ import '../styles/Header.css';
 					></path></svg
 				>
 			</a>
+			<LanguageToggle />
 			<ThemeToggle />
 		</div>
 	</nav>
