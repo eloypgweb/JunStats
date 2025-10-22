@@ -10,6 +10,10 @@ import '../styles/index.css';
 // Última jornada disponible
 // import lastMatch from '../assets/jornadas/presJ6.png';
 import lastMatch from '../assets/jornadas/presJ5.png';
+
+// i18n
+import { getTranslations } from '../i18n/translations';
+const t = getTranslations('es').index; // Por defecto español, se cambiará con JavaScript
 ---
 
 <!doctype html>
@@ -26,21 +30,19 @@ import lastMatch from '../assets/jornadas/presJ5.png';
 				<div class="hero-text">
 					<h1 class="hero-title">
 						<span class="emoji-bounce">🏀</span>
-						<span class="gradient-text">JunStats</span>
+						<span class="gradient-text" data-i18n="heroTitle">{t.heroTitle}</span>
 					</h1>
-					<p class="hero-subtitle">
-						Estadísticas del <strong>Junior C Masculino</strong><br>
-						Club Deportivo Elemental Leganés
+					<p class="hero-subtitle" data-i18n="heroSubtitle" set:html={t.heroSubtitle}>
 					</p>
 					<div class="hero-buttons">
-						<a href="/jornadas" class="btn btn-primary">📊 Ver Estadísticas</a>
-						<a href="/jugadas" class="btn btn-secondary">🎯 Ver Jugadas</a>
+						<a href="/jornadas" class="btn btn-primary" data-i18n="btnViewStats">{t.btnViewStats}</a>
+						<a href="/jugadas" class="btn btn-secondary" data-i18n="btnViewPlays">{t.btnViewPlays}</a>
 					</div>
 				</div>
 				<div class="hero-image">
 					<img src={juncmr.src} alt="Equipo Junior C Masculino" />
 					<div class="image-overlay">
-						<span class="team-badge">Temporada 2025-26</span>
+						<span class="team-badge" data-i18n="teamBadge">{t.teamBadge}</span>
 					</div>
 				</div>
 			</div>
@@ -52,41 +54,34 @@ import lastMatch from '../assets/jornadas/presJ5.png';
 				<div class="latest-match-content">
 					<div class="latest-match-info">
 						<div class="match-badge">
-							<span class="match-icon">🔥</span>
-							<span>Última Jornada Disponible</span>
+							<span class="match-icon" data-i18n="latestMatchBadge" set:html={t.latestMatchBadge}></span>
 						</div>
-						<h2 class="latest-match-title">
-							<span class="gradient-text">Jornada 4</span>
-							vs Baloncesto Fuenlabrada
+						<h2 class="latest-match-title" data-i18n="latestMatchTitle" set:html={t.latestMatchTitle}>
 						</h2>
-						<p class="latest-match-description">
-							¡Descubre las estadísticas completas de nuestro cuarto encuentro de la temporada! 
-							Análisis detallado del rendimiento de cada jugador, jugadas clave y momentos decisivos 
-							que marcaron la diferencia en la cancha.
+						<p class="latest-match-description" data-i18n="latestMatchDescription">
+							{t.latestMatchDescription}
 						</p>
 						<div class="match-highlights">
 							<div class="highlight-item">
-								<span class="highlight-icon">📊</span>
-								<span>Estadísticas completas</span>
+								<span class="highlight-icon" data-i18n="highlightStats">{t.highlightStats}</span>
 							</div>
 							<div class="highlight-item">
-								<span class="highlight-icon">👑</span>
-								<span>MVP de la jornada</span>
+								<span class="highlight-icon" data-i18n="highlightMVP">{t.highlightMVP}</span>
 							</div>
 						</div>
 						<div class="latest-match-actions">
-							<a href="/jornadas/jornada5" class="btn btn-primary btn-large">
-								📊 Ver Estadísticas Completas
+							<a href="/jornadas/jornada5" class="btn btn-primary btn-large" data-i18n="btnViewFullStats">
+								{t.btnViewFullStats}
 							</a>
 						</div>
 					</div>
 					<div class="latest-match-visual">
 						<div class="match-image-container">
-							<img src={lastMatch.src} alt="Jornada 4 vs Distrito Carabanchel" class="match-preview" />
+							<img src={lastMatch.src} alt="Jornada 5 vs Baloncesto Fuenlabrada" class="match-preview" />
 							<div class="match-overlay">
 								<div class="match-result">
-									<span class="result-label">Jornada 4</span>
-									<span class="result-date">11 Oct 2025</span>
+									<span class="result-label" data-i18n="matchResultLabel">{t.matchResultLabel}</span>
+									<span class="result-date" data-i18n="matchResultDate">{t.matchResultDate}</span>
 								</div>
 							</div>
 						</div>
@@ -105,27 +100,27 @@ import lastMatch from '../assets/jornadas/presJ5.png';
 		<!-- Stats Preview Section -->
 		<section class="stats-preview">
 			<div class="container">
-				<h2 class="section-title">📈 ¿Qué encontrarás?</h2>
+				<h2 class="section-title" data-i18n="whatYouFindTitle">{t.whatYouFindTitle}</h2>
 				<div class="features-grid">
 					<div class="feature-card">
 						<div class="feature-icon">📊</div>
-						<h3>Estadísticas por Jornada</h3>
-						<p>Análisis detallado de cada partido con estadísticas completas de todos los jugadores</p>
-						<div class="feature-highlight">Sistema MVP con corona 👑</div>
+						<h3 data-i18n="feature1Title">{t.feature1Title}</h3>
+						<p data-i18n="feature1Description">{t.feature1Description}</p>
+						<div class="feature-highlight" data-i18n="feature1Highlight">{t.feature1Highlight}</div>
 					</div>
 					
 					<div class="feature-card">
 						<div class="feature-icon">🎬</div>
-						<h3>Jugadas del Equipo</h3>
-						<p>Videos explicativos de las jugadas más importantes con análisis táctico</p>
-						<div class="feature-highlight">Videos optimizados 📱</div>
+						<h3 data-i18n="feature2Title">{t.feature2Title}</h3>
+						<p data-i18n="feature2Description">{t.feature2Description}</p>
+						<div class="feature-highlight" data-i18n="feature2Highlight">{t.feature2Highlight}</div>
 					</div>
 					
 					<div class="feature-card">
 						<div class="feature-icon">📱</div>
-						<h3>Diseño Responsive</h3>
-						<p>Accede desde cualquier dispositivo: móvil, tablet o escritorio</p>
-						<div class="feature-highlight">Optimizado para entrenamientos</div>
+						<h3 data-i18n="feature3Title">{t.feature3Title}</h3>
+						<p data-i18n="feature3Description">{t.feature3Description}</p>
+						<div class="feature-highlight" data-i18n="feature3Highlight">{t.feature3Highlight}</div>
 					</div>
 				</div>
 			</div>
@@ -136,23 +131,21 @@ import lastMatch from '../assets/jornadas/presJ5.png';
 			<div class="container">
 				<div class="team-content">
 					<div class="team-text">
-						<h2 class="section-title">🏆 Nuestro Equipo</h2>
-						<p class="team-description">
-							El <strong>Junior C Masculino</strong> del CDE Leganés está compuesto por jóvenes talentosos 
-							que trabajan día a día para mejorar su técnica, táctica y trabajo en equipo.
+						<h2 class="section-title" data-i18n="teamTitle">{t.teamTitle}</h2>
+						<p class="team-description" data-i18n="teamDescription" set:html={t.teamDescription}>
 						</p>
 						<div class="team-stats">
 							<div class="stat-item">
 								<span class="stat-number">4</span>
-								<span class="stat-label">Partidos Ganados</span>
+								<span class="stat-label" data-i18n="statMatchesWon">{t.statMatchesWon}</span>
 							</div>
 							<div class="stat-item">
 								<span class="stat-number">1</span>
-								<span class="stat-label">Partidos Perdidos</span>
+								<span class="stat-label" data-i18n="statMatchesLost">{t.statMatchesLost}</span>
 							</div>
 							<div class="stat-item">
 								<span class="stat-number">6</span>
-								<span class="stat-label">Jugadas</span>
+								<span class="stat-label" data-i18n="statPlays">{t.statPlays}</span>
 							</div>
 						</div>
 					</div>
@@ -168,8 +161,8 @@ import lastMatch from '../assets/jornadas/presJ5.png';
 			<div class="container">
 				<blockquote class="hero-quote">
 					<span class="quote-icon">💭</span>
-					<p>"El talento gana partidos, pero el trabajo en equipo y la inteligencia ganan campeonatos."</p>
-					<cite>Michael Jordan</cite>
+					<p data-i18n="quote">{t.quote}</p>
+					<cite data-i18n="quoteAuthor">{t.quoteAuthor}</cite>
 				</blockquote>
 			</div>
 		</section>
@@ -178,11 +171,11 @@ import lastMatch from '../assets/jornadas/presJ5.png';
 		<section class="cta-section">
 			<div class="container">
 				<div class="cta-content">
-					<h2>🚀 ¡Explora JunStats!</h2>
-					<p>Descubre todas las estadísticas y jugadas de nuestro equipo</p>
+					<h2 data-i18n="ctaTitle">{t.ctaTitle}</h2>
+					<p data-i18n="ctaDescription">{t.ctaDescription}</p>
 					<div class="cta-buttons">
-						<a href="/jornadas" class="btn btn-primary btn-large">📊 Ver Todas las Jornadas</a>
-						<a href="/jugadas" class="btn btn-outline btn-large">🎯 Aprender Jugadas</a>
+						<a href="/jornadas" class="btn btn-primary btn-large" data-i18n="ctaBtnAllMatches">{t.ctaBtnAllMatches}</a>
+						<a href="/jugadas" class="btn btn-outline btn-large" data-i18n="ctaBtnLearnPlays">{t.ctaBtnLearnPlays}</a>
 					</div>
 				</div>
 			</div>
@@ -191,5 +184,59 @@ import lastMatch from '../assets/jornadas/presJ5.png';
 		<Footer />
 		<!-- Trigger server-side visitor cookie on first page load via a hidden request to /api/visitor -->
 		<img src="/api/visitor" alt="" aria-hidden="true" style="display:none;width:1px;height:1px;" />
+		
+		<script>
+			import { translations } from '../i18n/translations';
+			import type { Language } from '../i18n/translations';
+			
+			function updatePageLanguage(lang: Language) {
+				const t = translations[lang].index;
+				
+				// Actualizar todos los elementos con data-i18n
+				document.querySelectorAll('[data-i18n]').forEach(element => {
+					const key = element.getAttribute('data-i18n') as keyof typeof t;
+					if (key && t[key]) {
+						const translation = t[key] as string;
+						
+						// Si el elemento tiene set:html, usar innerHTML, sino textContent
+						if (element.hasAttribute('data-html') || key.includes('html') || translation.includes('<')) {
+							element.innerHTML = translation;
+						} else {
+							element.textContent = translation;
+						}
+					}
+				});
+			}
+			
+			function initLanguageSync() {
+				// Obtener idioma actual
+				const currentLang = (document.documentElement.getAttribute('data-language') || 'es') as Language;
+				updatePageLanguage(currentLang);
+				
+				// Escuchar cambios en el botón de idioma
+				document.addEventListener('click', (e) => {
+					const target = e.target as HTMLElement;
+					const button = target.closest('.language-toggle-btn');
+					
+					if (button) {
+						// Esperar un momento para que el script del botón actualice el atributo
+						setTimeout(() => {
+							const newLang = (document.documentElement.getAttribute('data-language') || 'es') as Language;
+							updatePageLanguage(newLang);
+						}, 50);
+					}
+				});
+			}
+			
+			// Inicializar
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initLanguageSync);
+			} else {
+				initLanguageSync();
+			}
+			
+			// Para navegación con Astro
+			document.addEventListener('astro:page-load', initLanguageSync);
+		</script>
 	</body>
 </html>

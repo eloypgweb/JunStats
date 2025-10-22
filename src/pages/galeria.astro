@@ -76,14 +76,14 @@ const sortedAlbums = albumsData.sort((a, b) => new Date(b.date).getTime() - new 
 		<Header />
 		<main>
 			<section class="gallery-hero">
-				<h1>Galería de Fotos</h1>
-				<p>Momentos destacados de la temporada y del equipo</p>
+				<h1 data-i18n="pageTitle">Galería de Fotos</h1>
+				<p data-i18n="pageDescription">Momentos destacados de la temporada y del equipo</p>
 			</section>
 
 			<section class="gallery-container">
 				<div class="albums-grid">
 					{sortedAlbums.map((album) => (
-						<div class="album-card">
+						<div class="album-card" data-album-id={album.id}>
 							<a href={`/galeria/${album.id}`} class="album-link">
 								<div class="album-cover">
 									{typeof album.coverImage === 'string' ? (
@@ -98,7 +98,7 @@ const sortedAlbums = albumsData.sort((a, b) => new Date(b.date).getTime() - new 
 												<path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 22 21 22H3C2.46957 22 1.96086 21.7893 1.58579 21.4142C1.21071 21.0391 1 20.5304 1 20V6C1 5.46957 1.21071 4.96086 1.58579 4.58579C1.96086 4.21071 2.46957 4 3 4H7L9 2H15L17 4H21C21.5304 4 22.0391 4.21071 22.4142 4.58579C22.7893 4.96086 23 5.46957 23 6V19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 												<circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
 											</svg>
-											<span>{album.photoCount} fotos</span>
+											<span>{album.photoCount} <span data-i18n="photos">fotos</span></span>
 										</div>
 									</div>
 								</div>
@@ -113,5 +113,10 @@ const sortedAlbums = albumsData.sort((a, b) => new Date(b.date).getTime() - new 
 			</section>
 		</main>
 		<Footer />
+		
+		<script>
+			import { initGaleriaLanguageSync } from '../scripts/galeriaLanguageSync';
+			initGaleriaLanguageSync();
+		</script>
 	</body>
 </html>

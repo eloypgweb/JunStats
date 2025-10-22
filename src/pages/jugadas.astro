@@ -26,23 +26,23 @@ import '../styles/jugadas.css';
 
 	<!-- Índice de jugadas -->
 	<div class="jugadas-index">
-		<h3>🏀 Índice de Jugadas</h3>
+		<h3 data-i18n="indexTitle">🏀 Índice de Jugadas</h3>
 		<div class="jugadas-buttons">
-			<a href="#transi1" class="jugada-btn">⚡ Transi 1</a>
-			<a href="#blind" class="jugada-btn">👁️ Blind</a>
-			<a href="#short" class="jugada-btn">🏃 Short</a>
-			<a href="#palma" class="jugada-btn">🖐️ Palma</a>
-			<a href="#hammer" class="jugada-btn">🔨 Hammer</a>
-			<a href="#chain" class="jugada-btn">🔗 Chain</a>
+			<a href="#transi1" class="jugada-btn">⚡ <span data-i18n="transi1Title">Transi 1</span></a>
+			<a href="#blind" class="jugada-btn">👁️ <span data-i18n="blindTitle">Blind</span></a>
+			<a href="#short" class="jugada-btn">🏃 <span data-i18n="shortTitle">Short</span></a>
+			<a href="#palma" class="jugada-btn">🖐️ <span data-i18n="palmaTitle">Palma</span></a>
+			<a href="#hammer" class="jugada-btn">🔨 <span data-i18n="hammerTitle">Hammer</span></a>
+			<a href="#chain" class="jugada-btn">🔗 <span data-i18n="chainTitle">Chain</span></a>
 		</div>
-	</div>	<p>
+	</div>	<p data-i18n="intro">
 		Aquí veremos las jugadas que tenemos por el momento y usaremos a lo largo de la temporada.
 		Los vídeos y/o fotos irán acompañados de una descripción para que entendamos la situación y ventajas.
 	</p>
 
 	<div class="transi1" id="transi1">
-		<h1>Transi 1</h1>
-		<p>Jugada en situación de transición. 5 abiertos.</p>
+		<h1 data-i18n="transi1Title">Transi 1</h1>
+		<p data-i18n="transi1Subtitle">Jugada en situación de transición. 5 abiertos.</p>
 		<div class="hero-image">
 			<video 
 				controls 
@@ -55,22 +55,22 @@ import '../styles/jugadas.css';
 				<source src={transiVideoWebM} type="video/webm" />
 				<!-- Formato MP4 como fallback -->
 				<source src={transiVideo} type="video/mp4" />
-				<p>Tu navegador no soporta el elemento video. <a href={transiVideo} target="_blank">Descargar video</a></p>
+				<p><span data-i18n="videoNotSupported">Tu navegador no soporta el elemento video.</span> <a href={transiVideo} target="_blank" data-i18n="downloadVideo">Descargar video</a></p>
 			</video>
 		</div>
-		<p><b>Situación tras rebote o saque de fondo rápido</b>.</p>
-		<p>Tras rebote o saque rápido, <b>balón al manejador</b>. Importante recibir en la <b>altura de tiro libre</b>.</p>
-		<p>El manejador va en bote mientras todos pasamos de campo y nos colocamos en situación de <b>5 abiertos</b>.
+		<p><b data-i18n="transi1P1">Situación tras rebote o saque de fondo rápido</b>.</p>
+		<p data-i18n="transi1P2">Tras rebote o saque rápido, <b>balón al manejador</b>. Importante recibir en la <b>altura de tiro libre</b>.</p>
+		<p data-i18n="transi1P3">El manejador va en bote mientras todos pasamos de campo y nos colocamos en situación de <b>5 abiertos</b>.
 		<b>El tráiler</b> (jugador que va cayendo por calle central) <b>lanza corte al aro</b>, si recibe el balón, acaba.
 		Pero si no recibe, deberá caer a <b>poste bajo de lado contrario</b>.</p>
-		<p>En ese instante del corte, los jugadores aplican <b>normas de spacing</b>, reemplazando las posiciones.
+		<p data-i18n="transi1P4">En ese instante del corte, los jugadores aplican <b>normas de spacing</b>, reemplazando las posiciones.
 		Hay pase a cabecera y en cuanto se suelta el balón, vamos a <b>bloquear a esquina de lado fuerte</b>. Si sacamos ventaja y se puede
 		dar el pase, se acaba. Si no, se <b>invierte balón</b> a lado contrario y <b>damos espacio para que se juegue el 2x2</b>.
 		En caso de que el <b>poste tenga ventaja</b>, se juega el pase, si no, se <b>juega bloqueo directo</b>. Aplicamos <b>lectura de ventajas</b>.</p>
 	</div>
 	<div class="fondo-blind" id="blind">
-		<h1>Blind</h1>
-		<p>Jugada de fondo.</p>
+		<h1 data-i18n="blindTitle">Blind</h1>
+		<p data-i18n="blindSubtitle">Jugada de fondo.</p>
 		<div class="hero-image">
 			<video 
 				controls 
@@ -83,29 +83,29 @@ import '../styles/jugadas.css';
 				<source src={blindVideoWebM} type="video/webm" />
 				<!-- Formato MP4 como fallback -->
 				<source src={blindVideo} type="video/mp4" />
-				<p>Tu navegador no soporta el elemento video. <a href={blindVideo} target="_blank">Descargar video</a></p>
+				<p><span data-i18n="videoNotSupported">Tu navegador no soporta el elemento video.</span> <a href={blindVideo} target="_blank" data-i18n="downloadVideo">Descargar video</a></p>
 			</video>
 		</div>
-		<p><b>Situación que si se hace bien, siempre se saca ventaja</b>.</p>
-		<p>Situación que puede venir por fuera del rival, una falta que sea saque de fondo o incluso por un tapón que nos llevemos
+		<p><b data-i18n="blindP1">Situación que si se hace bien, siempre se saca ventaja</b>.</p>
+		<p data-i18n="blindP2">Situación que puede venir por fuera del rival, una falta que sea saque de fondo o incluso por un tapón que nos llevemos
 		y saquemos de fondo.</p>
-		<p>Nos colocamos:
+		<p data-i18n="blindP3">Nos colocamos:</p>
 			<ul>
-				<li>1 en 45º lado contrario</li>
-				<li>2 sacador</li>
-				<li>3 en semicírculo de la zona</li>
-				<li>4 en 45º de lado fuerte</li>
-				<li>5 en altura de TL o algo más atrás</li>
+				<li data-i18n="blindLi1">1 en 45º lado contrario</li>
+				<li data-i18n="blindLi2">2 sacador</li>
+				<li data-i18n="blindLi3">3 en semicírculo de la zona</li>
+				<li data-i18n="blindLi4">4 en 45º de lado fuerte</li>
+				<li data-i18n="blindLi5">5 en altura de TL o algo más atrás</li>
 			</ul>
-			3 pone un <b>bloqueo ciego orientando</b> a 5, para <b>después de pinchar hacer el roll al aro</b>.
+		<p data-i18n="blindP4">3 pone un <b>bloqueo ciego orientando</b> a 5, para <b>después de pinchar hacer el roll al aro</b>.
 			<b>Esa es la opción que queremos</b>, y SIEMPRE se saca ventaja si se hace bien.
 		</p>
-		<p>En caso de que no salga, el <b>4 iría a cabecera a poner un bloqueo para que el 1 lo pille en carrera y recibir un
+		<p data-i18n="blindP5">En caso de que no salga, el <b>4 iría a cabecera a poner un bloqueo para que el 1 lo pille en carrera y recibir un
 		pase de seguridad</b>. Empieza jugada.</p>
 	</div>
 	<div class="banda-short" id="short">
-		<h1>Short</h1>
-		<p>Jugada de banda.</p>
+		<h1 data-i18n="shortTitle">Short</h1>
+		<p data-i18n="shortSubtitle">Jugada de banda.</p>
 		<div class="hero-image">
 			<video 
 				controls 
@@ -118,28 +118,28 @@ import '../styles/jugadas.css';
 				<source src={shortVideoWebM} type="video/webm" />
 				<!-- Formato MP4 como fallback -->
 				<source src={shortVideo} type="video/mp4" />
-				<p>Tu navegador no soporta el elemento video. <a href={shortVideo} target="_blank">Descargar video</a></p>
+				<p><span data-i18n="videoNotSupported">Tu navegador no soporta el elemento video.</span> <a href={shortVideo} target="_blank" data-i18n="downloadVideo">Descargar video</a></p>
 			</video>
 		</div>
-		<p><b>Situación de saque de banda</b>.</p>
-		<p>Situación que puede venir por fuera del rival o una falta que sea saque de banda.</p>
-		<p>Nos colocamos:
+		<p><b data-i18n="shortP1">Situación de saque de banda</b>.</p>
+		<p data-i18n="shortP2">Situación que puede venir por fuera del rival o una falta que sea saque de banda.</p>
+		<p data-i18n="shortP3">Nos colocamos:</p>
 			<ul>
-				<li>1 en 45º lado contrario</li>
-				<li>2 sacador</li>
-				<li>3 en esquina</li>
-				<li>4 poste bajo</li>
-				<li>5 entre TL y T3</li>
+				<li data-i18n="shortLi1">1 en 45º lado contrario</li>
+				<li data-i18n="shortLi2">2 sacador</li>
+				<li data-i18n="shortLi3">3 en esquina</li>
+				<li data-i18n="shortLi4">4 poste bajo</li>
+				<li data-i18n="shortLi5">5 entre TL y T3</li>
 			</ul>
-			4 pone un <b>bloqueo indirecto orientando</b> a 5, para <b>después de pinchar, hacer otro bloqueo seguido a 1</b>.
+		<p data-i18n="shortP4">4 pone un <b>bloqueo indirecto orientando</b> a 5, para <b>después de pinchar, hacer otro bloqueo seguido a 1</b>.
 			
 		</p>
-		<p>En caso de que no reciba ni el 5 en el corte ni el 1 en el bloqueo indirecto, el <b>3 que está en esquina, trabaja
+		<p data-i18n="shortP5">En caso de que no reciba ni el 5 en el corte ni el 1 en el bloqueo indirecto, el <b>3 que está en esquina, trabaja
 		con su defensor para recibir rápido</b>. Empieza jugada.</p>
 	</div>
 	<div class="palma" id="palma">
-		<h1>Palma</h1>
-		<p>Jugada de banda.</p>
+		<h1 data-i18n="palmaTitle">Palma</h1>
+		<p data-i18n="palmaSubtitle">Jugada en estático.</p>
 		<div class="hero-image">
 			<video 
 				controls 
@@ -152,20 +152,19 @@ import '../styles/jugadas.css';
 				<source src={palmaVideoWebM} type="video/webm" />
 				<!-- Formato MP4 como fallback -->
 				<source src={palmaVideo} type="video/mp4" />
-				<p>Tu navegador no soporta el elemento video. <a href={palmaVideo} target="_blank">Descargar video</a></p>
+				<p><span data-i18n="videoNotSupported">Tu navegador no soporta el elemento video.</span> <a href={palmaVideo} target="_blank" data-i18n="downloadVideo">Descargar video</a></p>
 			</video>
 		</div>
-		<p><b>Jugada en estático</b>.</p>
-		<p>Nos colocamos: manejador con balón en cabecera; tirador debajo del aro; grandes en postes medios; apoyo en TL.</p>
-		<p><b>tirador juega con fintas</b> para finalmente salir por cualquiera de los dos lados y hacer un <b>carretón hacia 45º</b>.
+		<p data-i18n="palmaP1">Nos colocamos: manejador con balón en cabecera; tirador debajo del aro; grandes en postes medios; apoyo en TL.</p>
+		<p data-i18n="palmaP2"><b>tirador juega con fintas</b> para finalmente salir por cualquiera de los dos lados y hacer un <b>carretón hacia 45º</b>.
 		En el momento que el tirador se decanta por un lado, simultáneamente el jugador de apoyo en TL se abre con un cambio de 
 		ritmo al otro 45º.</p>
-		<p><b>La primera opción es recibir con espacio y hacer el tiro</b>, si no, los <b>postes hacen un intercambio con un bloqueo</b>
+		<p data-i18n="palmaP3"><b>La primera opción es recibir con espacio y hacer el tiro</b>, si no, los <b>postes hacen un intercambio con un bloqueo</b>
 		y se juega el balón interior. <b>A partir de ahí, aplicamos normas de spacing</b>.</p>
 	</div>
 	<div class="hammer" id="hammer">
-		<h1>Hammer</h1>
-		<p>Jugada en estático.</p>
+		<h1 data-i18n="hammerTitle">Hammer</h1>
+		<p data-i18n="hammerSubtitle">Jugada en estático.</p>
 		<div class="hero-image">
 			<video 
 				controls 
@@ -178,18 +177,18 @@ import '../styles/jugadas.css';
 				<source src={hammerVideoWebM} type="video/webm" />
 				<!-- Formato MP4 como fallback -->
 				<source src={hammerVideo} type="video/mp4" />
-				<p>Tu navegador no soporta el elemento video. <a href={hammerVideo} target="_blank">Descargar video</a></p>
+				<p><span data-i18n="videoNotSupported">Tu navegador no soporta el elemento video.</span> <a href={hammerVideo} target="_blank" data-i18n="downloadVideo">Descargar video</a></p>
 			</video>
 		</div>
-		<p>Nos colocamos en situación de <b>3 abiertos y 2 interior en poste alto</b>.</p>
-		<p><b>Balón empieza en 45º, que será el tirador</b>. Damos pase a cabecera, vamos en bote a 45º de lado contrario 
+		<p data-i18n="hammerP1">Nos colocamos en situación de <b>3 abiertos y 2 interior en poste alto</b>.</p>
+		<p data-i18n="hammerP2"><b>Balón empieza en 45º, que será el tirador</b>. Damos pase a cabecera, vamos en bote a 45º de lado contrario 
 		y el que dió el pase lanza corte. Si no recibe, va a poner un <b>bloqueo directo a esquina de balón</b>. Acto seguido, vuelve 
 		a debajo del aro, para <b>pillar un ascensor con los 2 interiores que bloquean a la altura de TL</b>. 💵 Cash 💵</p>
 	</div>
 
 	<div class="chain" id="chain">
-		<h1>Chain</h1>
-		<p>Jugada de fondo con bloqueo indirecto para caída de grande a zona.</p>
+		<h1 data-i18n="chainTitle">Chain</h1>
+		<p data-i18n="chainSubtitle">Jugada de fondo con bloqueo indirecto para caída de grande a zona.</p>
 		<div class="hero-image">
 			<video 
 				controls 
@@ -202,13 +201,13 @@ import '../styles/jugadas.css';
 				<source src={chainVideoWebM} type="video/webm" />
 				<!-- Formato MP4 como fallback -->
 				<source src={chainVideo} type="video/mp4" />
-				<p>Tu navegador no soporta el elemento video. <a href={chainVideo} target="_blank">Descargar video</a></p>
+				<p><span data-i18n="videoNotSupported">Tu navegador no soporta el elemento video.</span> <a href={chainVideo} target="_blank" data-i18n="downloadVideo">Descargar video</a></p>
 			</video>
 		</div>
-		<p>Nos colocamos en una <b>línea</b> en el <b>lado de balón</b>.</p>
-		<p>Primer jugador <b>elige una esquina a la que salir</b>, para que acto seguido, el segundo <b>salga a la esquina contraria</b>.</p>
-		<p>Después de eso, tercer jugador se gira para hacer un bloqueo indirecto al último jugador, que <b>caerá con todo a aro</b> para intentar recibir y meter canasta.</p>
-		<p>Si no puede recibir la caída, <b>tenemos esquinas ocupadas</b> para un posible pase y si tenemos espacio, tiro.</p>
+		<p data-i18n="chainP1">Nos colocamos en una <b>línea</b> en el <b>lado de balón</b>.</p>
+		<p data-i18n="chainP2">Primer jugador <b>elige una esquina a la que salir</b>, para que acto seguido, el segundo <b>salga a la esquina contraria</b>.</p>
+		<p data-i18n="chainP3">Después de eso, tercer jugador se gira para hacer un bloqueo indirecto al último jugador, que <b>caerá con todo a aro</b> para intentar recibir y meter canasta.</p>
+		<p data-i18n="chainP4">Si no puede recibir la caída, <b>tenemos esquinas ocupadas</b> para un posible pase y si tenemos espacio, tiro.</p>
 	</div>
 	</div>
 
@@ -235,6 +234,11 @@ import '../styles/jugadas.css';
 				btn.blur();
 			});
 		})();
+	</script>
+
+	<script>
+		import { initJugadasLanguageSync } from '../scripts/jugadasLanguageSync';
+		initJugadasLanguageSync();
 	</script>
 
 </Layout>
