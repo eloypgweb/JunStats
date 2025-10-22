@@ -173,8 +173,9 @@ JunStats/
 | 🏃 **Transi 1** | Jugada de transición rápida con 5 abiertos | ✅ Disponible |
 | 👁️ **Fondo Blind** | Jugada de fondo con bloqueo ciego | ✅ Disponible |
 | 🏃 **Banda Short** | Saque de banda con bloqueos consecutivos | ✅ Disponible |
-| 🖐️ **Palma** | Jugada estática con carretón | 🚧 En desarrollo |
-| 🔨 **Hammer** | Jugada con ascensor de bloqueos | 🚧 En desarrollo |
+| 🖐️ **Palma** | Jugada estática con carretón | ✅ Disponible |
+| 🔨 **Hammer** | Jugada con ascensor de bloqueos | ✅ Disponible |
+| 🍞 **Fufu** | Saque de fondo con bloqueos consecutivos 2 | ✅ Disponible |
 
 ### Contenido de cada Jugada
 
