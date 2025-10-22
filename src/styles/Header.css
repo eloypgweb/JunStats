@@ -2,8 +2,17 @@ header {
 	margin: 0;
 	padding: 0 1em;
 	background: var(--bg-primary);
-	box-shadow: 0 2px 8px rgba(var(--shadow-color), 15%);
-	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	box-shadow: var(--shadow-md);
+	transition: background-color var(--transition-theme), box-shadow var(--transition-normal);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	backdrop-filter: blur(10px);
+	background: rgba(var(--text-inverse), 0.95);
+}
+
+[data-theme="dark"] header {
+	background: rgba(15, 23, 42, 0.95);
 }
 
 h2 {
@@ -34,16 +43,41 @@ nav a {
 	color: rgb(var(--text-primary));
 	border-bottom: 4px solid transparent;
 	text-decoration: none;
-	transition: color 0.3s ease, border-bottom-color 0.3s ease;
+	transition: color var(--transition-fast), border-bottom-color var(--transition-fast), transform var(--transition-fast);
+	font-weight: 500;
+	position: relative;
+}
+
+nav a::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 4px;
+	background: var(--accent);
+	transform: translateX(-50%);
+	transition: width var(--transition-normal);
+	border-radius: 2px 2px 0 0;
+}
+
+nav a:hover::after {
+	width: 80%;
 }
 
 nav a.active {
 	text-decoration: none;
 	border-bottom-color: var(--accent);
+	color: var(--accent);
+}
+
+nav a.active::after {
+	width: 80%;
 }
 
 nav a:hover {
 	color: var(--accent);
+	transform: translateY(-2px);
 }
 
 .social-links,
@@ -54,11 +88,15 @@ nav a:hover {
 
 .social-links a {
 	color: rgb(var(--text-secondary));
-	transition: color 0.3s ease;
+	transition: color var(--transition-fast), transform var(--transition-fast);
+	border-radius: var(--radius-sm);
+	padding: 4px;
 }
 
 .social-links a:hover {
 	color: var(--accent);
+	transform: translateY(-3px) scale(1.1);
+	filter: drop-shadow(0 4px 8px rgba(35, 55, 255, 0.3));
 }
 
 /* Mostrar solo en desktop */

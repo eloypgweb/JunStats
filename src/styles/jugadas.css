@@ -64,11 +64,34 @@ html {
 .jugadas-index {
 	background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(var(--border-light), 0.3) 100%);
 	border: 2px solid var(--accent);
-	border-radius: 12px;
+	border-radius: var(--radius-lg);
 	padding: 20px;
 	margin: 30px 0;
 	text-align: center;
-	box-shadow: 0 4px 12px rgba(var(--accent), 0.1);
+	box-shadow: var(--shadow-md);
+	transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+	position: relative;
+	overflow: hidden;
+}
+
+.jugadas-index::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(35, 55, 255, 0.1), transparent);
+	transition: left var(--transition-slow);
+}
+
+.jugadas-index:hover::before {
+	left: 100%;
+}
+
+.jugadas-index:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-lg);
 }
 
 .jugadas-index h3 {
@@ -90,23 +113,43 @@ html {
 	color: rgb(var(--text-inverse));
 	padding: 12px 20px;
 	text-decoration: none;
-	border-radius: 25px;
+	border-radius: var(--radius-full);
 	font-weight: bold;
 	font-size: 1em;
-	transition: all 0.3s ease;
-	box-shadow: 0 3px 8px rgba(var(--accent), 0.3);
+	transition: all var(--transition-normal);
+	box-shadow: var(--shadow-md);
 	border: 2px solid transparent;
+	position: relative;
+	overflow: hidden;
+}
+
+.jugada-btn::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.2);
+	transform: translate(-50%, -50%);
+	transition: width var(--transition-slow), height var(--transition-slow);
+}
+
+.jugada-btn:hover::before {
+	width: 300px;
+	height: 300px;
 }
 
 .jugada-btn:hover {
 	background: var(--accent-dark);
-	transform: translateY(-2px);
-	box-shadow: 0 5px 15px rgba(var(--accent), 0.4);
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-hover);
 	color: rgb(var(--text-inverse));
 }
 
 .jugada-btn:active {
-	transform: translateY(0);
+	transform: translateY(-1px);
 }
 
 /* Botones deshabilitados */
@@ -157,8 +200,8 @@ html {
 	padding: 40px 20px;
 	background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
 	border: 2px dashed rgba(var(--text-muted), 0.5);
-	border-radius: 15px;
-	box-shadow: 0 8px 25px rgba(var(--shadow-color), 0.1);
+	border-radius: var(--radius-xl);
+	box-shadow: var(--shadow-lg);
 	max-width: 300px;
 }
 
@@ -188,8 +231,8 @@ html {
 		opacity: 1;
 	}
 	50% {
-		transform: scale(1.1);
-		opacity: 0.8;
+		transform: scale(1.15);
+		opacity: 0.7;
 	}
 }
 
@@ -227,15 +270,20 @@ html {
 	background: var(--accent);
 	color: rgb(var(--text-inverse));
 	border: none;
-	box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+	box-shadow: var(--shadow-lg);
 	cursor: pointer;
 	transform: translateY(10px) scale(0.95);
 	opacity: 0;
-	transition: all 200ms ease;
+	transition: all var(--transition-normal);
 	z-index: 2000;
 }
 .back-to-top svg { display: block; }
 .back-to-top:focus { outline: 2px solid rgba(255,255,255,0.25); }
+.back-to-top:hover {
+	transform: translateY(0) scale(1.1);
+	box-shadow: var(--shadow-hover);
+	background: var(--accent-dark);
+}
 .back-to-top.show {
 	transform: translateY(0) scale(1);
 	opacity: 1;

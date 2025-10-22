@@ -18,7 +18,7 @@ ul li {
 
 ul li * {
 	text-decoration: none;
-	transition: 0.2s ease;
+	transition: all var(--transition-normal);
 }
 
 ul li:first-child {
@@ -37,11 +37,16 @@ ul li:first-child .title {
 
 ul li img {
 	margin-bottom: 0.5rem;
-	border-radius: 12px;
+	border-radius: var(--radius-lg);
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	transition: transform var(--transition-normal);
+}
+
+ul li a:hover img {
+	transform: scale(1.05);
 }
 
 .jornada-thumb {
@@ -73,7 +78,7 @@ ul li a:hover .date {
 }
 
 ul a:hover img {
-	box-shadow: var(--box-shadow);
+	box-shadow: var(--shadow-hover);
 }
 
 /* Estilos para jornadas no disponibles */
@@ -85,7 +90,7 @@ ul a:hover img {
 
 .jornada-unavailable img {
 	filter: blur(2px) grayscale(20%);
-	transition: filter 0.3s ease;
+	transition: filter var(--transition-normal);
 }
 
 .jornada-unavailable .content {
@@ -112,10 +117,10 @@ ul a:hover img {
 	background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
 	color: white;
 	padding: 12px 24px;
-	border-radius: 25px;
+	border-radius: var(--radius-full);
 	font-weight: bold;
 	font-size: 1.1em;
-	box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+	box-shadow: var(--shadow-lg);
 	z-index: 10;
 	pointer-events: none;
 	border: 2px solid rgba(255, 255, 255, 0.3);
@@ -131,11 +136,11 @@ ul a:hover img {
 @keyframes comingSoonPulse {
 	0%, 100% {
 		transform: translate(-50%, -50%) scale(1);
-		box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+		box-shadow: var(--shadow-lg);
 	}
 	50% {
-		transform: translate(-50%, -50%) scale(1.05);
-		box-shadow: 0 12px 35px rgba(30, 64, 175, 0.6);
+		transform: translate(-50%, -50%) scale(1.08);
+		box-shadow: var(--shadow-hover);
 	}
 }
 
@@ -172,6 +177,12 @@ ul a:hover img {
 
 .table-img {
 	/* width: 100%; */
-	border-radius: 12px;
-	box-shadow: var(--box-shadow);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-md);
+	transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.table-img:hover {
+	transform: scale(1.02);
+	box-shadow: var(--shadow-lg);
 }

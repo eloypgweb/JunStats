@@ -3,20 +3,34 @@ footer {
 	background: linear-gradient(var(--gray-gradient)) no-repeat;
 	color: rgb(var(--gray));
 	text-align: center;
+	transition: background var(--transition-theme), color var(--transition-theme);
+	border-top: 1px solid rgba(var(--border-light), 0.5);
+}
+
+footer p {
+	margin: 0;
+	font-size: 0.95em;
+	opacity: 0.9;
 }
 
 .social-links {
 	display: flex;
 	justify-content: center;
-	gap: 1em;
-	margin-top: 1em;
+	gap: 1.5em;
+	margin-top: 1.5em;
 }
 
 .social-links a {
 	text-decoration: none;
 	color: rgb(var(--gray));
+	transition: color var(--transition-fast), transform var(--transition-fast);
+	padding: 8px;
+	border-radius: var(--radius-sm);
+	display: inline-block;
 }
 
 .social-links a:hover {
-	color: rgb(var(--gray-dark));
+	color: var(--accent);
+	transform: translateY(-4px) scale(1.15);
+	filter: drop-shadow(0 6px 12px rgba(35, 55, 255, 0.25));
 }

@@ -9,6 +9,26 @@
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
 	--accent-hover: #1e40af;
+	
+	/* Variables de animación y transición */
+	--transition-fast: 0.15s ease;
+	--transition-normal: 0.3s ease;
+	--transition-slow: 0.5s ease;
+	--transition-theme: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	
+	/* Variables de bordes redondeados */
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-xl: 16px;
+	--radius-full: 50px;
+	
+	/* Variables de sombras mejoradas */
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+	--shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+	--shadow-hover: 0 12px 24px rgba(35, 55, 255, 0.15), 0 6px 12px rgba(35, 55, 255, 0.1);
 
 	/* Estado AUSENTE (pastel amarillo suave) */
 	--ausente-bg: #fff9e6; /* fondo muy suave */
@@ -168,7 +188,7 @@ body {
 	color: rgb(var(--text-primary));
 	font-size: 20px;
 	line-height: 1.7;
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition: background var(--transition-theme), color var(--transition-theme);
 }
 main {
 	width: 720px;
@@ -221,9 +241,13 @@ b {
 }
 a {
 	color: var(--accent);
+	text-decoration: none;
+	transition: color var(--transition-fast), transform var(--transition-fast);
+	display: inline-block;
 }
 a:hover {
-	color: var(--accent);
+	color: var(--accent-hover);
+	transform: translateY(-1px);
 }
 p {
 	margin-bottom: 1em;
@@ -244,7 +268,13 @@ table {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
+	border-radius: var(--radius-md);
+	transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+img:hover {
+	transform: scale(1.02);
+	box-shadow: var(--shadow-lg);
 }
 code {
 	padding: 2px 5px;
@@ -404,10 +434,15 @@ hr {
 	background: var(--card-bg);
 	margin: 15px 0;
 	padding: 15px;
-	border-radius: 12px;
-	box-shadow: 0 2px 8px rgba(var(--shadow-color), 0.1);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-md);
 	border-left: 4px solid var(--card-border);
-	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	transition: transform var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-theme);
+}
+
+.player-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-lg);
 }
 
 .player-card:nth-child(odd) {

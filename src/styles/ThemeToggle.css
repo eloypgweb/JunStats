@@ -7,14 +7,14 @@
 .theme-btn {
 	background: transparent;
 	border: 2px solid rgba(var(--text-secondary), 0.3);
-	border-radius: 50px;
+	border-radius: var(--radius-full);
 	padding: 8px 12px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	gap: 6px;
 	font-size: 1.2rem;
-	transition: all 0.3s ease;
+	transition: all var(--transition-normal);
 	position: relative;
 	overflow: hidden;
 	min-width: 70px;
@@ -24,8 +24,9 @@
 
 .theme-btn:hover {
 	border-color: var(--accent);
-	background: rgba(var(--accent), 0.1);
-	transform: scale(1.05);
+	background: rgba(35, 55, 255, 0.1);
+	transform: scale(1.08);
+	box-shadow: var(--shadow-md);
 }
 
 .theme-btn:focus {
@@ -71,15 +72,29 @@
 /* Animación de resplandor para el botón */
 @keyframes glow {
 	0%, 100% {
-		box-shadow: 0 0 5px rgba(var(--accent), 0.3);
+		box-shadow: 0 0 8px rgba(35, 55, 255, 0.3);
 	}
 	50% {
-		box-shadow: 0 0 15px rgba(var(--accent), 0.5), 0 0 25px rgba(var(--accent), 0.3);
+		box-shadow: 0 0 20px rgba(35, 55, 255, 0.6), 0 0 30px rgba(35, 55, 255, 0.4);
+	}
+}
+
+@keyframes pulseIcon {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
 	}
 }
 
 .theme-btn:hover {
 	animation: glow 2s infinite;
+}
+
+.theme-btn:hover .sun-icon,
+.theme-btn:hover .moon-icon {
+	animation: pulseIcon 1s infinite;
 }
 
 /* Responsive */

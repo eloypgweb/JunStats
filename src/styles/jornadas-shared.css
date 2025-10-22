@@ -8,8 +8,14 @@
 	text-align: center;
 	margin: 2rem auto;
 	padding: 2rem;
-	border-radius: 16px;
+	border-radius: var(--radius-xl);
 	max-width: 500px;
+	transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.match-result:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-xl);
 }
 
 .match-result.victory {
@@ -35,24 +41,35 @@
 	font-weight: 900;
 	line-height: 1;
 	padding: 0.5rem 1.5rem;
-	border-radius: 12px;
+	border-radius: var(--radius-lg);
 	background: rgba(255, 255, 255, 0.05);
 	min-width: 100px;
-	transition: all 0.3s ease;
+	transition: all var(--transition-normal);
 }
 
 .victory .team-score.winner {
 	color: rgb(34, 197, 94);
 	background: rgba(34, 197, 94, 0.1);
-	transform: scale(1.1);
-	box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+	transform: scale(1.15);
+	box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
+	animation: scoreGlow 2s infinite;
 }
 
 .defeat .team-score.winner {
 	color: rgb(239, 68, 68);
 	background: rgba(239, 68, 68, 0.1);
-	transform: scale(1.1);
-	box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+	transform: scale(1.15);
+	box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
+	animation: scoreGlow 2s infinite;
+}
+
+@keyframes scoreGlow {
+	0%, 100% {
+		box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+	}
+	50% {
+		box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+	}
 }
 
 .team-score.opponent {
@@ -75,23 +92,28 @@
 	align-items: center;
 	gap: 0.5rem;
 	padding: 0.75rem 1.5rem;
-	border-radius: 50px;
+	border-radius: var(--radius-full);
 	font-weight: 700;
 	font-size: 1.1rem;
 	letter-spacing: 0.05em;
 	margin-top: 0.5rem;
+	transition: transform var(--transition-normal);
+}
+
+.result-badge:hover {
+	transform: scale(1.05);
 }
 
 .victory .result-badge {
 	background: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
 	color: white;
-	box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+	box-shadow: var(--shadow-lg);
 }
 
 .defeat .result-badge {
 	background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
 	color: white;
-	box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+	box-shadow: var(--shadow-lg);
 }
 
 .badge-icon {
