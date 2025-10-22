@@ -3,3 +3,137 @@
 	margin-bottom: 2rem;
 	color: rgb(var(--accent));
 }
+
+.match-result {
+	text-align: center;
+	margin: 2rem auto;
+	padding: 2rem;
+	border-radius: 16px;
+	max-width: 500px;
+}
+
+.match-result.victory {
+	background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.1) 100%);
+	border: 2px solid rgba(34, 197, 94, 0.3);
+}
+
+.match-result.defeat {
+	background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.1) 100%);
+	border: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+.score-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.team-score {
+	font-size: 3.5rem;
+	font-weight: 900;
+	line-height: 1;
+	padding: 0.5rem 1.5rem;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.05);
+	min-width: 100px;
+	transition: all 0.3s ease;
+}
+
+.victory .team-score.winner {
+	color: rgb(34, 197, 94);
+	background: rgba(34, 197, 94, 0.1);
+	transform: scale(1.1);
+	box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+.defeat .team-score.winner {
+	color: rgb(239, 68, 68);
+	background: rgba(239, 68, 68, 0.1);
+	transform: scale(1.1);
+	box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.team-score.opponent {
+	color: rgb(var(--gray-dark));
+	opacity: 0.8;
+}
+
+.team-score.home {
+	color: rgb(var(--gray-dark));
+}
+
+.score-separator {
+	font-size: 2.5rem;
+	font-weight: 300;
+	color: rgba(255, 255, 255, 0.4);
+}
+
+.result-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1.5rem;
+	border-radius: 50px;
+	font-weight: 700;
+	font-size: 1.1rem;
+	letter-spacing: 0.05em;
+	margin-top: 0.5rem;
+}
+
+.victory .result-badge {
+	background: linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%);
+	color: white;
+	box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+}
+
+.defeat .result-badge {
+	background: linear-gradient(135deg, rgb(239, 68, 68) 0%, rgb(220, 38, 38) 100%);
+	color: white;
+	box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.badge-icon {
+	font-size: 1.3rem;
+	animation: pulse 2s ease-in-out infinite;
+}
+
+.badge-text {
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pulse {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.15);
+	}
+}
+
+@media (max-width: 768px) {
+	.match-result {
+		padding: 1.5rem;
+		margin: 1.5rem auto;
+	}
+
+	.team-score {
+		font-size: 2.5rem;
+		min-width: 80px;
+		padding: 0.4rem 1rem;
+	}
+
+	.score-separator {
+		font-size: 2rem;
+	}
+
+	.result-badge {
+		font-size: 0.95rem;
+		padding: 0.6rem 1.2rem;
+	}
+
+	.badge-icon {
+		font-size: 1.1rem;
+	}
+}
