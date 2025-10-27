@@ -1,73 +1,327 @@
-MEJORAS PARA WEB JUNSTATS
+HEMOS IMPLEMENTADO LA BASE DE DATOS CON SUPABASE.
 
-🎯 MEJORAS PROPUESTAS
-1. FUNCIONALIDADES TÉCNICAS DE ALTO IMPACTO
-📊 Dashboard de Comparativa de Jugadores
+Mi UUID es (Auth): 80eb5f65-7fb8-423d-b87b-8152aba94546
 
-¿Qué? Página que permita comparar estadísticas entre 2-3 jugadores seleccionados
-¿Por qué? Los entrenadores y jugadores necesitan análisis comparativo para tomar decisiones tácticas y de rotación
-📈 Gráficos de Evolución Temporal
 
-¿Qué? Gráficos que muestren la evolución de estadísticas clave por jornada (puntos, valoración, eficiencia)
-¿Por qué? Visualizar tendencias es crucial para detectar mejoras o bajadas de rendimiento
-🏆 Ranking/Clasificación de Jugadores
+Creación de la BD:
+-- JunStats: esquema inicial + políticas RLS + trigger + vista de agregados
+-- Pega y ejecuta todo este bloque en Supabase -> SQL Editor
 
-¿Qué? Página con clasificaciones por diferentes métricas (máximo anotador, mejor valoración, más assists, etc.)
-¿Por qué? Gamifica las estadísticas y motiva a los jugadores a mejorar
-2. MEJORAS DE EXPERIENCIA DE USUARIO
-🔍 Buscador/Filtros Avanzados
+-- 0) Crear tipo enumerado para roles y posiciones (si no existen)
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'role_enum') THEN
+    CREATE TYPE role_enum AS ENUM ('admin','player','parent');
+  END IF;
 
-¿Qué? Sistema de búsqueda y filtros para encontrar estadísticas específicas (por jugador, jornada, rango de fechas)
-¿Por qué? Con más jornadas, será difícil navegar sin herramientas de búsqueda
-📱 PWA (Progressive Web App)
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'position_enum') THEN
+    CREATE TYPE position_enum AS ENUM ('base','escolta','alero','ala-pivot','pivot', 'otro');
+  END IF;
+END$$;
 
-¿Qué? Convertir la web en una PWA instalable con funcionalidad offline básica
-¿Por qué? Los entrenadores podrían acceder desde el banquillo sin conexión perfecta
-🌙 Modo Oscuro/Claro
+-- 1) Tabla players (plantilla) con los campos que solicitaste:
+-- nombre, apellido, dorsal, estatura (X.XX m), cumple (fecha), posicion.
+CREATE TABLE IF NOT EXISTS public.players (
+  id        serial PRIMARY KEY,
+  nombre    text NOT NULL,
+  apellido  text,
+  dorsal    integer UNIQUE,                          -- número / dorsal
+  estatura  numeric(3,2) CHECK (estatura > 0 AND estatura < 3), -- en metros, ej 1.85
+  cumple    date,                                    -- fecha de nacimiento
+  posicion  position_enum DEFAULT 'otro',
+  photo_url text,
+  created_at timestamptz DEFAULT now()
+);
 
-¿Qué? Toggle entre tema claro y oscuro
-¿Por qué? Mejora la experiencia en diferentes condiciones de luz y preferencias personales
-3. FUNCIONALIDADES DE CONTENIDO
-📊 Estadísticas de Equipo
+-- 2) Tabla games (partidos / jornadas)
+CREATE TABLE IF NOT EXISTS public.games (
+  id         serial PRIMARY KEY,
+  opponent   text,
+  date       timestamptz,
+  location   text,
+  result     text,
+  video_url  text,
+  created_at timestamptz DEFAULT now()
+);
 
-¿Qué? Página con estadísticas agregadas del equipo completo por jornada y temporada
-¿Por qué? Ver el rendimiento global es importante para análisis táctico general
-🎯 Predicciones/Objetivos
+-- 3) Tabla player_stats (estadísticas por partido)
+CREATE TABLE IF NOT EXISTS public.player_stats (
+  id         serial PRIMARY KEY,
+  player_id  integer NOT NULL REFERENCES public.players(id) ON DELETE CASCADE,
+  game_id    integer NOT NULL REFERENCES public.games(id) ON DELETE CASCADE,
+  points     integer DEFAULT 0,
+  rebounds   integer DEFAULT 0,
+  assists    integer DEFAULT 0,
+  steals     integer DEFAULT 0,
+  blocks     integer DEFAULT 0,
+  minutes    integer DEFAULT 0,
+  created_at timestamptz DEFAULT now(),
+  UNIQUE (player_id, game_id)
+);
 
-¿Qué? Sistema simple de objetivos por jugador y seguimiento de cumplimiento
-¿Por qué? Establece metas claras y ayuda al desarrollo individual
-📝 Sistema de Comentarios/Notas
+-- 4) Tabla plays (jugadas)
+CREATE TABLE IF NOT EXISTS public.plays (
+  id         serial PRIMARY KEY,
+  title      text NOT NULL,
+  description text,
+  video_url  text,
+  diagram_url text,
+  category   text,
+  created_at timestamptz DEFAULT now()
+);
 
-¿Qué? Permitir añadir notas o comentarios a partidos específicos (solo admin)
-¿Por qué? Contexto importante sobre lesiones, condiciones especiales, etc.
-4. MEJORAS TÉCNICAS Y DE RENDIMIENTO
-⚡ Precarga Inteligente
+-- 5) Tabla gallery (fotos)
+CREATE TABLE IF NOT EXISTS public.gallery (
+  id         serial PRIMARY KEY,
+  title      text,
+  image_url  text NOT NULL,
+  game_id    integer REFERENCES public.games(id) ON DELETE SET NULL,
+  created_at timestamptz DEFAULT now()
+);
 
-¿Qué? Precargar las jornadas más recientes y videos más vistos
-¿Por qué? Mejora la experiencia de usuario en conexiones lentas
-📊 Metadatos Mejorados para SEO
+-- 6) Tabla user_profiles (información extra ligada a auth.users)
+CREATE TABLE IF NOT EXISTS public.user_profiles (
+  id         uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  name       text,
+  role       role_enum NOT NULL DEFAULT 'player',
+  player_id  integer REFERENCES public.players(id) ON DELETE SET NULL,
+  created_at timestamptz DEFAULT now()
+);
 
-¿Qué? Meta tags específicos para cada jornada, Open Graph mejorado
-¿Por qué? Mejor visibilidad cuando se comparta en redes sociales
-5. FUNCIONALIDADES FUTURAS AVANZADAS
-📈 Análisis con IA Simple
+-- Índices útiles
+CREATE INDEX IF NOT EXISTS idx_player_stats_player_id ON public.player_stats(player_id);
+CREATE INDEX IF NOT EXISTS idx_player_stats_game_id ON public.player_stats(game_id);
+CREATE INDEX IF NOT EXISTS idx_gallery_game_id ON public.gallery(game_id);
 
-¿Qué? Sugerencias automáticas basadas en patrones (ej: "Hugo ha mejorado su valoración un 15% respecto a las 3 jornadas anteriores")
-¿Por qué? Aporta valor analítico sin complejidad excesiva
-🏀 Heatmaps de Posiciones
+-- ============================
+-- Row Level Security (RLS)
+-- ============================
 
-¿Qué? Visualización de dónde son más efectivos los jugadores
-¿Por qué? Información táctica valiosa para entrenadores
-🎯 RECOMENDACIÓN PRIORIZADA
-FASE 1 (Impacto Alto, Esfuerzo Medio)
-Dashboard de Comparativa de Jugadores
-Ranking/Clasificación de Jugadores
-Modo Oscuro/Claro
-FASE 2 (Impacto Medio-Alto, Esfuerzo Medio)
-Estadísticas de Equipo
-Gráficos de Evolución
-Buscador/Filtros
-FASE 3 (Funcionalidades Avanzadas)
-PWA
-Sistema de Notas
-Predicciones/Objetivos
+-- Activar RLS en tablas sensibles
+ALTER TABLE public.user_profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.players ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.player_stats ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.plays ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.games ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.gallery ENABLE ROW LEVEL SECURITY;
+
+-- Para hacer el script idempotente, eliminamos políticas previas con los mismos nombres
+-- y luego las recreamos (DROP POLICY IF EXISTS ... ON table)
+
+-- ---------- user_profiles ----------
+DROP POLICY IF EXISTS user_profiles_admins_full ON public.user_profiles;
+CREATE POLICY user_profiles_admins_full ON public.user_profiles
+  FOR ALL
+  USING (EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin'))
+  WITH CHECK (EXISTS (SELECT 1 FROM public.user_profiles up2 WHERE up2.id = auth.uid() AND up2.role = 'admin'));
+
+DROP POLICY IF EXISTS user_profiles_self_select ON public.user_profiles;
+CREATE POLICY user_profiles_self_select ON public.user_profiles
+  FOR SELECT
+  USING (id = auth.uid());
+
+DROP POLICY IF EXISTS user_profiles_self_insert ON public.user_profiles;
+CREATE POLICY user_profiles_self_insert ON public.user_profiles
+  FOR INSERT
+  WITH CHECK (id = auth.uid());
+
+-- ---------- players ----------
+DROP POLICY IF EXISTS players_public_select ON public.players;
+CREATE POLICY players_public_select ON public.players
+  FOR SELECT USING (true); -- cambiar a (auth.uid() IS NOT NULL) si quieres exigir login
+
+DROP POLICY IF EXISTS players_admins_manage ON public.players;
+CREATE POLICY players_admins_manage ON public.players
+  FOR ALL
+  USING (EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin'))
+  WITH CHECK (EXISTS (SELECT 1 FROM public.user_profiles up2 WHERE up2.id = auth.uid() AND up2.role = 'admin'));
+
+-- ---------- player_stats ----------
+DROP POLICY IF EXISTS player_stats_admins_full ON public.player_stats;
+CREATE POLICY player_stats_admins_full ON public.player_stats
+  FOR ALL
+  USING (EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin'))
+  WITH CHECK (EXISTS (SELECT 1 FROM public.user_profiles up2 WHERE up2.id = auth.uid() AND up2.role = 'admin'));
+
+DROP POLICY IF EXISTS player_stats_own_select ON public.player_stats;
+CREATE POLICY player_stats_own_select ON public.player_stats
+  FOR SELECT
+  USING (
+    EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin')
+    OR player_id = (SELECT player_id FROM public.user_profiles up2 WHERE up2.id = auth.uid())
+  );
+
+-- ---------- plays ----------
+DROP POLICY IF EXISTS plays_public_select ON public.plays;
+CREATE POLICY plays_public_select ON public.plays
+  FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS plays_admins_manage ON public.plays;
+CREATE POLICY plays_admins_manage ON public.plays
+  FOR ALL
+  USING (EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin'))
+  WITH CHECK (EXISTS (SELECT 1 FROM public.user_profiles up2 WHERE up2.id = auth.uid() AND up2.role = 'admin'));
+
+-- ---------- games ----------
+DROP POLICY IF EXISTS games_public_select ON public.games;
+CREATE POLICY games_public_select ON public.games
+  FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS games_admins_manage ON public.games;
+CREATE POLICY games_admins_manage ON public.games
+  FOR ALL
+  USING (EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin'))
+  WITH CHECK (EXISTS (SELECT 1 FROM public.user_profiles up2 WHERE up2.id = auth.uid() AND up2.role = 'admin'));
+
+-- ---------- gallery ----------
+DROP POLICY IF EXISTS gallery_public_select ON public.gallery;
+CREATE POLICY gallery_public_select ON public.gallery
+  FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS gallery_admins_manage ON public.gallery;
+CREATE POLICY gallery_admins_manage ON public.gallery
+  FOR ALL
+  USING (EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin'))
+  WITH CHECK (EXISTS (SELECT 1 FROM public.user_profiles up2 WHERE up2.id = auth.uid() AND up2.role = 'admin'));
+
+-- ============================
+-- Trigger opcional: crear perfil cuando se crea auth.users
+-- ============================
+-- Esta función intenta insertar un profile básico cuando hay un nuevo auth.users
+CREATE OR REPLACE FUNCTION public.handle_new_auth_user()
+RETURNS trigger AS $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM public.user_profiles WHERE id = NEW.id) THEN
+    INSERT INTO public.user_profiles (id, name, role, created_at)
+    VALUES (NEW.id, COALESCE(NEW.raw_user_meta->>'full_name', NEW.email), 'player', now());
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Crear trigger si no existe
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'trigger_handle_new_auth_user') THEN
+    CREATE TRIGGER trigger_handle_new_auth_user
+      AFTER INSERT ON auth.users
+      FOR EACH ROW EXECUTE FUNCTION public.handle_new_auth_user();
+  END IF;
+END$$;
+
+-- ============================
+-- Vistas útiles: agregados por jugador (totales y promedios)
+-- ============================
+CREATE OR REPLACE VIEW public.player_stats_aggregates AS
+SELECT
+  ps.player_id,
+  count(*) AS games_played,
+  SUM(ps.points) AS total_points,
+  AVG(ps.points) AS avg_points,
+  SUM(ps.rebounds) AS total_rebounds,
+  AVG(ps.rebounds) AS avg_rebounds,
+  SUM(ps.assists) AS total_assists,
+  AVG(ps.assists) AS avg_assists
+FROM public.player_stats ps
+GROUP BY ps.player_id;
+
+-- ============================
+-- Bootstrap: crear admin inicial (descomenta y reemplaza <YOUR-AUTH-UUID>)
+-- ============================
+-- INSERT INTO public.user_profiles (id, name, role) VALUES ('<YOUR-AUTH-UUID>', 'Eloy', 'admin');
+
+-- ============================
+-- Consejos rápidos:
+-- - Para writes desde el navegador usa el anon key y confía en RLS; no expongas la service role key en frontend.
+-- - Si quieres que roster/plays/gallery/games requieran login, cambia las políticas SELECT con USING (true)
+--   a USING (auth.uid() IS NOT NULL) o a chequear roles según necesites.
+-- - Si ya tienes columnas llamadas 'numero' o 'altura' en tu tabla actual, puedo darte un script
+--   de migración para copiar datos a 'dorsal' y 'estatura' antes de renombrar/eliminar columnas.
+-- ============================
+
+
+
+
+
+
+
+
+
+PARA LA CREACIÓN DE MI USER TUVE QUE HACER:
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1
+    FROM pg_trigger
+    WHERE tgname = 'trigger_handle_new_auth_user'
+  ) THEN
+    DROP TRIGGER trigger_handle_new_auth_user ON auth.users;
+  END IF;
+END$$;
+
+
+
+
+
+DESPUES TUVE QUE HACER:
+-- Reemplaza 'EL-UUID' y 'Tu Nombre'
+INSERT INTO public.user_profiles (id, name, role)
+VALUES ('80eb5f65-7fb8-423d-b87b-8152aba94546', 'eloy', 'admin')  -- usa 'admin' para ti
+ON CONFLICT (id) DO UPDATE
+  SET name = EXCLUDED.name,
+      role = EXCLUDED.role;
+
+
+
+
+
+
+
+Y FINALMENTE:
+DROP POLICY IF EXISTS user_profiles_allow_insert_temp ON public.user_profiles;
+
+-- (Re)crea las restrictivas si hiciera falta
+DROP POLICY IF EXISTS user_profiles_admins_full ON public.user_profiles;
+CREATE POLICY user_profiles_admins_full ON public.user_profiles
+  FOR ALL
+  USING (EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin'))
+  WITH CHECK (EXISTS (SELECT 1 FROM public.user_profiles up2 WHERE up2.id = auth.uid() AND up2.role = 'admin'));
+
+DROP POLICY IF EXISTS user_profiles_self_select ON public.user_profiles;
+CREATE POLICY user_profiles_self_select ON public.user_profiles
+  FOR SELECT
+  USING (id = auth.uid());
+
+DROP POLICY IF EXISTS user_profiles_self_insert ON public.user_profiles;
+CREATE POLICY user_profiles_self_insert ON public.user_profiles
+  FOR INSERT
+  WITH CHECK (id = auth.uid());
+
+
+
+Copilot me dice para hacer: 
+Buen cierre por hoy. Te dejo un plan corto para mañana con los pasos más útiles y seguros para seguir avanzando.
+
+Mañana: checklist simple
+
+Seguridad
+Si aún tienes activa la policy temporal de INSERT en user_profiles, elimínala y deja las restrictivas. Si ya la quitaste, perfecto.
+Frontend mínimo para que no rompa
+En players.ts: cambia .order('numero') por .order('dorsal').
+En players.astro: usa player.dorsal y player.estatura. Si quieres mostrar cumpleaños/posición, añade player.cumple y player.posicion.
+Datos de prueba (si quieres ver la página funcionando ya)
+Inserta 2–3 jugadores con datos parciales (estatura/cumple pueden ser NULL al inicio).
+Crea 1–2 partidos y 1–2 jugadas/galería para tener contenido visible.
+Admin listo
+Ya que tu usuario Eloy es admin, podrás gestionar datos desde la app (cuando montemos el CRUD) sin tocar la service_role key en el cliente.
+Extra opcional
+
+Autenticación en la web: añadir login sencillo con supabase-js para que tú (admin) puedas hacer inserts/updates con RLS desde el navegador.
+Importar jugadores por CSV: prepara CSV con columnas nombre,apellido,dorsal,estatura,cumple,posicion y súbelo desde el Table Editor.
+Stats: cuando tengas 1 partido y algunos jugadores, mete 2–3 filas en player_stats y prueba la vista de agregados.
+Si mañana quieres, te preparo:
+
+el cambio exacto en players.ts y players.astro,
+o un mini formulario admin protegido para crear/editar jugadores desde la web,
+o el CSV plantilla para importar jugadores.
+Buen trabajo hoy: base de datos lista y rol admin configurado. Cuando vuelvas, dime por dónde quieres seguir y lo montamos rápido.
