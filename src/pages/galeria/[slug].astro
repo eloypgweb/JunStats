@@ -21,6 +21,10 @@ import gritoSMVf from '../../assets/fotos/gritos/gritoSMVf.jpeg';
 import gritoSMVV from '../../assets/fotos/gritos/gritoSMV.mp4';
 import gritoTorrejonF from '../../assets/fotos/gritos/gritoTorrejonf.jpeg';
 import gritoTorrejonV from '../../assets/fotos/gritos/gritoTorrejon.mp4';
+import gritoFuenlaV from '../../assets/fotos/gritos/gritoFuenla.mp4';
+import gritoFuenlaf from '../../assets/fotos/gritos/gritoFuenlaf.png';
+import gritoEuropeoV from '../../assets/fotos/gritos/gritoEuropeo.mp4';
+import gritoEuropeof from '../../assets/fotos/gritos/gritoEuropeof.png';
 
 
 // Imports de Torrejon
@@ -45,11 +49,11 @@ import tor18 from '../../assets/fotos/vsTorrejon/lega-torre18.jpeg';
 
 
 function getGritosPhotos() {
-  const list = [gritoSaucesF, gritoSaucesV, gritoSMVf, gritoSMVV, gritoTorrejonF, gritoTorrejonV];
+  const list = [gritoSaucesF, gritoSaucesV, gritoSMVf, gritoSMVV, gritoTorrejonF, gritoTorrejonV, gritoFuenlaf, gritoFuenlaV, gritoEuropeof, gritoEuropeoV];
   return list.map((mod, idx) => {
     const resolved = (mod as any).default ?? (mod as any).src ?? mod;
     const isVideo = /\.(mp4|webm|ogg|mov)$/i.test(String(resolved));
-    return {
+    return {  
       srcModule: mod,
       src: resolved,
       mediaType: isVideo ? 'video' : 'image',

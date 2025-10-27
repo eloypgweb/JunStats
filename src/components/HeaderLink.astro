@@ -2,9 +2,11 @@
 import type { HTMLAttributes } from 'astro/types';
 import '../styles/HeaderLink.css';
 
-type Props = HTMLAttributes<'a'>;
+type Props = HTMLAttributes<'a'> & {
+	hasNotification?: boolean;
+};
 
-const { href, class: className, ...props } = Astro.props;
+const { href, class: className, hasNotification = false, ...props } = Astro.props;
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
 const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
@@ -12,4 +14,5 @@ const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
 
 <a href={href} class:list={[className, { active: isActive }]} {...props}>
 	<slot />
+	{hasNotification && <span class="notification-badge"></span>}
 </a>
