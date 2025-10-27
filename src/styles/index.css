@@ -271,9 +271,10 @@
 }
 
 .highlight-icon {
-	font-size: 1.3rem;
-	width: 30px;
-	text-align: center;
+	font-size: 1.1rem;
+	color: rgb(var(--text-secondary));
+	font-weight: 500;
+	white-space: nowrap;
 }
 
 .highlight-item span:last-child {

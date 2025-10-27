@@ -20,6 +20,8 @@ import presJ2 from '../../assets/jornadas/presJ2.png';
 import presJ3 from '../../assets/jornadas/presJ3.png';
 import presJ4 from '../../assets/jornadas/presJ4.png';
 import presJ5 from '../../assets/jornadas/presJ5.png';
+import presJ6 from '../../assets/jornadas/presJ6.png';
+import presJ7 from '../../assets/jornadas/presJ7.png';
 
 // Mapear las imágenes
 const imageMap: Record<string, any> = {
@@ -27,7 +29,9 @@ const imageMap: Record<string, any> = {
 	'/src/assets/jornadas/presJ2.png': presJ2,
     '/src/assets/jornadas/presJ3.png': presJ3,
     '/src/assets/jornadas/presJ4.png': presJ4,
-    '/src/assets/jornadas/presJ5.png': presJ5
+    '/src/assets/jornadas/presJ5.png': presJ5,
+    '/src/assets/jornadas/presJ6.png': presJ6,
+    '/src/assets/jornadas/presJ7.png': presJ7,
 };
 
 // Ordenar jornadas por fecha (más recientes primero)
@@ -81,7 +85,8 @@ const sortedJornadas = jornadas
 												<FormattedDate date={jornada.pubDate} />
 											</p>
 										</div>
-										<div class="coming-soon-badge" data-i18n="comingSoon">{t.comingSoon}
+										<div class="coming-soon-badge">
+											<span data-i18n="comingSoon">{t.comingSoon}</span>
 											<p style="margin-bottom: 0.2%; margin-top: 0.2%">🕓 <span>{jornada.time}</span></p>
 										</div>
 									</div>

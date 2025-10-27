@@ -52,7 +52,7 @@
 	background: rgba(34, 197, 94, 0.1);
 	transform: scale(1.15);
 	box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
-	animation: scoreGlow 2s infinite;
+	animation: scoreGlowVictory 2s infinite;
 }
 
 .defeat .team-score.winner {
@@ -60,15 +60,24 @@
 	background: rgba(239, 68, 68, 0.1);
 	transform: scale(1.15);
 	box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
-	animation: scoreGlow 2s infinite;
+	animation: scoreGlowDefeat 2s infinite;
 }
 
-@keyframes scoreGlow {
+@keyframes scoreGlowVictory {
 	0%, 100% {
 		box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
 	}
 	50% {
 		box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+	}
+}
+
+@keyframes scoreGlowDefeat {
+	0%, 100% {
+		box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+	}
+	50% {
+		box-shadow: 0 0 40px rgba(239, 68, 68, 0.6);
 	}
 }
 

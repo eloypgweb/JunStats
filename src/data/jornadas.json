@@ -54,4 +54,25 @@
     "slug": "jornada5",
     "available": true
   }
+  ,{
+    "id": "jornada6",
+    "title": "Jornada 6",
+    "description": "Resumen de la sexta jornada de la temporada.",
+    "pubDate": "2025-10-25",
+    "heroImage": "/src/assets/jornadas/presJ6.png",
+    "time": "19:30",
+    "opponent": "Club Europeo Baloncesto",
+    "slug": "jornada6",
+    "available": true
+  },{
+    "id": "jornada7",
+    "title": "Jornada 7",
+    "description": "Resumen de la séptima jornada de la temporada.",
+    "pubDate": "2025-11-08",
+    "heroImage": "/src/assets/jornadas/presJ7.png",
+    "time": "13:15",
+    "opponent": "Femenino Fuenlabrada",
+    "slug": "jornada7",
+    "available": false
+  }
 ]
