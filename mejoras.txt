@@ -382,3 +382,39 @@ INSERT INTO public.players (nombre, apellido, dorsal, estatura, cumple, posicion
   ('Álvaro', 'Fernández Martínez', 30, 1.77, '2009-09-07', 'base', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
   ('David', 'Ortega Fernández', 16, 1.75, '2009-01-16', 'alero', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg')
 ON CONFLICT (dorsal) DO NOTHING;
+
+
+
+
+
+TUVE QUE DESACTIVAR EL RLS PARA PLAYERS PORQUE DE MOMENTO NO TENGO LOGINS:
+-- Primero, asegúrate de que RLS esté habilitado
+ALTER TABLE players ENABLE ROW LEVEL SECURITY;
+
+-- Eliminar políticas existentes si las hay
+DROP POLICY IF EXISTS "Enable read access for all users" ON players;
+DROP POLICY IF EXISTS "Admins can insert" ON players;
+DROP POLICY IF EXISTS "Admins can update" ON players;
+
+-- Crear política simple: todos pueden leer
+CREATE POLICY "Enable read access for all users" 
+ON players FOR SELECT 
+USING (true);
+
+-- Solo admins pueden insertar/actualizar (sin referencia circular)
+CREATE POLICY "Service role can do everything" 
+ON players FOR ALL 
+USING (auth.jwt()->>'role' = 'service_role');
+
+
+
+COMO SEGUÍA SIN IR, EJECUTÉ ESTO:
+-- Eliminar TODAS las políticas de la tabla players
+DROP POLICY IF EXISTS "Enable read access for all users" ON players;
+DROP POLICY IF EXISTS "Service role can do everything" ON players;
+DROP POLICY IF EXISTS "Admins can insert" ON players;
+DROP POLICY IF EXISTS "Admins can update" ON players;
+DROP POLICY IF EXISTS "Public Access" ON players;
+
+-- Deshabilitar RLS completamente (la tabla es pública de todas formas)
+ALTER TABLE players DISABLE ROW LEVEL SECURITY;
