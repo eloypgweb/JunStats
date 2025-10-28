@@ -380,7 +380,8 @@ INSERT INTO public.players (nombre, apellido, dorsal, estatura, cumple, posicion
   ('Álvaro', 'Zamorano Pasamontes', 17, 1.67, '2009-04-17', 'base', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
   ('Godswill Uyiosa', 'Otakhogbogie Omoigui', 15, 1.87, '2009-08-06', 'alero', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
   ('Álvaro', 'Fernández Martínez', 30, 1.77, '2009-09-07', 'base', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
-  ('David', 'Ortega Fernández', 16, 1.75, '2009-01-16', 'alero', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg')
+  ('David', 'Ortega Fernández', 16, 1.75, '2009-01-16', 'alero', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Rodrigo', 'Díaz Martos', 91, 1.75, '2009-11-22', 'escolta', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg')
 ON CONFLICT (dorsal) DO NOTHING;
 
 
