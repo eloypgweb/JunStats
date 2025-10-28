@@ -46,6 +46,11 @@ import '../styles/LanguageToggle.css';
 			button.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
 			button.classList.toggle('en-mode', lang === 'en');
 		});
+		
+		// Disparar evento personalizado para que otras páginas se enteren
+		window.dispatchEvent(new CustomEvent('languageChanged', { 
+			detail: { language: lang } 
+		}));
 	}
 
 	// Función para alternar idioma

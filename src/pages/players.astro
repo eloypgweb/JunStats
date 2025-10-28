@@ -4,7 +4,20 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_TITLE } from '../consts';
 import { getSupabaseServer } from '../lib/db/supabase-server';
+import { getCurrentLanguage } from '../i18n/utils';
+import { getTranslations } from '../i18n/translations';
 import '../styles/players.css';
+
+const currentLang = getCurrentLanguage();
+const t = getTranslations(currentLang);
+
+// Función para convertir metros a pies y pulgadas
+function metersToFeetInches(meters: number): string {
+	const totalInches = meters * 39.3701; // Convertir metros a pulgadas
+	const feet = Math.floor(totalInches / 12);
+	const inches = Math.round(totalInches % 12);
+	return `${feet}'${inches}"`;
+}
 
 type Player = {
 	id: number;
@@ -44,26 +57,26 @@ try {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={currentLang}>
 <head>
-<BaseHead title={`Jugadores - ${SITE_TITLE}`} description="Plantilla del equipo de baloncesto JunStats" />
+<BaseHead title={`${currentLang === 'en' ? 'Players' : 'Jugadores'} - ${SITE_TITLE}`} description={t.players.pageDescription} />
 </head>
 <body>
 		<Header />
 		<main>
 			<section class="players-hero">
-				<h1>🏀 <span class="gradient-text">Plantilla del Equipo</span></h1>
-				<p>Conoce a nuestros jugadores</p>
+				<h1>🏀 <span class="gradient-text" data-i18n="players.pageTitle">{t.players.pageTitle}</span></h1>
+				<p data-i18n="players.pageDescription">{t.players.pageDescription}</p>
 			</section>
 
 			<section class="players-container">
 				{error ? (
 					<div class="error-message">
-						<p>Error al cargar los jugadores: {error}</p>
+						<p><span data-i18n="players.errorLoading">{t.players.errorLoading}</span> {error}</p>
 					</div>
 				) : players.length === 0 ? (
 					<div class="no-players">
-						<p>No hay jugadores disponibles en este momento.</p>
+						<p data-i18n="players.noPlayers">{t.players.noPlayers}</p>
 					</div>
 				) : (
 					<div class="players-grid">
@@ -71,22 +84,34 @@ try {
 							<div class="player-card">
 								<div class="player-info">
 									<div class="player-number">#{player.dorsal}</div>
-									<h2 class="player-name">{player.nombre} {player.apellido}</h2>
+									<h2 class="player-name">
+										<span class="first-name">{player.nombre}</span>
+										<span class="surname">{player.apellido}</span>
+									</h2>
 									<div class="player-details">
 										<div class="detail-item">
 											<span class="detail-icon">🏀</span>
-											<span class="detail-label">Posición:</span>
-											<span class="detail-value">{player.posicion.charAt(0).toUpperCase() + player.posicion.slice(1)}</span>
+											<span class="detail-label" data-i18n="players.position">{t.players.position}</span>
+											<span class="detail-value" data-position={player.posicion}>
+												{t.players.positions[player.posicion as keyof typeof t.players.positions] || player.posicion.charAt(0).toUpperCase() + player.posicion.slice(1)}
+											</span>
 										</div>
 										<div class="detail-item">
 											<span class="detail-icon">📏</span>
-											<span class="detail-label">Altura:</span>
-											<span class="detail-value">{player.estatura} m</span>
+											<span class="detail-label" data-i18n="players.height">{t.players.height}</span>
+											<span class="detail-value" data-height={player.estatura}>
+												{currentLang === 'en' ? metersToFeetInches(player.estatura) : `${player.estatura} m`}
+											</span>
 										</div>
 										<div class="detail-item">
 											<span class="detail-icon">🎂</span>
-											<span class="detail-label">Cumpleaños:</span>
-											<span class="detail-value">{new Date(player.cumple).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}</span>
+											<span class="detail-label" data-i18n="players.birthday">{t.players.birthday}</span>
+											<span class="detail-value" data-date={player.cumple}>
+												{new Date(player.cumple).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'es-ES', { 
+													day: 'numeric', 
+													month: currentLang === 'en' ? 'short' : 'long' 
+												})}
+											</span>
 										</div>
 									</div>
 								</div>
@@ -102,5 +127,10 @@ try {
 			</section>
 		</main>
 		<Footer />
+		
+		<script>
+			import { initPlayersLanguageSync } from '../scripts/playersLanguageSync';
+			initPlayersLanguageSync();
+		</script>
 	</body>
 </html>

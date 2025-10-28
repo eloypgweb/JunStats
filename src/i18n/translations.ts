@@ -165,6 +165,25 @@ export const translations = {
       albumVsTorrejonDesc: 'Jornada 2 - 28 de Septiembre',
       albumGritos: 'Gritos en el centro',
       albumGritosDesc: 'Gritos de equipo post-partido',
+    },
+    
+    // Players page
+    players: {
+      pageTitle: 'Plantilla del Equipo',
+      pageDescription: 'Conoce a nuestros jugadores',
+      position: 'Posición:',
+      height: 'Altura:',
+      birthday: 'Cumpleaños:',
+      errorLoading: 'Error al cargar los jugadores:',
+      noPlayers: 'No hay jugadores disponibles en este momento.',
+      // Posiciones
+      positions: {
+        base: 'Base',
+        escolta: 'Escolta',
+        alero: 'Alero',
+        'ala-pivot': 'Ala-Pívot',
+        pivot: 'Pívot',
+      }
     }
   },
   en: {
@@ -332,6 +351,25 @@ export const translations = {
       albumVsTorrejonDesc: 'Match Day 2 - September 28',
       albumGritos: 'Team Huddles',
       albumGritosDesc: 'Post-game team huddles',
+    },
+    
+    // Players page
+    players: {
+      pageTitle: 'Team Roster',
+      pageDescription: 'Meet our players',
+      position: 'Position:',
+      height: 'Height:',
+      birthday: 'Birthday:',
+      errorLoading: 'Error loading players:',
+      noPlayers: 'No players available at this time.',
+      // Positions
+      positions: {
+        base: 'Point Guard',
+        escolta: 'Shooting Guard',
+        alero: 'Small Forward',
+        'ala-pivot': 'Power Forward',
+        pivot: 'Center',
+      }
     }
   }
 };
