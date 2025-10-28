@@ -12,8 +12,8 @@ import hammerVideo from '../assets/jugadas/HAMMER.mp4';
 import hammerVideoWebM from '../assets/jugadas/HAMMER.webm';
 import palmaVideo from '../assets/jugadas/PALMA.mp4';
 import palmaVideoWebM from '../assets/jugadas/PALMA.webm';
-import chainVideo from '../assets/jugadas/CHAIN.mp4';
-import chainVideoWebM from '../assets/jugadas/CHAIN.webm';
+import fufuVideo from '../assets/jugadas/FUFU.mp4';
+import fufuVideoWebM from '../assets/jugadas/FUFU.webm';
 import '../styles/jugadas.css';
 ---
 
@@ -33,7 +33,7 @@ import '../styles/jugadas.css';
 			<a href="#short" class="jugada-btn">🏃 <span data-i18n="shortTitle">Short</span></a>
 			<a href="#palma" class="jugada-btn">🖐️ <span data-i18n="palmaTitle">Palma</span></a>
 			<a href="#hammer" class="jugada-btn">🔨 <span data-i18n="hammerTitle">Hammer</span></a>
-			<a href="#chain" class="jugada-btn">🍞 <span data-i18n="chainTitle">Chain</span></a>
+			<a href="#fufu" class="jugada-btn">🍞 <span data-i18n="fufuTitle">Fufu</span></a>
 		</div>
 	</div>	<p data-i18n="intro">
 		Aquí veremos las jugadas que tenemos por el momento y usaremos a lo largo de la temporada.
@@ -186,9 +186,9 @@ import '../styles/jugadas.css';
 		a debajo del aro, para <b>pillar un ascensor con los 2 interiores que bloquean a la altura de TL</b>. 💵 Cash 💵</p>
 	</div>
 
-	<div class="chain" id="chain">
-		<h1 data-i18n="chainTitle">Chain</h1>
-		<p data-i18n="chainSubtitle">Jugada de fondo con bloqueo indirecto para caída de grande a zona.</p>
+	<div class="fufu" id="fufu">
+		<h1 data-i18n="fufuTitle">Fufu</h1>
+		<p data-i18n="fufuSubtitle">Jugada de fondo con bloqueo indirecto para caída de grande a zona.</p>
 		<div class="hero-image">
 			<video 
 				controls 
@@ -198,16 +198,16 @@ import '../styles/jugadas.css';
 				playsinline
 				muted>
 				<!-- Formato WebM para mejor compresión -->
-				<source src={chainVideoWebM} type="video/webm" />
+				<source src={fufuVideoWebM} type="video/webm" />
 				<!-- Formato MP4 como fallback -->
-				<source src={chainVideo} type="video/mp4" />
-				<p><span data-i18n="videoNotSupported">Tu navegador no soporta el elemento video.</span> <a href={chainVideo} target="_blank" data-i18n="downloadVideo">Descargar video</a></p>
+				<source src={fufuVideo} type="video/mp4" />
+				<p><span data-i18n="videoNotSupported">Tu navegador no soporta el elemento video.</span> <a href={fufuVideo} target="_blank" data-i18n="downloadVideo">Descargar video</a></p>
 			</video>
 		</div>
-		<p data-i18n="chainP1">Nos colocamos en una <b>línea</b> en el <b>lado de balón</b>.</p>
-		<p data-i18n="chainP2">Primer jugador <b>elige una esquina a la que salir</b>, para que acto seguido, el segundo <b>salga a la esquina contraria</b>.</p>
-		<p data-i18n="chainP3">Después de eso, tercer jugador se gira para hacer un bloqueo indirecto al último jugador, que <b>caerá con todo a aro</b> para intentar recibir y meter canasta.</p>
-		<p data-i18n="chainP4">Si no puede recibir la caída, <b>tenemos esquinas ocupadas</b> para un posible pase y si tenemos espacio, tiro.</p>
+	<p data-i18n="fufuP1">Nos colocamos en una <b>línea</b> en el <b>lado de balón</b>.</p>
+	<p data-i18n="fufuP2">Primer jugador <b>elige una esquina a la que salir</b>, para que acto seguido, el segundo <b>salga a la esquina contraria</b>.</p>
+	<p data-i18n="fufuP3">Después de eso, tercer jugador se gira para hacer un bloqueo indirecto al último jugador, que <b>caerá con todo a aro</b> para intentar recibir y meter canasta.</p>
+	<p data-i18n="fufuP4">Si no puede recibir la caída, <b>tenemos esquinas ocupadas</b> para un posible pase y si tenemos espacio, tiro.</p>
 	</div>
 	</div>
 

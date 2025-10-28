@@ -145,13 +145,13 @@ export const translations = {
       hammerP1: 'Nos colocamos en situación de 3 abiertos y 2 interior en poste alto.',
       hammerP2: 'Balón empieza en 45º, que será el tirador. Damos pase a cabecera, vamos en bote a 45º de lado contrario y el que dió el pase lanza corte. Si no recibe, va a poner un bloqueo directo a esquina de balón. Acto seguido, vuelve a debajo del aro, para pillar un ascensor con los 2 interiores que bloquean a la altura de TL. 💵 Cash 💵',
       
-      // Chain
-      chainTitle: 'Chain',
-      chainSubtitle: 'Jugada de fondo con bloqueo indirecto para caída de grande a zona.',
-      chainP1: 'Nos colocamos en una línea en el lado de balón.',
-      chainP2: 'Primer jugador elige una esquina a la que salir, para que acto seguido, el segundo salga a la esquina contraria.',
-      chainP3: 'Después de eso, tercer jugador se gira para hacer un bloqueo indirecto al último jugador, que caerá con todo a aro para intentar recibir y meter canasta.',
-      chainP4: 'Si no puede recibir la caída, tenemos esquinas ocupadas para un posible pase y si tenemos espacio, tiro.',
+  // Fufu
+  fufuTitle: 'Fufu',
+  fufuSubtitle: 'Jugada de fondo con bloqueo indirecto para caída de grande a zona.',
+  fufuP1: 'Nos colocamos en una línea en el lado de balón.',
+  fufuP2: 'Primer jugador elige una esquina a la que salir, para que acto seguido, el segundo salga a la esquina contraria.',
+  fufuP3: 'Después de eso, tercer jugador se gira para hacer un bloqueo indirecto al último jugador, que caerá con todo a aro para intentar recibir y meter canasta.',
+  fufuP4: 'Si no puede recibir la caída, tenemos esquinas ocupadas para un posible pase y si tenemos espacio, tiro.',
     },
     
     // Galería page
@@ -331,13 +331,13 @@ export const translations = {
       hammerP1: 'We position in a 3 out and 2 inside at high post situation.',
       hammerP2: 'Ball starts at 45º, which will be the shooter. We pass to the top, dribble to the opposite 45º and the one who gave the pass cuts. If they don\'t receive, they go set a direct screen at ball corner. Right after, they return under the rim, to catch an elevator with the 2 insides who screen at FT height. 💵 Cash 💵',
       
-      // Chain
-      chainTitle: 'Chain',
-      chainSubtitle: 'Baseline play with indirect screen for big dropping to the paint.',
-      chainP1: 'We position in a line on the ball side.',
-      chainP2: 'First player chooses a corner to go to, so that right after, the second goes to the opposite corner.',
-      chainP3: 'After that, third player turns to make an indirect screen for the last player, who will drop hard to the rim trying to receive and score.',
-      chainP4: 'If the drop can\'t receive, we have corners occupied for a possible pass and if we have space, shot.',
+  // Fufu
+  fufuTitle: 'Fufu',
+  fufuSubtitle: 'Baseline play with indirect screen for big dropping to the paint.',
+  fufuP1: 'We position in a line on the ball side.',
+  fufuP2: 'First player chooses a corner to go to, so that right after, the second goes to the opposite corner.',
+  fufuP3: 'After that, third player turns to make an indirect screen for the last player, who will drop hard to the rim trying to receive and score.',
+  fufuP4: 'If the drop can\'t receive, we have corners occupied for a possible pass and if we have space, shot.',
     },
     
     // Galería page
