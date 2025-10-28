@@ -173,34 +173,41 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 	<!-- Contact Section -->
 	<section class="contact-section team-info section--blue">
 			<div class="container">
-				<h2 class="section-title">Contacta con nosotros</h2>
+				<h2 class="section-title" data-i18n="contactTitle">{t.contactTitle}</h2>
 				<form id="contactForm" class="contact-form" aria-label="Formulario de contacto">
 					<!-- success animation container (hidden until success) -->
 					<div class="contact-success" id="contactSuccess" role="status" aria-live="polite">
 						<div class="success-card">
 							<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-							<div class="success-text">¡Mensaje enviado! Gracias por contactarnos.</div>
+							<div class="success-text" data-i18n="contactSuccessMessage">{t.contactSuccessMessage}</div>
 						</div>
 					</div>
 
 					<label>
-						<span>Nombre</span>
-						<input type="text" name="name" required placeholder="Tu nombre" />
+						<span data-i18n="contactNameLabel">{t.contactNameLabel}</span>
+						<input type="text" name="name" required placeholder={t.contactNamePlaceholder} data-i18n-placeholder="contactNamePlaceholder" />
 					</label>
 					<label>
-						<span>Asunto</span>
-						<input type="text" name="subject" required placeholder="Asunto" />
+						<span data-i18n="contactSubjectLabel">{t.contactSubjectLabel}</span>
+						<input type="text" name="subject" required placeholder={t.contactSubjectPlaceholder} data-i18n-placeholder="contactSubjectPlaceholder" />
 					</label>
 					<label>
-						<span>Mensaje</span>
-						<textarea name="message" rows="6" required placeholder="Escribe tu comentario o mejora..."></textarea>
+						<span data-i18n="contactMessageLabel">{t.contactMessageLabel}</span>
+						<textarea name="message" rows="6" required placeholder={t.contactMessagePlaceholder} data-i18n-placeholder="contactMessagePlaceholder"></textarea>
 					</label>
 					<div class="form-actions">
 						<button type="submit" class="btn btn-primary" aria-live="polite">
-							<span class="btn-text">Enviar</span>
+							<span class="btn-text" data-i18n="contactButton">{t.contactButton}</span>
 							<span class="btn-spinner" aria-hidden="true"></span>
 						</button>
 						<span id="contactStatus" role="status" aria-live="polite"></span>
+					</div>
+
+					<!-- Hidden localized strings for runtime status messages -->
+					<div class="contact-hidden-strings" style="display:none" aria-hidden="true">
+						<span id="contactMsgSending" data-i18n="contactSending">{t.contactSending}</span>
+						<span id="contactMsgNetworkError" data-i18n="contactNetworkError">{t.contactNetworkError}</span>
+						<span id="contactMsgErrorGeneric" data-i18n="contactErrorGeneric">{t.contactErrorGeneric}</span>
 					</div>
 				</form>
 			</div>
@@ -228,6 +235,23 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 							element.innerHTML = translation;
 						} else {
 							element.textContent = translation;
+						}
+					}
+				});
+
+				// Actualizar placeholders para inputs/textarea que tengan data-i18n-placeholder
+				document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+					const key = element.getAttribute('data-i18n-placeholder') as keyof typeof t;
+					if (key && t[key]) {
+						const translation = t[key] as string;
+						try {
+							if ((element as HTMLInputElement).placeholder !== undefined) {
+								(element as HTMLInputElement).placeholder = translation;
+							} else {
+								element.setAttribute('placeholder', translation);
+							}
+						} catch (e) {
+							// ignore
 						}
 					}
 				});
@@ -269,6 +293,9 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 			(function(){
 				const form = document.getElementById('contactForm') as HTMLFormElement | null;
 				const status = document.getElementById('contactStatus') as HTMLElement | null;
+				const getMsg = (id: string, fallback: string) => {
+					try { const el = document.getElementById(id); return el ? el.textContent || fallback : fallback; } catch (e) { return fallback; }
+				};
 				if (!form) return;
 				form.addEventListener('submit', async (e) => {
 					e.preventDefault();
@@ -276,7 +303,7 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 					const successEl = document.getElementById('contactSuccess') as HTMLElement | null;
 					if (btn) { btn.disabled = true; }
 					form.classList.add('is-sending');
-					if (status) status.textContent = 'Enviando...';
+					if (status) status.textContent = getMsg('contactMsgSending', 'Enviando...');
 					const nameEl = form.elements.namedItem('name') as HTMLInputElement | null;
 					const subjectEl = form.elements.namedItem('subject') as HTMLInputElement | null;
 					const messageEl = form.elements.namedItem('message') as HTMLTextAreaElement | null;
@@ -303,12 +330,12 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 							// allow the animation to be visible then remove
 							setTimeout(() => { form.classList.remove('is-success'); }, 3800);
 						} else {
-							const errorMsg = (json && json.error) ? json.error : (text || 'Error al enviar. Intenta de nuevo.');
+							const errorMsg = (json && json.error) ? json.error : (text || getMsg('contactMsgErrorGeneric', 'Error al enviar. Intenta de nuevo.'));
 							if (status) status.textContent = errorMsg;
 							form.classList.add('is-error');
 						}
 					} catch (err) {
-						if (status) status.textContent = 'Error de red. Intenta otra vez.';
+							if (status) status.textContent = getMsg('contactMsgNetworkError', 'Error de red. Intenta otra vez.');
 						form.classList.add('is-error');
 					} finally {
 						if (btn) btn.disabled = false;

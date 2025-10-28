@@ -45,6 +45,19 @@ export const translations = {
       ctaDescription: 'Descubre todas las estadísticas y jugadas de nuestro equipo',
       ctaBtnAllMatches: '📊 Ver Todas las Jornadas',
       ctaBtnLearnPlays: '🎯 Aprender Jugadas',
+      // Contact section
+      contactTitle: 'Contacta con nosotros',
+      contactSuccessMessage: '¡Mensaje enviado! Gracias por contactarnos.',
+      contactNameLabel: 'Nombre',
+      contactSubjectLabel: 'Asunto',
+      contactMessageLabel: 'Mensaje',
+      contactNamePlaceholder: 'Tu nombre',
+      contactSubjectPlaceholder: 'Asunto',
+      contactMessagePlaceholder: 'Escribe tu comentario o mejora...',
+      contactButton: 'Enviar',
+      contactSending: 'Enviando...',
+      contactNetworkError: 'Error de red. Intenta otra vez.',
+      contactErrorGeneric: 'Error al enviar. Intenta de nuevo.',
     },
     
     // Jornadas pages
@@ -231,6 +244,19 @@ export const translations = {
       ctaDescription: 'Discover all the statistics and plays of our team',
       ctaBtnAllMatches: '📊 View All Match Days',
       ctaBtnLearnPlays: '🎯 Learn Plays',
+      // Contact section
+      contactTitle: 'Contact us',
+      contactSuccessMessage: 'Message sent! Thanks for contacting us.',
+      contactNameLabel: 'Name',
+      contactSubjectLabel: 'Subject',
+      contactMessageLabel: 'Message',
+      contactNamePlaceholder: 'Your name',
+      contactSubjectPlaceholder: 'Subject',
+      contactMessagePlaceholder: 'Write your comment or improvement...',
+      contactButton: 'Send',
+      contactSending: 'Sending...',
+      contactNetworkError: 'Network error. Try again.',
+      contactErrorGeneric: 'Error sending message. Try again.',
     },
     
     // Jornadas pages
