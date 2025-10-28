@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_TITLE } from '../consts';
+import { getSupabaseServer } from '../lib/db/supabase-server';
 import '../styles/players.css';
 
 type Player = {
@@ -20,12 +21,17 @@ let players: Player[] = [];
 let error: string | null = null;
 
 try {
-	const response = await fetch(`${Astro.url.origin}/api/players`);
-	if (!response.ok) {
-		throw new Error('Error al cargar los jugadores');
+	const supabase = getSupabaseServer();
+	const { data, error: supabaseError } = await supabase
+		.from('players')
+		.select('*')
+		.order('dorsal');
+	
+	if (supabaseError) {
+		throw supabaseError;
 	}
-	const data = await response.json();
-	players = data.players || [];
+	
+	players = data || [];
 } catch (e) {
 	console.error('Error fetching players:', e);
 	error = e instanceof Error ? e.message : 'Error desconocido';
