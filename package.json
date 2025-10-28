@@ -13,6 +13,7 @@
     "@astrojs/mdx": "^4.3.6",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/vercel": "^9.0.0",
     "@supabase/supabase-js": "^2.76.1",
     "@types/nodemailer": "^6.4.7",
     "astro": "^5.13.10",
