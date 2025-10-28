@@ -28,13 +28,18 @@ try {
 		.order('dorsal');
 	
 	if (supabaseError) {
-		throw supabaseError;
+		console.error('Supabase error:', supabaseError);
+		throw new Error(supabaseError.message);
 	}
 	
 	players = data || [];
 } catch (e) {
 	console.error('Error fetching players:', e);
-	error = e instanceof Error ? e.message : 'Error desconocido';
+	if (e instanceof Error) {
+		error = e.message;
+	} else {
+		error = 'Error al cargar jugadores desde la base de datos';
+	}
 }
 ---
 
