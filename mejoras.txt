@@ -325,3 +325,60 @@ el cambio exacto en players.ts y players.astro,
 o un mini formulario admin protegido para crear/editar jugadores desde la web,
 o el CSV plantilla para importar jugadores.
 Buen trabajo hoy: base de datos lista y rol admin configurado. Cuando vuelvas, dime por dónde quieres seguir y lo montamos rápido.
+
+
+
+_______________________________________________________________________
+
+Hoy, recreación de la tabla de players + insert de datos "reales"
+
+ReCreación:
+-- 1) Recrear la tabla players
+CREATE TABLE IF NOT EXISTS public.players (
+  id        serial PRIMARY KEY,
+  nombre    text NOT NULL,
+  apellido  text,
+  dorsal    integer UNIQUE,
+  estatura  numeric(3,2) CHECK (estatura > 0 AND estatura < 3),
+  cumple    date,
+  posicion  position_enum DEFAULT 'otro',
+  photo_url text,
+  created_at timestamptz DEFAULT now()
+);
+
+-- 2) Activar RLS
+ALTER TABLE public.players ENABLE ROW LEVEL SECURITY;
+
+-- 3) Políticas de seguridad
+DROP POLICY IF EXISTS players_public_select ON public.players;
+CREATE POLICY players_public_select ON public.players
+  FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS players_admins_manage ON public.players;
+CREATE POLICY players_admins_manage ON public.players
+  FOR ALL
+  USING (EXISTS (SELECT 1 FROM public.user_profiles up WHERE up.id = auth.uid() AND up.role = 'admin'))
+  WITH CHECK (EXISTS (SELECT 1 FROM public.user_profiles up2 WHERE up2.id = auth.uid() AND up2.role = 'admin'));
+
+
+
+
+
+Inserts:
+-- 1) Borrar los datos de prueba
+DELETE FROM public.players;
+
+-- 2) Insertar tus jugadores reales con la foto de ejemplo
+-- Faltan 2 jugadores por hacer el form de datos: Victor; Rodri
+INSERT INTO public.players (nombre, apellido, dorsal, estatura, cumple, posicion, photo_url) VALUES
+  ('Hugo', 'Arias Alayón', 1, 1.80, '2009-06-17', 'alero', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Sergio', 'Redondo Casales', 8, 1.79, '2009-04-29', 'alero', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Roberto', 'García Márquez', 33, 1.68, '2009-08-02', 'escolta', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Tristán', 'Redondo Villalba', 13, 1.79, '2009-05-06', 'escolta', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Pablo', 'Fernández Martín', 12, 1.70, '2009-05-12', 'base', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Daniel', 'Chamizo Córdoba', 20, 1.86, '2009-09-12', 'ala-pivot', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Álvaro', 'Zamorano Pasamontes', 17, 1.67, '2009-04-17', 'base', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Godswill Uyiosa', 'Otakhogbogie Omoigui', 15, 1.87, '2009-08-06', 'alero', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('Álvaro', 'Fernández Martínez', 30, 1.77, '2009-09-07', 'base', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg'),
+  ('David', 'Ortega Fernández', 16, 1.75, '2009-01-16', 'alero', 'https://wwaxcrxmvqejodewmmws.supabase.co/storage/v1/object/public/players_pics/example_pic.jpg')
+ON CONFLICT (dorsal) DO NOTHING;

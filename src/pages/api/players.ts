@@ -5,11 +5,13 @@ import getSupabaseServer from '../../lib/db/supabase-server';
 
 type Player = {
   id: number;
-  numero: number;
+  dorsal: number;
   nombre: string;
   apellido: string;
-  altura: string;
-  desayuno_favorito: string;
+  estatura: number;
+  cumple: string;
+  posicion: string;
+  photo_url?: string;
   created_at: string;
 };
 
@@ -25,11 +27,11 @@ export async function GET() {
     });
   }
 
-  // Obtener todos los jugadores ordenados por número
+  // Obtener todos los jugadores ordenados por dorsal
   const { data, error } = await supabase
     .from('players')
     .select('*')
-    .order('numero', { ascending: true });
+    .order('dorsal', { ascending: true });
 
   if (error) {
     return new Response(JSON.stringify({ error: error.message }), {
