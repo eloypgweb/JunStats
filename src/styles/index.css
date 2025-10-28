@@ -9,7 +9,8 @@
 .hero {
 	background: linear-gradient(135deg, var(--hero-bg-start) 0%, var(--hero-bg-middle) 50%, var(--hero-bg-end) 100%);
 	padding: 80px 20px;
-	min-height: 70vh;
+    /* Slightly reduced min-height so page doesn't feel too tall when sections are removed */
+    min-height: 60vh;
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -179,13 +180,15 @@
 .section-title {
 	font-size: 2.5rem;
 	text-align: center;
-	margin-bottom: 50px;
+	/* Reduced bottom margin to compensate for removed sections */
+	margin-bottom: 30px;
 	color: var(--accent);
 }
 
 /* Latest Match Section */
 .latest-match {
-	padding: 100px 0;
+	/* Reduced vertical padding to keep content compact now that Stats Preview / CTA are absent */
+	padding: 60px 0;
 	background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 	position: relative;
 	overflow: hidden;
@@ -492,7 +495,8 @@
 
 /* Team Info Section */
 .team-info {
-	padding: 100px 0;
+	/* Slightly smaller section spacing to flow directly after latest-match */
+	padding: 80px 0;
 	background: var(--bg-primary);
 }
 
@@ -554,6 +558,206 @@
 	background: linear-gradient(135deg, var(--section-quote-bg-start) 0%, var(--section-quote-bg-end) 100%);
 }
 
+/* Alternate section palette (dark / accent) */
+.section--alt {
+	/* Use hero-like gradient so the alternate section feels part of the hero family */
+	background: linear-gradient(135deg, var(--hero-bg-start) 0%, var(--hero-bg-middle) 50%, var(--hero-bg-end) 100%);
+	color: rgb(var(--hero-text));
+	padding: 80px 0; /* match hero spacing */
+	min-height: 60vh;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Variant that explicitly matches hero's blue palette (used on several sections) */
+.section--blue {
+	/* Use hero-like gradient so this section visually matches the hero */
+	background: linear-gradient(135deg, var(--hero-bg-start) 0%, var(--hero-bg-middle) 50%, var(--hero-bg-end) 100%);
+	color: rgb(var(--hero-text));
+	padding: 80px 0; /* match hero spacing */
+	min-height: 60vh;
+	position: relative;
+	overflow: hidden;
+}
+
+.section--blue::before {
+	/* subtle decorative overlay similar to hero */
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff06" points="0,1000 1000,0 1000,1000"/></svg>');
+	pointer-events: none;
+}
+
+.section--blue .section-title {
+	color: var(--hero-accent);
+}
+
+.section--blue p,
+.section--blue .team-description,
+.section--blue .hero-quote p,
+.section--blue .hero-quote cite {
+	color: rgba(255,255,255,0.95);
+}
+
+.section--blue .stat-number {
+	color: var(--hero-accent);
+}
+
+.section--blue .team-logo img {
+	box-shadow: var(--shadow-xl);
+}
+
+/* Contact form specifics: target elements directly (inputs have no extra classes in template) */
+.contact-form label {
+	display: block;
+	margin-bottom: 6px;
+}
+
+.contact-form label span {
+	display: block;
+	font-size: 0.95rem;
+	color: rgba(var(--text-secondary), 0.95);
+	font-weight: 700;
+	margin-bottom: 8px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+	width: 100%;
+	padding: 14px 16px;
+	border-radius: var(--radius-lg);
+	border: 1px solid rgba(var(--border-light), 0.12);
+	background: var(--card-bg);
+	color: rgb(var(--text-primary));
+	font-size: 1rem;
+	transition: box-shadow var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
+}
+
+/* When the form sits on a hero-like background, make inputs slightly translucent white for contrast */
+.section--blue .contact-form input[type="text"],
+.section--blue .contact-form textarea {
+	/* stronger translucent white so text contrasts better on blue */
+	background: rgba(255,255,255,0.12);
+	border: 1px solid rgba(255,255,255,0.16);
+	color: rgb(var(--hero-text));
+}
+
+.contact-form textarea { min-height: 140px; resize: vertical; }
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+	outline: none;
+	border-color: var(--hero-accent);
+	box-shadow: 0 12px 40px rgba(59,130,246,0.16);
+	transform: translateY(-1px);
+}
+
+.contact-form .form-actions {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	justify-content: flex-start; /* moved send button to the left */
+	margin-top: 8px;
+}
+
+.contact-form .form-actions .btn {
+	padding: 12px 20px;
+}
+
+/* Sending state: dim the button and show wait cursor */
+.contact-form.is-sending .btn-primary {
+	opacity: 0.9;
+	cursor: wait;
+	transform: none;
+}
+
+/* Success state: subtle glow and keep the success card visible */
+.contact-form.is-success .btn-primary {
+	box-shadow: 0 8px 30px rgba(16,185,129,0.12);
+}
+
+/* Success card styling inside the success container */
+.contact-success .success-card {
+	display: inline-flex;
+	gap: 12px;
+	align-items: center;
+	padding: 10px 14px;
+	border-radius: 12px;
+	background: linear-gradient(90deg,#10b981,#06b6d4);
+	color: white;
+	font-weight: 700;
+}
+
+.contact-success .success-card svg {
+	width: 20px;
+	height: 20px;
+}
+
+/* When inside the blue/hero section, adjust button visuals to pop */
+.section--blue .contact-form .btn-primary {
+	background: var(--hero-accent);
+	color: var(--hero-accent-text);
+	border: 2px solid rgba(255,255,255,0.06);
+}
+
+.section--blue .contact-form .btn-primary:hover { transform: translateY(-3px); }
+
+/* Small screens: make layout single-column and center actions */
+@media (max-width: 768px) {
+	.contact-form {
+		grid-template-columns: 1fr;
+		gap: 18px;
+	}
+
+	.contact-form .form-actions {
+		justify-content: center;
+	}
+}
+
+.section--alt::before {
+	/* subtle decorative overlay similar to hero */
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff06" points="0,1000 1000,0 1000,1000"/></svg>');
+	pointer-events: none;
+}
+
+.section--alt .section-title {
+	color: var(--hero-accent);
+}
+
+.section--alt p,
+.section--alt .team-description,
+.section--alt .hero-quote p,
+.section--alt .hero-quote cite {
+	color: rgba(255,255,255,0.95);
+}
+
+.section--alt .stat-number {
+	color: var(--hero-accent);
+}
+
+.section--alt .team-logo img {
+	box-shadow: var(--shadow-xl);
+}
+
+/* Ensure badges and highlights adapt to the hero palette */
+.section--alt .match-badge,
+.section--alt .team-badge {
+	box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+	background: linear-gradient(45deg, var(--hero-accent), var(--hero-accent-hover));
+	color: var(--hero-accent-text);
+}
+
 .hero-quote {
 	text-align: center;
 	color: rgb(var(--hero-text));
@@ -598,41 +802,64 @@
 	color: var(--section-cta-text);
 }
 
-.cta-content h2 {
-	font-size: 3rem;
+.quote-section {
+	/* Make quote section visually match latest-match: similar gradient and spacing */
+	padding: 60px 0;
+	background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+	position: relative;
+	overflow: hidden;
+}
+
+.quote-section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="%23ffffff05"/><circle cx="30" cy="30" r="1" fill="%23ffffff05"/><circle cx="70" cy="20" r="1" fill="%23ffffff05"/><circle cx="90" cy="60" r="1" fill="%23ffffff05"/><circle cx="50" cy="80" r="1" fill="%23ffffff05"/></svg>') repeat;
+	opacity: 0.25;
+	pointer-events: none;
+}
+
+.hero-quote {
+	text-align: center;
+	color: rgb(var(--text-primary));
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.quote-icon {
+	font-size: 3.5rem;
+	display: block;
 	margin-bottom: 20px;
+	opacity: 0.9;
 }
 
-.cta-content p {
-	font-size: 1.3rem;
-	margin-bottom: 40px;
-	opacity: 0.8;
+.hero-quote p {
+	font-size: 2.4rem; /* a bit larger to stand like a section headline */
+	font-style: italic;
+	line-height: 1.3;
+	margin-bottom: 20px;
+	font-weight: 400;
+	color: rgb(var(--text-primary));
 }
 
-.cta-buttons {
-	display: flex;
-	gap: 30px;
-	justify-content: center;
-	flex-wrap: wrap;
+.hero-quote cite {
+	font-size: 1.1rem;
+	opacity: 0.9;
+	font-style: normal;
+	font-weight: 600;
+	color: rgba(var(--text-secondary), 0.9);
 }
 
-.btn-large {
-	padding: 20px 40px;
-	font-size: 1.2rem;
+
+.hero-quote cite::before {
+    content: "— ";
 }
 
-.btn-outline {
-	background: transparent;
-	border: 3px solid var(--section-cta-text);
-	color: var(--section-cta-text);
-}
+/* end of responsive adjustments handled below */
 
-.btn-outline:hover {
-	background: var(--section-cta-text);
-	color: var(--section-cta-bg-start);
-}
-
-/* Responsive */
 @media (max-width: 768px) {
 	.hero {
 		padding: 60px 20px;
@@ -787,4 +1014,249 @@
 		transform: translate(-50%, -50%) scale(1.1);
 		opacity: 0.1;
 	}
+}
+
+/* Contact section styles */
+
+.contact-section {
+	/* keep spacing consistent with other sections */
+	padding: 80px 0;
+	background: var(--bg-primary);
+	color: rgb(var(--text-primary));
+}
+
+.contact-form {
+	max-width: 900px;
+	margin: 24px auto 0;
+	display: grid;
+	/* stacked inputs: single column for consistent full-width fields */
+	grid-template-columns: 1fr;
+	gap: 18px;
+	align-items: start;
+}
+
+.contact-form .field {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.contact-form label {
+	font-size: 0.95rem;
+	color: rgba(var(--text-secondary), 0.95);
+	font-weight: 700;
+	display: block;
+}
+
+.contact-input,
+.contact-textarea,
+.contact-form input[type="text"],
+.contact-form textarea {
+	width: 100%;
+	padding: 14px 16px;
+	border-radius: var(--radius-lg);
+	border: 1px solid rgba(var(--border-light), 0.12);
+	background: var(--card-bg);
+	color: rgb(var(--text-primary));
+	font-size: 1rem;
+	transition: box-shadow var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
+	margin: 0; /* reset default margins */
+}
+
+/* ensure inputs have consistent spacing when stacked */
+.contact-form input[type="text"],
+.contact-form textarea {
+	margin-bottom: 6px;
+}
+
+.contact-textarea {
+	min-height: 140px;
+	resize: vertical;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+	outline: none;
+	border-color: var(--accent);
+	box-shadow: 0 6px 20px rgba(59,130,246,0.08);
+	transform: translateY(-1px);
+}
+
+.contact-actions {
+	display: flex;
+	gap: 14px;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.contact-actions .btn {
+	padding: 12px 22px;
+	font-size: 1rem;
+}
+
+.contact-success {
+	display: none; /* shown programmatically */
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+	border-radius: var(--radius-xl);
+	color: white;
+	background: linear-gradient(90deg, #10b981, #06b6d4);
+	box-shadow: var(--shadow-md);
+	font-weight: 700;
+}
+
+.contact-success.show {
+	display: inline-flex;
+	animation: success-pop 420ms cubic-bezier(.2,.9,.3,1);
+}
+
+.contact-error {
+	display: none;
+	padding: 12px 16px;
+	border-radius: var(--radius-xl);
+	background: linear-gradient(90deg, #ef4444, #f97316);
+	color: white;
+	box-shadow: var(--shadow-md);
+}
+
+.contact-error.show {
+	display: inline-flex;
+	animation: success-pop 420ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* Show the success container when the form has is-success (JS toggles this) */
+.contact-form.is-success .contact-success {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	animation: success-pop 420ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* Button spinner */
+.btn-spinner {
+	display: none;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	border: 2px solid rgba(255,255,255,0.6);
+	border-top-color: transparent;
+	margin-left: 8px;
+	vertical-align: middle;
+}
+
+.contact-form.is-sending .btn-spinner {
+	display: inline-block;
+	animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+	to { transform: rotate(360deg); }
+}
+
+.contact-info {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 18px;
+	border-radius: var(--radius-xl);
+	background: linear-gradient(180deg, rgba(59,130,246,0.03), rgba(59,130,246,0.01));
+	border: 1px solid rgba(var(--border-light), 0.06);
+}
+
+.contact-info .info-item {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	color: rgb(var(--text-secondary));
+}
+
+.contact-note {
+	font-size: 0.9rem;
+	color: rgba(var(--text-secondary), 0.95);
+}
+
+@media (max-width: 768px) {
+	.contact-form {
+		grid-template-columns: 1fr;
+		gap: 20px;
+		padding: 0 20px;
+	}
+
+	.contact-actions {
+		justify-content: center;
+	}
+
+	.contact-info {
+		order: 3; /* show after the form fields on small screens */
+	}
+}
+
+@keyframes success-pop {
+	0% { transform: translateY(6px) scale(0.98); opacity: 0; }
+	60% { transform: translateY(-4px) scale(1.02); opacity: 1; }
+	100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Ensure contact-section uses hero blue palette when combined with section--blue
+   This is specific to override the generic `.contact-section` rules above. */
+.contact-section.section--blue {
+	background: linear-gradient(135deg, var(--hero-bg-start) 0%, var(--hero-bg-middle) 50%, var(--hero-bg-end) 100%);
+	color: rgb(var(--hero-text));
+	padding: 80px 0;
+	min-height: 60vh;
+	position: relative;
+	overflow: hidden;
+}
+
+.contact-section.section--blue::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff06" points="0,1000 1000,0 1000,1000"/></svg>');
+	pointer-events: none;
+}
+
+.contact-section.section--blue .section-title {
+	color: var(--hero-accent);
+}
+
+.contact-section.section--blue p,
+.contact-section.section--blue .contact-note,
+.contact-section.section--blue .contact-info .info-item {
+	color: rgba(255,255,255,0.95);
+}
+
+.contact-section.section--blue .contact-success {
+	background: linear-gradient(90deg,#10b981,#06b6d4);
+	color: white;
+}
+
+.contact-section.section--blue .contact-form input[type="text"],
+.contact-section.section--blue .contact-form textarea {
+	background: rgba(255,255,255,0.12);
+	border: 1px solid rgba(255,255,255,0.16);
+	color: rgb(var(--hero-text));
+}
+
+.contact-section.section--blue .contact-form label,
+.contact-section.section--blue .contact-form label span {
+	/* Use the hero accent (yellow) so labels match the section title */
+	color: var(--hero-accent);
+	font-weight: 700;
+}
+
+.contact-section.section--blue .contact-form input::placeholder,
+.contact-section.section--blue .contact-form textarea::placeholder {
+	color: rgba(255,255,255,0.78);
+	opacity: 1;
+}
+
+.contact-section.section--blue .contact-form input:focus,
+.contact-section.section--blue .contact-form textarea:focus {
+	border-color: var(--hero-accent);
+	box-shadow: 0 14px 50px rgba(59,130,246,0.18);
 }

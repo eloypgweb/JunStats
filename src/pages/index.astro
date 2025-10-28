@@ -25,7 +25,7 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 		<Header />
 		
 		<!-- Hero Section -->
-		<section class="hero">
+		<section class="hero section--blue">
 			<div class="hero-content">
 				<div class="hero-text">
 					<h1 class="hero-title">
@@ -49,7 +49,7 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 		</section>
 
 		<!-- Latest Match Section -->
-		<section class="latest-match">
+		<section class="latest-match section--white">
 			<div class="container">
 				<div class="latest-match-content">
 					<div class="latest-match-info">
@@ -97,7 +97,8 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 			</div>
 		</section>
 
-		<!-- Stats Preview Section -->
+		
+		<!-- Stats Preview Section 
 		<section class="stats-preview">
 			<div class="container">
 				<h2 class="section-title" data-i18n="whatYouFindTitle">{t.whatYouFindTitle}</h2>
@@ -126,8 +127,10 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 			</div>
 		</section>
 
-		<!-- Team Info Section -->
-		<section class="team-info">
+		-->
+
+	<!-- Team Info Section -->
+	<section class="team-info section--blue">
 			<div class="container">
 				<div class="team-content">
 					<div class="team-text">
@@ -157,7 +160,7 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 		</section>
 
 		<!-- Quote Section -->
-		<section class="quote-section">
+		<section class="quote-section section--white">
 			<div class="container">
 				<blockquote class="hero-quote">
 					<span class="quote-icon">💭</span>
@@ -167,17 +170,39 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 			</div>
 		</section>
 
-		<!-- CTA Section -->
-		<section class="cta-section">
+	<!-- Contact Section -->
+	<section class="contact-section team-info section--blue">
 			<div class="container">
-				<div class="cta-content">
-					<h2 data-i18n="ctaTitle">{t.ctaTitle}</h2>
-					<p data-i18n="ctaDescription">{t.ctaDescription}</p>
-					<div class="cta-buttons">
-						<a href="/jornadas" class="btn btn-primary btn-large" data-i18n="ctaBtnAllMatches">{t.ctaBtnAllMatches}</a>
-						<a href="/jugadas" class="btn btn-outline btn-large" data-i18n="ctaBtnLearnPlays">{t.ctaBtnLearnPlays}</a>
+				<h2 class="section-title">Contacta con nosotros</h2>
+				<form id="contactForm" class="contact-form" aria-label="Formulario de contacto">
+					<!-- success animation container (hidden until success) -->
+					<div class="contact-success" id="contactSuccess" role="status" aria-live="polite">
+						<div class="success-card">
+							<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							<div class="success-text">¡Mensaje enviado! Gracias por contactarnos.</div>
+						</div>
 					</div>
-				</div>
+
+					<label>
+						<span>Nombre</span>
+						<input type="text" name="name" required placeholder="Tu nombre" />
+					</label>
+					<label>
+						<span>Asunto</span>
+						<input type="text" name="subject" required placeholder="Asunto" />
+					</label>
+					<label>
+						<span>Mensaje</span>
+						<textarea name="message" rows="6" required placeholder="Escribe tu comentario o mejora..."></textarea>
+					</label>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary" aria-live="polite">
+							<span class="btn-text">Enviar</span>
+							<span class="btn-spinner" aria-hidden="true"></span>
+						</button>
+						<span id="contactStatus" role="status" aria-live="polite"></span>
+					</div>
+				</form>
 			</div>
 		</section>
 
@@ -237,6 +262,61 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 			
 			// Para navegación con Astro
 			document.addEventListener('astro:page-load', initLanguageSync);
+		</script>
+
+		<script>
+			// Contact form submission with improved UI: spinner + success animation
+			(function(){
+				const form = document.getElementById('contactForm') as HTMLFormElement | null;
+				const status = document.getElementById('contactStatus') as HTMLElement | null;
+				if (!form) return;
+				form.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+					const successEl = document.getElementById('contactSuccess') as HTMLElement | null;
+					if (btn) { btn.disabled = true; }
+					form.classList.add('is-sending');
+					if (status) status.textContent = 'Enviando...';
+					const nameEl = form.elements.namedItem('name') as HTMLInputElement | null;
+					const subjectEl = form.elements.namedItem('subject') as HTMLInputElement | null;
+					const messageEl = form.elements.namedItem('message') as HTMLTextAreaElement | null;
+					const data = {
+						name: nameEl?.value.trim() ?? '',
+						subject: subjectEl?.value.trim() ?? '',
+						message: messageEl?.value.trim() ?? ''
+					};
+
+					try {
+						console.log('[contact] payload', data);
+						const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+						const text = await res.text();
+						console.log('[contact] response-text', text, 'status', res.status);
+						let json = null;
+						try { if (text) json = JSON.parse(text); } catch (e) { console.warn('[contact] response json parse error', e); }
+						if (res.ok) {
+							// success UI
+							form.reset();
+							if (status) status.textContent = '';
+							form.classList.remove('is-sending');
+							form.classList.remove('is-error');
+							form.classList.add('is-success');
+							// allow the animation to be visible then remove
+							setTimeout(() => { form.classList.remove('is-success'); }, 3800);
+						} else {
+							const errorMsg = (json && json.error) ? json.error : (text || 'Error al enviar. Intenta de nuevo.');
+							if (status) status.textContent = errorMsg;
+							form.classList.add('is-error');
+						}
+					} catch (err) {
+						if (status) status.textContent = 'Error de red. Intenta otra vez.';
+						form.classList.add('is-error');
+					} finally {
+						if (btn) btn.disabled = false;
+						form.classList.remove('is-sending');
+						setTimeout(() => { if (status) status.textContent = ''; }, 5000);
+					}
+				});
+			})();
 		</script>
 	</body>
 </html>
