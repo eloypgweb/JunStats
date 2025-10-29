@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from '../../layouts/BlogPost.astro';
+import Layout from '../../layouts/JornadaPost.astro';
 
 export async function getStaticPaths() {
   return [
@@ -86,26 +86,6 @@ const albumsData = {
     description: 'Gritos de equipo post-partido',
     photos: getGritosPhotos()
   },
-  // 'vs-sauces': {
-  //   title: 'VS Colegio Los Sauces',
-  //   description: 'Jornada 3 - 4 de Octubre, gran partido del equipo',
-  //   photos: []
-  // },
-  // 'entrenamiento': {
-  //   title: 'Entrenamientos',
-  //   description: 'Sesiones de entrenamiento semanal en el polideportivo',
-  //   photos: []
-  // },
-  // 'vs-carabanchel': {
-  //   title: 'VS Distrito Carabanchel',
-  //   description: 'Jornada 4 - Próximo partido de la liga',
-  //   photos: []
-  // },
-  // 'celebracion': {
-  //   title: 'Celebración del Equipo',
-  //   description: 'Momentos de celebración y convivencia del equipo',
-  //   photos: []
-  // },
 };
 
 const { slug } = Astro.params;

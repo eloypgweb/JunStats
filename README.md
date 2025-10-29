@@ -119,7 +119,6 @@ JunStats/
 │   │   ├── translations.ts
 │   │   └── utils.ts
 │   ├── layouts/              # Layouts de página
-│   │   ├── BlogPost.astro
 │   │   └── JornadaPost.astro
 │   ├── pages/                # Páginas del sitio (file-based routing)
 │   │   ├── index.astro      # Página principal
