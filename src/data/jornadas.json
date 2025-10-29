@@ -1,7 +1,7 @@
 [
   {
     "id": "jornada1",
-    "title": "Jornada 1",
+    "title": "Jornada 1 - San Martín de la Vega",
     "description": "Resumen de la primera jornada de la temporada.",
     "pubDate": "2025-09-21",
     "heroImage": "/src/assets/jornadas/presJ1.png",
@@ -12,7 +12,7 @@
   },
   {
     "id": "jornada2", 
-    "title": "Jornada 2",
+    "title": "Jornada 2 - Torrejón Basket Azul",
     "description": "Resumen de la segunda jornada de la temporada.",
     "pubDate": "2025-09-28",
     "heroImage": "/src/assets/jornadas/presJ2.png",
@@ -23,7 +23,7 @@
   }
   ,{
     "id": "jornada3",
-    "title": "Jornada 3",
+    "title": "Jornada 3 - Colegio Los Sauces",
     "description": "Resumen de la tercera jornada de la temporada.",
     "pubDate": "2025-10-04",
     "heroImage": "/src/assets/jornadas/presJ3.png",
@@ -34,7 +34,7 @@
   }
   ,{
     "id": "jornada4",
-    "title": "Jornada 4",
+    "title": "Jornada 4 - Distrito Carabanchel",
     "description": "Resumen de la cuarta jornada de la temporada.",
     "pubDate": "2025-10-11",
     "heroImage": "/src/assets/jornadas/presJ4.png",
@@ -45,7 +45,7 @@
   }
   ,{
     "id": "jornada5",
-    "title": "Jornada 5",
+    "title": "Jornada 5 - CB Fuenlabrada",
     "description": "Resumen de la quinta jornada de la temporada.",
     "pubDate": "2025-10-19",
     "heroImage": "/src/assets/jornadas/presJ5.png",
@@ -56,7 +56,7 @@
   }
   ,{
     "id": "jornada6",
-    "title": "Jornada 6",
+    "title": "Jornada 6 - Club Europeo Baloncesto",
     "description": "Resumen de la sexta jornada de la temporada.",
     "pubDate": "2025-10-25",
     "heroImage": "/src/assets/jornadas/presJ6.png",
@@ -66,7 +66,7 @@
     "available": true
   },{
     "id": "jornada7",
-    "title": "Jornada 7",
+    "title": "Jornada 7 - Femenino Fuenlabrada",
     "description": "Resumen de la séptima jornada de la temporada.",
     "pubDate": "2025-11-08",
     "heroImage": "/src/assets/jornadas/presJ7.png",
