@@ -3,6 +3,9 @@ import { Image } from 'astro:assets';
 import JornadaPost from '../../layouts/JornadaPost.astro';
 import presJ4 from '../../assets/jornadas/presJ4.png';
 import '../../styles/jornadas-shared.css';
+// i18n
+import { getTranslations } from '../../i18n/translations';
+const t = getTranslations('es').jornadas;
 ---
 
 <JornadaPost 
@@ -12,17 +15,17 @@ import '../../styles/jornadas-shared.css';
   heroImage={presJ4}
 >
   <div class="match-info">
-    <h3>VS: Distrito Carabanchel</h3>
+    <h3><span data-i18n="vs">{t.vs}</span> Distrito Carabanchel</h3>
     <div class="match-result defeat">
       <div class="score-container">
         <span class="team-score opponent winner">57</span>
         <span class="score-separator">-</span>
         <span class="team-score home">76</span>
       </div>
-      <div class="result-badge">
-        <span class="badge-icon">😔</span>
-        <span class="badge-text">DERROTA</span>
-      </div>
+            <div class="result-badge">
+                <span class="badge-icon">😔</span>
+                <span class="badge-text" data-i18n="defeat">{t.defeat}</span>
+            </div>
     </div>
   </div>
 
@@ -30,19 +33,19 @@ import '../../styles/jornadas-shared.css';
     <table class="jornada-table">
         <thead>
             <tr>
-                <th>Número</th>
-                <th>Jugador</th>
-                <th>Puntos</th>
-                <th>T2</th>
-                <th>T3</th>
-                <th>TL Metidos</th>
-                <th>TL Intentados</th>
-                <th>Assists</th>
-                <th>Reb</th>
-                <th>Robos</th>
-                <th>Pérdidas</th>
-                <th>Faltas</th>
-                <th>Valoración</th>
+                <th data-i18n="number">{t.number}</th>
+                <th data-i18n="player">{t.player}</th>
+                <th data-i18n="points">{t.points}</th>
+                <th data-i18n="t2">{t.t2}</th>
+                <th data-i18n="t3">{t.t3}</th>
+                <th data-i18n="freeThrowsMade">{t.freeThrowsMade}</th>
+                <th data-i18n="freeThrowsAttempted">{t.freeThrowsAttempted}</th>
+                <th data-i18n="assists">{t.assists}</th>
+                <th data-i18n="rebounds">{t.rebounds}</th>
+                <th data-i18n="steals">{t.steals}</th>
+                <th data-i18n="turnovers">{t.turnovers}</th>
+                <th data-i18n="fouls">{t.fouls}</th>
+                <th data-i18n="rating">{t.rating}</th>
             </tr>
         </thead>
         <tbody>
@@ -185,7 +188,7 @@ import '../../styles/jornadas-shared.css';
                 <td>33</td>
                 <td>Roberto García</td>
                 <td colspan="11" class="ausente-cell">
-                    <span class="ausente-badge">🕘 FALTA</span>
+                    <span class="ausente-badge" data-i18n="absent">{t.absent}</span>
                 </td>
             </tr>
             <tr>
@@ -763,3 +766,8 @@ import '../../styles/jornadas-shared.css';
     </div>
   </div>
 </JornadaPost>
+
+<script>
+    import { initJornadaLanguageSync } from '../../scripts/jornadaLanguageSync';
+    initJornadaLanguageSync();
+</script>

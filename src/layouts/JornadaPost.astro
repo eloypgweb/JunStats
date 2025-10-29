@@ -18,7 +18,7 @@ interface Props {
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<BaseHead title={title} description={description} />
 	</head>
@@ -52,5 +52,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				
 			</main>
 		<Footer />
+		<script type="module">
+			import { initJornadaLanguageSync } from '../scripts/jornadaLanguageSync';
+			if (typeof window !== 'undefined') initJornadaLanguageSync();
+		</script>
 	</body>
 </html>

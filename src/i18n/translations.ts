@@ -88,6 +88,9 @@ export const translations = {
       // Mobile cards
       freeThrows: 'TL:',
       absent: '🕘 FALTA',
+
+  // Sancionado / suspended badge
+  sancionado: '🚫 SANCIONADO',
       
       // Mobile card labels
       pointsLabel: 'Puntos:',
@@ -287,6 +290,9 @@ export const translations = {
       // Mobile cards
       freeThrows: 'FT:',
       absent: '🕘 ABSENT',
+
+  // Sancionado / suspended badge
+  sancionado: '🚫 SUSPENDED',
       
       // Mobile card labels
       pointsLabel: 'Points:',

@@ -3,6 +3,9 @@ import { Image } from 'astro:assets';
 import JornadaPost from '../../layouts/JornadaPost.astro';
 import presJ5 from '../../assets/jornadas/presJ5.png';
 import '../../styles/jornadas-shared.css';
+// i18n
+import { getTranslations } from '../../i18n/translations';
+const t = getTranslations('es').jornadas;
 ---
 
 <JornadaPost 
@@ -12,17 +15,17 @@ import '../../styles/jornadas-shared.css';
   heroImage={presJ5}
 >
   <div class="match-info">
-    <h3><span data-i18n="vs">VS</span> CB Fuenlabrada</h3>
+    <h3><span data-i18n="vs">{t.vs}</span> CB Fuenlabrada</h3>
     <div class="match-result victory">
       <div class="score-container">
         <span class="team-score opponent">45</span>
         <span class="score-separator">-</span>
         <span class="team-score home winner">49</span>
       </div>
-      <div class="result-badge">
-        <span class="badge-icon">🏆</span>
-        <span class="badge-text" data-i18n="victory">VICTORIA</span>
-      </div>
+            <div class="result-badge">
+                <span class="badge-icon">🏆</span>
+                <span class="badge-text" data-i18n="victory">{t.victory}</span>
+            </div>
     </div>
   </div>
 
@@ -30,19 +33,19 @@ import '../../styles/jornadas-shared.css';
     <table class="jornada-table">
         <thead>
             <tr>
-                <th data-i18n="number">Número</th>
-                <th data-i18n="player">Jugador</th>
-                <th data-i18n="points">Puntos</th>
-                <th data-i18n="t2">T2</th>
-                <th data-i18n="t3">T3</th>
-                <th data-i18n="freeThrowsMade">TL Metidos</th>
-                <th data-i18n="freeThrowsAttempted">TL Intentados</th>
-                <th data-i18n="assists">Assists</th>
-                <th data-i18n="rebounds">Reb</th>
-                <th data-i18n="steals">Robos</th>
-                <th data-i18n="turnovers">Pérdidas</th>
-                <th data-i18n="fouls">Faltas</th>
-                <th data-i18n="rating">Valoración</th>
+                <th data-i18n="number">{t.number}</th>
+                <th data-i18n="player">{t.player}</th>
+                <th data-i18n="points">{t.points}</th>
+                <th data-i18n="t2">{t.t2}</th>
+                <th data-i18n="t3">{t.t3}</th>
+                <th data-i18n="freeThrowsMade">{t.freeThrowsMade}</th>
+                <th data-i18n="freeThrowsAttempted">{t.freeThrowsAttempted}</th>
+                <th data-i18n="assists">{t.assists}</th>
+                <th data-i18n="rebounds">{t.rebounds}</th>
+                <th data-i18n="steals">{t.steals}</th>
+                <th data-i18n="turnovers">{t.turnovers}</th>
+                <th data-i18n="fouls">{t.fouls}</th>
+                <th data-i18n="rating">{t.rating}</th>
             </tr>
         </thead>
         <tbody>

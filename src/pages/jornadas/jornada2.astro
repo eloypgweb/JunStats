@@ -3,6 +3,9 @@ import { Image } from 'astro:assets';
 import JornadaPost from '../../layouts/JornadaPost.astro';
 import presJ2 from '../../assets/jornadas/presJ2.png';
 import '../../styles/jornadas-shared.css';
+// i18n
+import { getTranslations } from '../../i18n/translations';
+const t = getTranslations('es').jornadas;
 ---
 
 <JornadaPost 
@@ -12,17 +15,17 @@ import '../../styles/jornadas-shared.css';
   heroImage={presJ2}
 >
   <div class="match-info">
-    <h3>VS: Torrejón Basket Azul</h3>
+    <h3><span data-i18n="vs">{t.vs}</span> Torrejón Basket Azul</h3>
     <div class="match-result victory">
       <div class="score-container">
         <span class="team-score opponent">60</span>
         <span class="score-separator">-</span>
         <span class="team-score home winner">57</span>
       </div>
-      <div class="result-badge">
-        <span class="badge-icon">🏆</span>
-        <span class="badge-text">VICTORIA</span>
-      </div>
+            <div class="result-badge">
+                <span class="badge-icon">🏆</span>
+                <span class="badge-text" data-i18n="victory">{t.victory}</span>
+            </div>
     </div>
   </div>
 
@@ -30,19 +33,19 @@ import '../../styles/jornadas-shared.css';
     <table class="jornada-table">
         <thead>
             <tr>
-                <th>Número</th>
-                <th>Jugador</th>
-                <th>Puntos</th>
-                <th>T2</th>
-                <th>T3</th>
-                <th>TL Metidos</th>
-                <th>TL Intentados</th>
-                <th>Assists</th>
-                <th>Reb</th>
-                <th>Robos</th>
-                <th>Pérdidas</th>
-                <th>Faltas</th>
-                <th>Valoración</th>
+                <th data-i18n="number">{t.number}</th>
+                <th data-i18n="player">{t.player}</th>
+                <th data-i18n="points">{t.points}</th>
+                <th data-i18n="t2">{t.t2}</th>
+                <th data-i18n="t3">{t.t3}</th>
+                <th data-i18n="freeThrowsMade">{t.freeThrowsMade}</th>
+                <th data-i18n="freeThrowsAttempted">{t.freeThrowsAttempted}</th>
+                <th data-i18n="assists">{t.assists}</th>
+                <th data-i18n="rebounds">{t.rebounds}</th>
+                <th data-i18n="steals">{t.steals}</th>
+                <th data-i18n="turnovers">{t.turnovers}</th>
+                <th data-i18n="fouls">{t.fouls}</th>
+                <th data-i18n="rating">{t.rating}</th>
             </tr>
         </thead>
         <tbody>
@@ -140,7 +143,7 @@ import '../../styles/jornadas-shared.css';
                 <td>17</td>
                 <td>Álvaro Zamorano</td>
                 <td colspan="11" class="sancionado-cell">
-                    <span class="sancionado-badge">🚫 SANCIONADO</span>
+                    <span class="sancionado-badge" data-i18n="sancionado">{t.sancionado}</span>
                 </td>
             </tr>
             <tr>
@@ -218,16 +221,16 @@ import '../../styles/jornadas-shared.css';
         <div class="player-card">
             <div class="player-name">Hugo Arias <span class="player-number">1</span></div>
             <div class="stats-grid">
-                <div class="stat-item"><span class="stat-label">Puntos:</span><span class="stat-value">2</span></div>
-                <div class="stat-item"><span class="stat-label">Valoración:</span><span class="stat-value">-5</span></div>
-                <div class="stat-item"><span class="stat-label">T2:</span><span class="stat-value">1</span></div>
-                <div class="stat-item"><span class="stat-label">T3:</span><span class="stat-value">0</span></div>
-                <div class="stat-item"><span class="stat-label">TL:</span><span class="stat-value">0/3</span></div>
-                <div class="stat-item"><span class="stat-label">Assists:</span><span class="stat-value">0</span></div>
-                <div class="stat-item"><span class="stat-label">Rebotes:</span><span class="stat-value">9</span></div>
-                <div class="stat-item"><span class="stat-label">Robos:</span><span class="stat-value">2</span></div>
-                <div class="stat-item"><span class="stat-label">Pérdidas:</span><span class="stat-value">1</span></div>
-                <div class="stat-item"><span class="stat-label">Faltas:</span><span class="stat-value">4</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="pointsLabel">{t.pointsLabel}</span><span class="stat-value">2</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="ratingLabel">{t.ratingLabel}</span><span class="stat-value">-5</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="t2">{t.t2}:</span><span class="stat-value">1</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="t3">{t.t3}:</span><span class="stat-value">0</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="freeThrows">{t.freeThrows}</span><span class="stat-value">0/3</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="assistsLabel">{t.assistsLabel}</span><span class="stat-value">0</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="reboundsLabel">{t.reboundsLabel}</span><span class="stat-value">9</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="stealsLabel">{t.stealsLabel}</span><span class="stat-value">2</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="turnoversLabel">{t.turnoversLabel}</span><span class="stat-value">1</span></div>
+                <div class="stat-item"><span class="stat-label" data-i18n="foulsLabel">{t.foulsLabel}</span><span class="stat-value">4</span></div>
             </div>
         </div>
         <!-- Sergio -->
@@ -389,3 +392,8 @@ import '../../styles/jornadas-shared.css';
     </div>
   </div>
 </JornadaPost>
+
+<script>
+    import { initJornadaLanguageSync } from '../../scripts/jornadaLanguageSync';
+    initJornadaLanguageSync();
+</script>
