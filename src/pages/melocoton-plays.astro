@@ -1,0 +1,94 @@
+---
+import { SITE_TITLE } from '../consts';
+import Layout from '../layouts/JornadaPost.astro';
+import '../styles/jugadas.css';
+import { getSupabaseServer } from '../lib/db/supabase-server';
+
+type MelocotonPlay = {
+  id?: number;
+  title?: string | null;
+  short_description?: string | null;
+  content_md?: string | null;
+  video_url?: string | null;
+  slug?: string | null;
+  tags?: string[] | null;
+  created_at?: string | null;
+};
+
+let plays: MelocotonPlay[] = [];
+let error: string | null = null;
+
+try {
+  const supabase = getSupabaseServer();
+  const { data, error: supabaseError } = await supabase
+    .from('melocoton_plays_view')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(100);
+
+  if (supabaseError) throw new Error(supabaseError.message);
+  plays = data || [];
+} catch (e) {
+  console.error('Error fetching melocoton plays:', e);
+  error = e instanceof Error ? e.message : String(e);
+}
+
+// small helper to convert a markdown-ish string into basic paragraphs (keeps code minimal)
+function mdToHtml(md?: string | null) {
+  if (!md) return '';
+  // split on double line breaks into paragraphs, replace single line breaks with spaces
+  const paragraphs = md.split(/\n\s*\n/).map(p => p.replace(/\n/g, ' ').trim()).filter(Boolean);
+  return paragraphs.map(p => `<p>${p}</p>`).join('');
+}
+function slugify(s?: string | null) {
+  if (!s) return '';
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+---
+
+<Layout title="Nuestras jugadas" description="Índice y detalle de jugadas" pubDate={new Date()}>
+  <div class="jugadas-index">
+    <h3>🏀 Índice de Jugadas</h3>
+    <div class="jugadas-buttons">
+      {plays.map(p => {
+        const anchor = p.slug ?? slugify(p.title ?? '');
+        return (<a href={`#${anchor}`} class="jugada-btn">{p.title}</a>);
+      })}
+    </div>
+  </div>
+
+  <p>
+    Vista previa de las jugadas almacenadas en la base de datos. Cada jugada incluye título, descripción corta, vídeo y descripción completa.
+  </p>
+
+  {error ? (
+    <div class="error">Error cargando plays: {error}</div>
+  ) : plays.length === 0 ? (
+    <div>No hay jugadas en la vista MELOCOTON.</div>
+  ) : (
+    <div>
+      {plays.map(p => {
+        const anchor = p.slug ?? slugify(p.title ?? '');
+        const htmlDesc = mdToHtml(p.content_md);
+        return (
+          <section id={anchor} style="margin-bottom:2rem;">
+            <h2>{p.title}</h2>
+            {p.short_description && <p><em>{p.short_description}</em></p>}
+            {p.video_url ? (
+              <video controls width="100%" style="border-radius:12px;box-shadow:var(--box-shadow);margin:0.5rem 0;" preload="metadata" playsinline muted>
+                <source src={p.video_url} type="video/mp4" />
+                <p>Tu navegador no soporta el vídeo. <a href={p.video_url} target="_blank">Descargar</a></p>
+              </video>
+            ) : (
+              <p>No hay vídeo</p>
+            )}
+
+            {htmlDesc ? <div set:html={htmlDesc} /> : null}
+            <p style="font-size:0.9rem;color:#666">Tags: {p.tags ? p.tags.join(', ') : '—'}</p>
+          </section>
+        );
+      })}
+    </div>
+  )}
+
+</Layout>

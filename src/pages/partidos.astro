@@ -1,0 +1,165 @@
+---
+import { SITE_TITLE } from '../consts';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { getSupabaseServer } from '../lib/db/supabase-server';
+import '../styles/partidos.css';
+
+type Partido = {
+  id?: number;
+  opponent?: string | null;
+  date?: string | null;
+  location?: string | null;
+  result?: string | null;
+  status?: string | null;
+  created_at?: string | null;
+  foto_equipo?: string | null;
+  home_score?: number | null;
+  away_score?: number | null;
+  is_home_at_carlos_sastre?: boolean | null;
+  resultado_equipo?: string | null;
+  is_win?: boolean | null;
+};
+
+let games: Partido[] = [];
+let error: string | null = null;
+
+// Try multiple candidate views/tables so the page works while migrating the DB name.
+const candidates = ['partidos_view', 'games_view', 'melocoton_games_view'];
+try {
+  const supabase = getSupabaseServer();
+  let data = null;
+  let supabaseError = null;
+
+  for (const name of candidates) {
+    const res = await supabase
+      .from(name)
+      .select('*')
+      .order('date', { ascending: false })
+      .limit(100);
+    // If the view/table doesn't exist, Supabase returns an error; try next candidate.
+    if (res.error) {
+      supabaseError = res.error;
+      continue;
+    }
+    data = res.data;
+    supabaseError = null;
+    break;
+  }
+
+  if (supabaseError) throw new Error(supabaseError.message);
+  games = data || [];
+} catch (e) {
+  console.error('Error fetching partidos:', e);
+  error = e instanceof Error ? e.message : String(e);
+}
+
+// Precompute a minimal render payload per game - keep only what's needed in the template
+const renderGames = games.map((g) => {
+  const teamIsHome = typeof g.is_home_at_carlos_sastre === 'boolean'
+    ? g.is_home_at_carlos_sastre
+    : (typeof g.location === 'string' && g.location.toLowerCase().includes('carlos sastre'));
+
+  const raw = (g.result ?? '').toString().trim();
+  let inferredWin: boolean | null = null;
+  let cleaned = raw;
+  const p = raw.match(/^\s*([WL])\s*[:\-\)]?\s*(.*)$/i);
+  if (p) { inferredWin = p[1].toUpperCase() === 'W'; cleaned = (p[2] || '').trim(); }
+
+  let h = g.home_score ?? null;
+  let a = g.away_score ?? null;
+  if ((h == null || a == null) && cleaned) {
+    const m = cleaned.match(/(\d{1,3})\s*[-:\u2013\)]\s*(\d{1,3})/);
+    if (m) { h = parseInt(m[1], 10); a = parseInt(m[2], 10); }
+  }
+
+  const hasScores = h != null && a != null;
+  const displayScore = hasScores ? `${h} - ${a}` : (cleaned || 'por jugar');
+
+  const our = hasScores ? (teamIsHome ? h : a) : null;
+  const their = hasScores ? (teamIsHome ? a : h) : null;
+
+  // priority: explicit view flag `g.is_win`, numeric compare, inferred prefix, texto
+  let isWin: boolean | null = (typeof g.is_win === 'boolean') ? g.is_win : (our != null && their != null ? (our > their) : null);
+  if (isWin === null && inferredWin != null) isWin = inferredWin;
+  if (isWin === null && typeof g.resultado_equipo === 'string') {
+    const r = g.resultado_equipo.toLowerCase();
+    if (/(win|gan|victoria|ganado|ganamos)/i.test(r)) isWin = true;
+    else if (/(lose|derrot|perd|perdido|perdimos)/i.test(r)) isWin = false;
+  }
+
+  const cardClass = isWin === true ? 'win' : (isWin === false ? 'lose' : '');
+  const resultClass = cardClass || 'pending';
+
+  return {
+    opponent: g.opponent ?? '—',
+    foto_equipo: g.foto_equipo ?? null,
+    location: g.location ?? null,
+    displayDate: g.date ? new Date(g.date).toLocaleDateString('es-ES', { day:'numeric', month:'short' }) : '—',
+    displayScore,
+    cardClass,
+    resultClass,
+    teamPerspective: hasScores ? `Nuestro equipo ${our} - ${their} rival` : 'Partido pendiente',
+    statusDisplay: (g.status ?? 'por_jugar').replace(/_/g, ' '),
+    createdAtDisplay: g.created_at ? new Date(g.created_at).toLocaleDateString('es-ES') : '',
+    isWin,
+  };
+});
+---
+
+<html lang="es">
+  <head>
+    <BaseHead title={`Partidos - ${SITE_TITLE}`} description="Listado de partidos" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="partidos-container">
+        <h1 style="margin-bottom:1rem;">Partidos</h1>
+        {error ? (
+          <div class="error">Error cargando partidos: {error}</div>
+        ) : games.length === 0 ? (
+          <div>No hay partidos disponibles.</div>
+        ) : (
+          <div class="partidos-grid">
+            {renderGames.map((g) => (
+              <article class={`partidos-card ${g.cardClass}`}>
+                <div class="meta">
+                  <div>
+                    <div class="partidos-date">{g.displayDate}</div>
+                  </div>
+                  <div style="text-align:right">
+                    <div class={`partidos-result ${g.resultClass}`}>
+                      {g.displayScore}
+                    </div>
+                    {g.isWin !== null ? (
+                      <div class={`partidos-outcome ${g.isWin ? 'win' : 'lose'}`}>
+                        <span class="icon">{g.isWin ? '✓' : '✕'}</span>
+                        {g.isWin ? 'Ganado' : 'Perdido'}
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  {g.foto_equipo ? <img src={g.foto_equipo} alt={`${g.opponent} logo`} class="partidos-logo" /> : null}
+                  <h3 class="partidos-opponent">{g.opponent}</h3>
+                </div>
+                <div class="partidos-location">{g.location ?? 'Lugar no especificado'}</div>
+
+                <p style="margin:0.6rem 0;color:#475569;font-size:0.95rem">{g.teamPerspective}</p>
+
+                <div class="partidos-footer">
+                  <div class="partidos-tags">Estado: <span class="partidos-status">{g.statusDisplay}</span></div>
+                  <div style="font-size:0.8rem;color:#94a3b8">{g.createdAtDisplay}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

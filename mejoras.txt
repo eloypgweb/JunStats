@@ -419,3 +419,12 @@ DROP POLICY IF EXISTS "Public Access" ON players;
 
 -- Deshabilitar RLS completamente (la tabla es pública de todas formas)
 ALTER TABLE players DISABLE ROW LEVEL SECURITY;
+
+-- Copilot me recomendó alterar la tabla de galería para tener más datos y que sea más precisa
+ALTER TABLE public.gallery
+  ADD COLUMN IF NOT EXISTS storage_bucket text,
+  ADD COLUMN IF NOT EXISTS storage_path text,
+  ADD COLUMN IF NOT EXISTS filename text,
+  ADD COLUMN IF NOT EXISTS alt text,
+  ADD COLUMN IF NOT EXISTS language text,
+  ADD COLUMN IF NOT EXISTS is_public boolean DEFAULT true;

@@ -1,0 +1,286 @@
+
+.partidos-container {
+  padding: 1.25rem;
+}
+
+.partidos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
+.partidos-card {
+  background: linear-gradient(180deg, var(--card-bg) 0%, #ffffff 100%);
+  border: 1px solid rgba(14, 27, 80, 0.06);
+  border-radius: 12px;
+  padding: 0.9rem;
+  box-shadow: 0 8px 22px rgba(14, 27, 80, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-height: 220px;
+  transition: box-shadow 220ms ease, transform 180ms ease, border-color 200ms ease;
+}
+
+/* Visual accents for win/lose cards */
+.partidos-card.win{
+  border-color: rgba(16,185,129,0.20);
+  box-shadow: 0 10px 26px rgba(16,185,129,0.06), 0 6px 12px rgba(14,27,80,0.04);
+}
+.partidos-card.lose{
+  border-color: rgba(220,38,38,0.20);
+  box-shadow: 0 10px 26px rgba(220,38,38,0.06), 0 6px 12px rgba(14,27,80,0.04);
+}
+
+.partidos-card .meta {
+  display:flex;
+  justify-content:space-between;
+  gap:0.5rem;
+  align-items:center;
+}
+
+.partidos-date {
+  font-size:0.85rem;
+  color: rgb(var(--text-secondary));
+  background: rgba(99,102,241,0.08);
+  padding:0.35rem 0.5rem;
+  border-radius:8px;
+}
+
+.partidos-opponent{
+  font-weight:700;
+  color: rgb(var(--text-primary));
+  margin:0;
+}
+
+.partidos-logo{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  border-radius:8px;
+  margin-right:0.6rem;
+}
+
+.partidos-location{
+  font-size:0.85rem;
+  color: rgb(var(--text-secondary));
+}
+
+.partidos-result {
+  display:inline-block;
+  padding:0.25rem 0.5rem;
+  border-radius:999px;
+  font-weight:700;
+  font-size:0.85rem;
+}
+.partidos-result.win{ background: rgba(34,197,94,0.12); color: #166534; }
+.partidos-result.lose{ background: rgba(244,63,94,0.14); color: #7f1d1d; }
+.partidos-result.pending{ background: var(--bg-secondary); color: rgb(var(--text-primary)); border:1px solid rgba(var(--border-light), 0.08) }
+
+/* Light mode vivid badges */
+.partidos-result.win{
+  /* Slightly toned down green for a less saturated look */
+  background: linear-gradient(90deg, #15803d 0%, #059669 100%);
+  color: #ffffff;
+  border: 1px solid rgba(6, 95, 70, 0.12);
+  box-shadow: 0 6px 14px rgba(16,185,129,0.06);
+  transition: transform 160ms ease, box-shadow 200ms ease;
+}
+.partidos-result.win:hover{ transform: translateY(-2px); box-shadow: 0 12px 24px rgba(16,185,129,0.12); }
+
+.partidos-result.lose{
+  /* Slightly toned down red */
+  background: linear-gradient(90deg, #f87171 0%, #ef4444 100%);
+  color: #ffffff;
+  border: 1px solid rgba(200, 30, 30, 0.10);
+  box-shadow: 0 6px 14px rgba(239,68,68,0.06);
+  transition: transform 160ms ease, box-shadow 200ms ease;
+}
+.partidos-result.lose:hover{ transform: translateY(-2px); box-shadow: 0 12px 24px rgba(239,68,68,0.12); }
+
+/* textual outcome badge */
+.partidos-outcome{
+  font-weight:700;
+  font-size:0.82rem;
+  padding:0.2rem 0.5rem;
+  border-radius:8px;
+  display:inline-block;
+  margin-left:0.5rem;
+}
+.partidos-outcome.win{ background: rgba(34,197,94,0.10); color:#165c36; border:1px solid rgba(16,185,129,0.12); }
+.partidos-outcome.lose{ background: rgba(244,63,94,0.12); color:#7f1d1d; border:1px solid rgba(220,38,38,0.12); }
+
+/* outcome badges vivid in light mode */
+.partidos-outcome.win{
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: 1px solid rgba(16,185,129,0.14);
+  box-shadow: 0 6px 18px rgba(16,185,129,0.06);
+  transition: transform 140ms ease, box-shadow 180ms ease;
+}
+.partidos-outcome.win:hover{ transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,185,129,0.12); }
+
+.partidos-outcome.lose{
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  border: 1px solid rgba(220,38,38,0.14);
+  box-shadow: 0 6px 18px rgba(239,68,68,0.06);
+  transition: transform 140ms ease, box-shadow 180ms ease;
+}
+.partidos-outcome.lose:hover{ transform: translateY(-1px); box-shadow: 0 10px 26px rgba(239,68,68,0.12); }
+
+/* larger badge with icon spacing */
+.partidos-outcome .icon{ margin-right:0.35rem; font-weight:800 }
+
+.partidos-status{
+  font-size:0.78rem;
+  padding:0.25rem 0.5rem;
+  border-radius:8px;
+  background: linear-gradient(90deg, #eef2ff 0%, #e0e7ff 100%);
+  color: #1e3a8a;
+  border: 1px solid rgba(99,102,241,0.12);
+  box-shadow: 0 6px 18px rgba(99,102,241,0.06);
+}
+
+.partidos-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:0.5rem;
+  margin-top:auto;
+}
+
+.partidos-tags{ font-size:0.78rem; color: rgb(var(--text-secondary)) }
+
+@media (max-width:600px){
+  .partidos-container{ padding:0.75rem }
+}
+
+/* Dark mode adjustments use theme variables defined in global.css */
+[data-theme="dark"] .partidos-card {
+  /* darker card base but using theme variables for consistency */
+  background: linear-gradient(180deg, #071024 0%, #0b1220 100%);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 18px 50px rgba(2,6,23,0.75), 0 2px 8px rgba(0,0,0,0.6) inset;
+}
+
+/* More punchy text colors so badges pop */
+[data-theme="dark"] .partidos-opponent { color: rgb(241,245,249); }
+[data-theme="dark"] .partidos-location,
+[data-theme="dark"] .partidos-date { color: rgb(203,213,225); }
+
+[data-theme="dark"] .partidos-card.win{
+  border-color: rgba(16,185,129,0.36);
+  box-shadow: 0 18px 48px rgba(16,185,129,0.12), 0 8px 20px rgba(2,6,23,0.7);
+}
+[data-theme="dark"] .partidos-card.lose{
+  border-color: rgba(239,68,68,0.36);
+  box-shadow: 0 18px 48px rgba(239,68,68,0.12), 0 8px 20px rgba(2,6,23,0.7);
+}
+
+[data-theme="dark"] .partidos-result.win{
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  color: #0f172a; /* dark text on vivid green for contrast */
+  border: 1px solid rgba(16,185,129,0.45);
+  box-shadow: 0 6px 18px rgba(16,185,129,0.18), 0 2px 6px rgba(0,0,0,0.45) inset;
+  transition: box-shadow 220ms ease, transform 180ms ease, filter 220ms ease;
+  /* neon glow */
+  text-shadow: 0 0 8px rgba(16,185,129,0.85), 0 0 18px rgba(16,185,129,0.45);
+  box-shadow: 0 6px 18px rgba(16,185,129,0.18), 0 0 24px rgba(16,185,129,0.10), 0 0 48px rgba(16,185,129,0.06) inset;
+}
+[data-theme="dark"] .partidos-result.lose{
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  color: #0f172a; /* dark text for higher legibility on saturated bg */
+  border: 1px solid rgba(220,38,38,0.45);
+  box-shadow: 0 6px 18px rgba(220,38,38,0.16), 0 2px 6px rgba(0,0,0,0.45) inset;
+  transition: box-shadow 220ms ease, transform 180ms ease, filter 220ms ease;
+  /* neon glow */
+  text-shadow: 0 0 8px rgba(239,68,68,0.85), 0 0 18px rgba(239,68,68,0.45);
+  box-shadow: 0 6px 18px rgba(220,38,38,0.16), 0 0 24px rgba(239,68,68,0.12), 0 0 48px rgba(239,68,68,0.06) inset;
+}
+
+/* Hover to intensify neon */
+[data-theme="dark"] .partidos-result.win:hover,
+[data-theme="dark"] .partidos-result.win:focus {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 36px rgba(16,185,129,0.22), 0 0 40px rgba(16,185,129,0.22), 0 0 80px rgba(16,185,129,0.12) inset;
+  filter: saturate(1.1) brightness(1.03);
+}
+[data-theme="dark"] .partidos-result.lose:hover,
+[data-theme="dark"] .partidos-result.lose:focus {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 36px rgba(239,68,68,0.22), 0 0 40px rgba(239,68,68,0.22), 0 0 80px rgba(239,68,68,0.12) inset;
+  filter: saturate(1.05) brightness(1.03);
+}
+
+/* Neon effect for the small outcome badge */
+[data-theme="dark"] .partidos-outcome.win{
+  transition: box-shadow 220ms ease, transform 180ms ease;
+  text-shadow: 0 0 6px rgba(16,185,129,0.9);
+  box-shadow: 0 6px 18px rgba(16,185,129,0.12), 0 0 28px rgba(16,185,129,0.16);
+}
+[data-theme="dark"] .partidos-outcome.win:hover,
+[data-theme="dark"] .partidos-outcome.win:focus{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(16,185,129,0.18), 0 0 40px rgba(16,185,129,0.25);
+}
+
+[data-theme="dark"] .partidos-outcome.lose{
+  transition: box-shadow 220ms ease, transform 180ms ease;
+  text-shadow: 0 0 6px rgba(239,68,68,0.9);
+  box-shadow: 0 6px 18px rgba(239,68,68,0.12), 0 0 28px rgba(239,68,68,0.14);
+}
+[data-theme="dark"] .partidos-outcome.lose:hover,
+[data-theme="dark"] .partidos-outcome.lose:focus{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(239,68,68,0.18), 0 0 40px rgba(239,68,68,0.25);
+}
+[data-theme="dark"] .partidos-result.pending{
+  background: linear-gradient(90deg, #1f2937 0%, #111827 100%);
+  color: rgb(241,245,249);
+  border:1px solid rgba(255,255,255,0.04);
+}
+
+[data-theme="dark"] .partidos-outcome.win{
+  background: #10b981;
+  color: #052e16;
+  border-color: rgba(16,185,129,0.5);
+  box-shadow: 0 10px 30px rgba(16,185,129,0.2);
+  filter: drop-shadow(0 6px 18px rgba(16,185,129,0.12));
+}
+[data-theme="dark"] .partidos-outcome.lose{
+  background: #ef4444;
+  color: #3f0f0f;
+  border-color: rgba(220,38,38,0.5);
+  box-shadow: 0 10px 30px rgba(239,68,68,0.18);
+  filter: drop-shadow(0 6px 18px rgba(239,68,68,0.12));
+}
+
+[data-theme="dark"] .partidos-status{
+  background: linear-gradient(90deg, #6366f1 0%, #4f46e5 100%);
+  color: #fff;
+  border: 1px solid rgba(99,102,241,0.12);
+  box-shadow: 0 6px 18px rgba(79,70,229,0.06);
+}
+
+/* Ensure badges/outcomes use the theme-aware inverse text color:
+   in light mode --text-inverse is white, in dark mode it's dark gray. */
+.partidos-result,
+.partidos-outcome {
+  color: rgb(var(--text-inverse));
+  font-weight: 700;
+}
+
+/* Improve readability of the description paragraph under location in dark mode.
+   The template sets an inline color; override it here to a lighter tone and add a
+   subtle dark text-shadow for contrast. */
+[data-theme="dark"] .partidos-card p {
+  color: rgba(241,245,249,0.92) !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
