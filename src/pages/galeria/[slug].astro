@@ -5,12 +5,8 @@ import Layout from '../../layouts/JornadaPost.astro';
 export async function getStaticPaths() {
   return [
     { params: { slug: 'vs-torrejon' } },
-    { params: { slug: 'vs-sauces' } },
-    { params: { slug: 'entrenamiento' } },
-    { params: { slug: 'vs-carabanchel' } },
-    { params: { slug: 'celebracion' } },
-    { params: { slug: 'concentracion' } },
-    { params: { slug: 'gritos' } }
+    { params: { slug: 'gritos' } },
+    { params: { slug: 'team-pics' } }
   ];
 }
 
@@ -47,6 +43,21 @@ import tor16 from '../../assets/fotos/vsTorrejon/lega-torre16.jpeg';
 import tor17 from '../../assets/fotos/vsTorrejon/lega-torre17.jpeg';
 import tor18 from '../../assets/fotos/vsTorrejon/lega-torre18.jpeg';
 
+// Imports de team-pics
+import alvaro from '../../assets/fotos/team-pics/alvaro.webp';
+import hugoTris from '../../assets/fotos/team-pics/hugo-tris.webp';
+import hugoTris2 from '../../assets/fotos/team-pics/hugo-tris2.webp';
+import hugoTris3 from '../../assets/fotos/team-pics/hugo-tris3.webp';
+import hugo from '../../assets/fotos/team-pics/hugo.webp';
+import hugo2 from '../../assets/fotos/team-pics/hugo2.webp';
+import hugo3 from '../../assets/fotos/team-pics/hugo3.webp';
+import pablo from '../../assets/fotos/team-pics/pablo.webp';
+import pablo2 from '../../assets/fotos/team-pics/pablo2.webp';
+import rodri from '../../assets/fotos/team-pics/rodri.webp';
+import tris from '../../assets/fotos/team-pics/tris.webp';
+import zamorano from '../../assets/fotos/team-pics/zamorano.webp';
+import zamorano2 from '../../assets/fotos/team-pics/zamorano2.webp';
+
 
 function getGritosPhotos() {
   const list = [gritoSaucesF, gritoSaucesV, gritoSMVf, gritoSMVV, gritoTorrejonF, gritoTorrejonV, gritoFuenlaf, gritoFuenlaV, gritoEuropeof, gritoEuropeoV];
@@ -74,6 +85,18 @@ function getVsTorrejonPhotos() {
   }));
 }
 
+function getTeamPhotos() {
+  const list = [alvaro, hugoTris, hugoTris2, hugoTris3, hugo, hugo2, hugo3, pablo, pablo2, rodri, tris, zamorano, zamorano2];
+  const total = list.length;
+  return list.map((mod, idx) => ({
+    srcModule: mod,
+    src: (mod as any).default ?? (mod as any).src ?? mod,
+    mediaType: 'image',
+    title: `Equipo - Foto ${idx + 1}`,
+    description: `Foto del equipo (${idx + 1}/${total})`
+  }));
+}
+
 // Definir álbumes con sus fotos
 const albumsData = {
   'vs-torrejon': {
@@ -85,6 +108,11 @@ const albumsData = {
     title: 'Gritos post-partido',
     description: 'Gritos de equipo post-partido',
     photos: getGritosPhotos()
+  },
+  'team-pics': {
+    title: 'Equipo',
+    description: 'Fotos del equipo',
+    photos: getTeamPhotos()
   },
 };
 

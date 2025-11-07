@@ -9,6 +9,7 @@ import '../styles/galeria.css';
 // Cargar portada mediante import para que Astro/Vite produzcan la URL correcta en build
 import coverVsTorrejon from '../assets/fotos/vsTorrejon/lega-torre1.jpeg';
 import grito from '../assets/fotos/gritos/gritoSaucesf.jpeg';
+import teamCover from '../assets/fotos/team-pics/hugo-tris.webp';
 
 // Estructura de álbumes de fotos
 const albumsData = [
@@ -28,14 +29,14 @@ const albumsData = [
 		photoCount: 6,
 		date: "2025-09-10"
 	},
-	// {
-	// 	id: "vs-sauces", 
-	// 	title: "VS Colegio Los Sauces",
-	// 	description: "Jornada 3 - 4 de Octubre",
-	// 	coverImage: "/src/assets/juncmejorada.jpeg",
-	// 	photoCount: 0,
-	// 	date: "2025-10-04"
-	// },
+	{
+		id: "team-pics", 
+	 	title: "Equipo",
+	 	description: "Fotos del equipo",
+	 	coverImage: teamCover,
+	 	photoCount: 12,
+	 	date: "2025-11-07"
+	},
 	// {
 	// 	id: "entrenamiento",
 	// 	title: "Entrenamientos",
