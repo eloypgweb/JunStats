@@ -201,6 +201,21 @@ export const translations = {
         pivot: 'Pívot',
       }
     }
+    ,
+    // Partidos page
+    partidos: {
+      pageTitle: 'Partidos',
+      pageDescription: 'Listado de partidos',
+      errorLoading: 'Error cargando partidos:',
+      noGames: 'No hay partidos disponibles.',
+      pending: 'por jugar',
+      won: 'Ganado',
+      lost: 'Perdido',
+      locationNotSpecified: 'Lugar no especificado',
+      statusLabel: 'Estado:',
+      teamPerspective: 'Nuestro equipo {our} - {their} rival',
+      createdAtPrefix: '',
+    }
   },
   en: {
     // Index page
@@ -402,6 +417,21 @@ export const translations = {
         'ala-pivot': 'Power Forward',
         pivot: 'Center',
       }
+    }
+    ,
+    // Matches page
+    partidos: {
+      pageTitle: 'Matches',
+      pageDescription: 'List of matches',
+      errorLoading: 'Error loading matches:',
+      noGames: 'No matches available.',
+      pending: 'pending',
+      won: 'Won',
+      lost: 'Lost',
+      locationNotSpecified: 'Location not specified',
+      statusLabel: 'Status:',
+      teamPerspective: 'Our team {our} - {their} opponent',
+      createdAtPrefix: '',
     }
   }
 };

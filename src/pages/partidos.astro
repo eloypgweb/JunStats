@@ -4,6 +4,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { getSupabaseServer } from '../lib/db/supabase-server';
+import { getCurrentLanguage } from '../i18n/utils';
+import { getTranslations } from '../i18n/translations';
 import '../styles/partidos.css';
 
 type Partido = {
@@ -21,6 +23,9 @@ type Partido = {
   resultado_equipo?: string | null;
   is_win?: boolean | null;
 };
+
+const currentLang = getCurrentLanguage();
+const t = getTranslations(currentLang);
 
 let games: Partido[] = [];
 let error: string | null = null;
@@ -92,51 +97,59 @@ const renderGames = games.map((g) => {
   const cardClass = isWin === true ? 'win' : (isWin === false ? 'lose' : '');
   const resultClass = cardClass || 'pending';
 
+  const displayDateRaw = g.date ?? '';
+  const createdAtRaw = g.created_at ?? '';
+  const teamPerspective = hasScores
+    ? t.partidos.teamPerspective.replace('{our}', String(our)).replace('{their}', String(their))
+    : t.partidos.pending === 'por jugar' ? 'Partido pendiente' : t.partidos.pending;
+
   return {
     opponent: g.opponent ?? '—',
     foto_equipo: g.foto_equipo ?? null,
     location: g.location ?? null,
-    displayDate: g.date ? new Date(g.date).toLocaleDateString('es-ES', { day:'numeric', month:'short' }) : '—',
+    displayDateRaw,
     displayScore,
     cardClass,
     resultClass,
-    teamPerspective: hasScores ? `Nuestro equipo ${our} - ${their} rival` : 'Partido pendiente',
+    teamPerspective,
     statusDisplay: (g.status ?? 'por_jugar').replace(/_/g, ' '),
-    createdAtDisplay: g.created_at ? new Date(g.created_at).toLocaleDateString('es-ES') : '',
+    createdAtRaw,
     isWin,
+    our,
+    their,
   };
 });
 ---
 
-<html lang="es">
+<html lang={currentLang} data-language={currentLang}>
   <head>
-    <BaseHead title={`Partidos - ${SITE_TITLE}`} description="Listado de partidos" />
+    <BaseHead title={`${t.partidos.pageTitle} - ${SITE_TITLE}`} description={t.partidos.pageDescription} />
   </head>
   <body>
     <Header />
     <main>
       <section class="partidos-container">
-        <h1 style="margin-bottom:1rem;">Partidos</h1>
+        <h1 style="margin-bottom:1rem;" data-i18n="partidos.pageTitle">{t.partidos.pageTitle}</h1>
         {error ? (
-          <div class="error">Error cargando partidos: {error}</div>
+          <div class="error">{t.partidos.errorLoading} {error}</div>
         ) : games.length === 0 ? (
-          <div>No hay partidos disponibles.</div>
+          <div data-i18n="partidos.noGames">{t.partidos.noGames}</div>
         ) : (
           <div class="partidos-grid">
             {renderGames.map((g) => (
               <article class={`partidos-card ${g.cardClass}`}>
                 <div class="meta">
                   <div>
-                    <div class="partidos-date">{g.displayDate}</div>
+                    <div class="partidos-date" data-date={g.displayDateRaw}>{g.displayDateRaw ? new Date(g.displayDateRaw).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'es-ES', { day:'numeric', month: currentLang === 'en' ? 'short' : 'short' }) : '—'}</div>
                   </div>
                   <div style="text-align:right">
                     <div class={`partidos-result ${g.resultClass}`}>
                       {g.displayScore}
                     </div>
                     {g.isWin !== null ? (
-                      <div class={`partidos-outcome ${g.isWin ? 'win' : 'lose'}`}>
+                      <div class={`partidos-outcome ${g.isWin ? 'win' : 'lose'}`} data-outcome={g.isWin ? 'win' : 'lose'}>
                         <span class="icon">{g.isWin ? '✓' : '✕'}</span>
-                        {g.isWin ? 'Ganado' : 'Perdido'}
+                        {g.isWin ? t.partidos.won : t.partidos.lost}
                       </div>
                     ) : null}
                   </div>
@@ -146,13 +159,13 @@ const renderGames = games.map((g) => {
                   {g.foto_equipo ? <img src={g.foto_equipo} alt={`${g.opponent} logo`} class="partidos-logo" /> : null}
                   <h3 class="partidos-opponent">{g.opponent}</h3>
                 </div>
-                <div class="partidos-location">{g.location ?? 'Lugar no especificado'}</div>
+                <div class="partidos-location" data-location={g.location ?? ''}>{g.location ?? t.partidos.locationNotSpecified}</div>
 
-                <p style="margin:0.6rem 0;color:#475569;font-size:0.95rem">{g.teamPerspective}</p>
+                <p style="margin:0.6rem 0;color:#475569;font-size:0.95rem" data-our={g.our} data-their={g.their}>{g.teamPerspective}</p>
 
                 <div class="partidos-footer">
-                  <div class="partidos-tags">Estado: <span class="partidos-status">{g.statusDisplay}</span></div>
-                  <div style="font-size:0.8rem;color:#94a3b8">{g.createdAtDisplay}</div>
+                  <div class="partidos-tags"><span data-i18n="partidos.statusLabel">{t.partidos.statusLabel}</span> <span class="partidos-status">{g.statusDisplay}</span></div>
+                  <div style="font-size:0.8rem;color:#94a3b8" data-created={g.createdAtRaw}>{g.createdAtRaw ? new Date(g.createdAtRaw).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'es-ES') : ''}</div>
                 </div>
               </article>
             ))}
@@ -161,5 +174,9 @@ const renderGames = games.map((g) => {
       </section>
     </main>
     <Footer />
+    <script>
+      import { initPartidosLanguageSync } from '../scripts/partidosLanguageSync';
+      initPartidosLanguageSync();
+    </script>
   </body>
 </html>
