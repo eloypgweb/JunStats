@@ -103,6 +103,9 @@ const renderGames = games.map((g) => {
     ? t.partidos.teamPerspective.replace('{our}', String(our)).replace('{their}', String(their))
     : t.partidos.pending === 'por jugar' ? 'Partido pendiente' : t.partidos.pending;
 
+  const statusKey = (g.status ?? 'por_jugar').toString().replace(/\s+/g, '_').toLowerCase();
+  const statusDisplayText = ((t.partidos as any).statusValues && (t.partidos as any).statusValues[statusKey]) || ((g.status ?? 'por_jugar').replace(/_/g, ' '));
+
   return {
     opponent: g.opponent ?? '—',
     foto_equipo: g.foto_equipo ?? null,
@@ -112,13 +115,22 @@ const renderGames = games.map((g) => {
     cardClass,
     resultClass,
     teamPerspective,
-    statusDisplay: (g.status ?? 'por_jugar').replace(/_/g, ' '),
+    statusDisplayKey: statusKey,
+    statusDisplayText,
     createdAtRaw,
     isWin,
     our,
     their,
   };
 });
+
+// Overall counts (wins / losses / pending)
+const overallWins = renderGames.filter((r) => r.isWin === true).length;
+const overallLosses = renderGames.filter((r) => r.isWin === false).length;
+const overallPending = renderGames.filter((r) => r.isWin === null).length;
+const overallTitle = (t.partidos as any).overallTitle ?? (currentLang === 'en' ? 'Overall' : 'Resumen');
+const overallSub = (t.partidos as any).overallSub ?? '';
+
 ---
 
 <html lang={currentLang} data-language={currentLang}>
@@ -129,13 +141,36 @@ const renderGames = games.map((g) => {
     <Header />
     <main>
       <section class="partidos-container">
-        <h1 style="margin-bottom:1rem;" data-i18n="partidos.pageTitle">{t.partidos.pageTitle}</h1>
+  <h1 style="margin-bottom:1rem;">{t.partidos.pageTitle}</h1>
         {error ? (
           <div class="error">{t.partidos.errorLoading} {error}</div>
         ) : games.length === 0 ? (
           <div data-i18n="partidos.noGames">{t.partidos.noGames}</div>
         ) : (
-          <div class="partidos-grid">
+            <div class="partidos-section">
+              <div class="partidos-overall">
+              <div class="partidos-overall-card">
+                  <div class="overall-left">
+                  <div class="overall-title">{overallTitle}</div>
+                  <div class="overall-sub">{overallSub}</div>
+                </div>
+                <div class="overall-stats">
+                  <div class="overall-item overall-wins">
+                    <div class="overall-label">{(overallWins === 1) ? (t.partidos as any).wonSingular : (t.partidos as any).wonPlural}</div>
+                    <div class="overall-value">{overallWins}</div>
+                  </div>
+                  <div class="overall-item overall-losses">
+                    <div class="overall-label">{(overallLosses === 1) ? (t.partidos as any).lostSingular : (t.partidos as any).lostPlural}</div>
+                    <div class="overall-value">{overallLosses}</div>
+                  </div>
+                  {/* <div class="overall-item overall-pending">
+                    <div class="overall-label">{(overallPending === 1) ? (t.partidos as any).pendingSingular : (t.partidos as any).pendingPlural}</div>
+                    <div class="overall-value">{overallPending}</div>
+                  </div> */}
+                </div>
+              </div>
+            </div>
+            <div class="partidos-grid">
             {renderGames.map((g) => (
               <article class={`partidos-card ${g.cardClass}`}>
                 <div class="meta">
@@ -164,19 +199,17 @@ const renderGames = games.map((g) => {
                 <p style="margin:0.6rem 0;color:#475569;font-size:0.95rem" data-our={g.our} data-their={g.their}>{g.teamPerspective}</p>
 
                 <div class="partidos-footer">
-                  <div class="partidos-tags"><span data-i18n="partidos.statusLabel">{t.partidos.statusLabel}</span> <span class="partidos-status">{g.statusDisplay}</span></div>
+                  <div class="partidos-tags"><span>{t.partidos.statusLabel}</span> <span class="partidos-status">{g.statusDisplayText}</span></div>
                   <div style="font-size:0.8rem;color:#94a3b8" data-created={g.createdAtRaw}>{g.createdAtRaw ? new Date(g.createdAtRaw).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'es-ES') : ''}</div>
                 </div>
               </article>
             ))}
           </div>
+            </div>
         )}
       </section>
     </main>
     <Footer />
-    <script>
-      import { initPartidosLanguageSync } from '../scripts/partidosLanguageSync';
-      initPartidosLanguageSync();
-    </script>
+    <!-- client-side translation sync removed for this page -->
   </body>
 </html>

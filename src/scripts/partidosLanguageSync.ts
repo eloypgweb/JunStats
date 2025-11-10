@@ -6,11 +6,52 @@ export function initPartidosLanguageSync() {
 		const t = translations[lang].partidos;
 
 		// actualizar elementos con data-i18n
-		document.querySelectorAll('[data-i18n]').forEach(element => {
-			const key = element.getAttribute('data-i18n') as keyof typeof t;
-			if (key && (t as any)[key]) {
-				(element as HTMLElement).textContent = (t as any)[key] as string;
+		function getByPath(root: any, parts: string[]) {
+			let cur = root as any;
+			for (const p of parts) {
+				if (cur == null) return undefined;
+				cur = cur[p];
 			}
+			return cur;
+		}
+
+		document.querySelectorAll('[data-i18n]').forEach(element => {
+			const raw = element.getAttribute('data-i18n') || '';
+			const parts = raw.split('.').filter(Boolean);
+			// try full traversal from top-level translations (e.g. ['partidos','statusValues','por_jugar'])
+			let resolved: any = getByPath(translations[lang] as any, parts);
+			// If not found, try shorter lookup into t (translations[lang].partidos)
+			if (resolved == null && parts.length > 0) {
+				const last = parts[parts.length - 1];
+				resolved = (t as any)[last];
+			}
+			if (typeof resolved === 'string') {
+				(element as HTMLElement).textContent = resolved as string;
+			}
+		});
+
+		// elementos que requieren pluralización según un contador: data-i18n-count="namespace.key" y data-count="N"
+		document.querySelectorAll('[data-i18n-count]').forEach(element => {
+			const raw = element.getAttribute('data-i18n-count') || '';
+			const parts = raw.split('.').filter(Boolean);
+			const countAttr = element.getAttribute('data-count') || '0';
+			const count = parseInt(countAttr, 10) || 0;
+
+			// Try to find <key>Singular / <key>Plural under the same namespace
+			let singular = undefined as any;
+			let plural = undefined as any;
+			if (parts.length > 1) {
+				// e.g. ['partidos','won'] -> try translations[lang].partidos.wonSingular
+				const prefix = parts.slice(0, -1);
+				const key = parts[parts.length - 1];
+				singular = getByPath(translations[lang] as any, [...prefix, `${key}Singular`]);
+				plural = getByPath(translations[lang] as any, [...prefix, `${key}Plural`]);
+			}
+			// fallback to non-nested lookups (t.wonSingular / t.won)
+			if (singular == null) singular = (t as any)[`${parts[parts.length - 1]}Singular`] ?? (t as any)[parts[parts.length - 1]];
+			if (plural == null) plural = (t as any)[`${parts[parts.length - 1]}Plural`] ?? (t as any)[parts[parts.length - 1]];
+
+			(element as HTMLElement).textContent = count === 1 ? (singular ?? '') : (plural ?? '');
 		});
 
 		// actualizar outcomes (Ganado / Perdido)
