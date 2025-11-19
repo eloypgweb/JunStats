@@ -64,7 +64,8 @@
     "opponent": "Club Europeo Baloncesto",
     "slug": "jornada6",
     "available": true
-  },{
+  }
+  ,{
     "id": "jornada7",
     "title": "Jornada 7 - Femenino Fuenlabrada",
     "description": "Resumen de la séptima jornada de la temporada.",
@@ -74,5 +75,27 @@
     "opponent": "Femenino Fuenlabrada",
     "slug": "jornada7",
     "available": true
+  }
+  ,{
+    "id": "jornada8",
+    "title": "Jornada 8 - Valcude Alcobendas",
+    "description": "Resumen de la octava jornada de la temporada.",
+    "pubDate": "2025-11-15",
+    "heroImage": "/src/assets/jornadas/presJ8.png",
+    "time": "18:15",
+    "opponent": "Valcude Alcobendas",
+    "slug": "jornada8",
+    "available": true
+  }
+  ,{
+    "id": "jornada9",
+    "title": "Jornada 9 - Repick Sanse",
+    "description": "Resumen de la novena jornada de la temporada.",
+    "pubDate": "2025-11-22",
+    "heroImage": "/src/assets/jornadas/presJ9.png",
+    "time": "17:00",
+    "opponent": "Repick Sanse",
+    "slug": "jornada9",
+    "available": false
   }
 ]
