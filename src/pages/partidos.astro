@@ -200,7 +200,7 @@ const overallSub = (t.partidos as any).overallSub ?? '';
 
                 <div class="partidos-footer">
                   <div class="partidos-tags"><span>{t.partidos.statusLabel}</span> <span class="partidos-status">{g.statusDisplayText}</span></div>
-                  <div style="font-size:0.8rem;color:#94a3b8" data-created={g.createdAtRaw}>{g.createdAtRaw ? new Date(g.createdAtRaw).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'es-ES') : ''}</div>
+                  <div style="font-size:0.8rem;color:#94a3b8" data-date={g.displayDateRaw}>{g.displayDateRaw ? new Date(g.displayDateRaw).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'es-ES') : ''}</div>
                 </div>
               </article>
             ))}
