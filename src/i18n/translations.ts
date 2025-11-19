@@ -10,13 +10,13 @@ export const translations = {
       teamBadge: 'Temporada 2025-26',
       
       latestMatchBadge: '🔥 Última Jornada Disponible',
-      latestMatchTitle: '<span class="gradient-text">Jornada 6</span> vs Club Europeo Baloncesto',
-      latestMatchDescription: '¡Descubre las estadísticas completas de nuestro sexto encuentro de la temporada! Análisis detallado del rendimiento de cada jugador, jugadas clave y momentos decisivos que marcaron la diferencia en la cancha.',
+      latestMatchTitle: '<span class="gradient-text">Jornada 8</span> vs Valcude Alcobendas',
+      latestMatchDescription: '¡Descubre las estadísticas completas de nuestro octavo encuentro de la temporada! Análisis detallado del rendimiento de cada jugador, jugadas clave y momentos decisivos que marcaron la diferencia en la cancha.',
       highlightStats: '📊 Estadísticas completas',
       highlightMVP: '👑 MVP de la jornada',
       btnViewFullStats: '📊 Ver Estadísticas Completas',
-      matchResultLabel: 'Jornada 6',
-      matchResultDate: '25 Oct 2025',
+      matchResultLabel: 'Jornada 8',
+      matchResultDate: '15 Nov 2025',
       
       whatYouFindTitle: '📈 ¿Qué encontrarás?',
       
@@ -243,13 +243,13 @@ export const translations = {
       teamBadge: '2025-26 Season',
       
       latestMatchBadge: '🔥 Latest Match Available',
-      latestMatchTitle: '<span class="gradient-text">Match Day 6</span> vs Club Europeo Baloncesto',
-      latestMatchDescription: 'Discover the complete statistics of our sixth match of the season! Detailed analysis of each player\'s performance, key plays and decisive moments that made the difference on the court.',
+      latestMatchTitle: '<span class="gradient-text">Match Day 8</span> vs Valcude Alcobendas',
+      latestMatchDescription: 'Discover the complete statistics of our eighth match of the season! Detailed analysis of each player\'s performance, key plays and decisive moments that made the difference on the court.',
       highlightStats: '📊 Complete statistics',
       highlightMVP: '👑 Match MVP',
       btnViewFullStats: '📊 View Complete Statistics',
-      matchResultLabel: 'Match Day 6',
-      matchResultDate: 'Oct 25, 2025',
+      matchResultLabel: 'Match Day 8',
+      matchResultDate: 'Nov 15, 2025',
       
       whatYouFindTitle: '📈 What will you find?',
       
