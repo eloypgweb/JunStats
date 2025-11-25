@@ -1,0 +1,225 @@
+---
+import { Image } from 'astro:assets';
+import JornadaPost from '../../layouts/JornadaPost.astro';
+import getSupabaseServer from '../../lib/db/supabase-server';
+import '../../styles/jornadas-shared.css';
+// i18n
+import { getTranslations } from '../../i18n/translations';
+const t = getTranslations('es').jornadas;
+
+const supabase = getSupabaseServer();
+
+// Obtener las estadísticas del partido 43 (J9)
+const { data: stats, error } = await supabase
+  .from('player_stats')
+  .select(`
+    *,
+    players!inner (
+      nombre,
+      apellido,
+      dorsal
+    ),
+    games (
+      opponent,
+      date,
+      result
+    )
+  `)
+  .eq('game_id', 43)
+  .order('players(dorsal)', { ascending: true });
+
+if (error) {
+  console.error('Error fetching stats:', error);
+}
+
+// Obtener información del partido
+const gameInfo = stats && stats.length > 0 ? stats[0].games : null;
+
+// Pega aquí el link del vídeo de YouTube (por ejemplo: 'https://youtu.be/XYZ')
+const youtubeUrl = 'https://youtube.com/live/taORRpBtrbA';
+
+/*
+ Determinar resultado del partido
+let resultClass = '';
+let resultBadge = '';
+if (gameInfo?.result === 'victory') {
+  resultClass = 'victory';
+  resultBadge = '🏆 Victoria';
+} else if (gameInfo?.result === 'defeat') {
+  resultClass = 'defeat';
+  resultBadge = '💔 Derrota';
+}
+*/
+
+// Encontrar el MVP (mayor valoración)
+const mvpPlayer = stats?.reduce((max, player) => 
+  (player.valuation ?? 0) > (max.valuation ?? 0) ? player : max
+, stats[0]);
+
+// Función para formatear minutos a MM:SS
+function formatMinutes(totalSeconds: number | null): string {
+  if (totalSeconds === null || totalSeconds === 0) return '00:00';
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+---
+
+<JornadaPost 
+  title="Jornada 9"
+  description="Resumen de la novena jornada de la temporada."
+  pubDate={new Date(gameInfo?.date || '2025-11-25')}
+  heroImage={null}
+>
+    <!--  
+    <div class="match-info">
+        <h3><span data-i18n="vs">{t.vs}</span> {gameInfo?.opponent || 'Oponente'}</h3>
+        {gameInfo?.result && (
+            <div class={`match-result ${resultClass}`}>
+                <div class="result-badge">
+                    <span class="badge-text">{resultBadge}</span>
+                </div>
+            </div>
+        )}
+    </div>
+    -->
+
+    <div class="match-info">
+        <h3><span data-i18n="vs">{t.vs}</span> Repick Sanse</h3>
+        <div class="match-result victory">
+            <div class="score-container">
+                <span class="team-score opponent">35</span>
+                <span class="score-separator">-</span>
+                <span class="team-score home winner">45</span>
+            </div>
+            <div class="result-badge">
+                <span class="badge-icon">🏆</span>
+                <span class="badge-text">Victoria</span>
+            </div>
+        </div>
+    </div>
+
+    {youtubeUrl && (
+        <div class="match-video">
+            <a class="video-link" href={youtubeUrl} target="_blank" rel="noopener noreferrer">▶ Ver partido en YouTube</a>
+        </div>
+    )}
+
+    <div class="table-container">
+    <table class="jornada-table">
+        <thead>
+            <tr>
+                <th data-i18n="number">{t.number}</th>
+                <th data-i18n="player">{t.player}</th>
+                <th data-i18n="minutes">{t.minutes}</th>
+                <th data-i18n="points">{t.points}</th>
+                <th data-i18n="t2">{t.t2}</th>
+                <th data-i18n="t3">{t.t3}</th>
+                <th data-i18n="freeThrowsMade">{t.freeThrowsMade}</th>
+                <th data-i18n="freeThrowsAttempted">{t.freeThrowsAttempted}</th>
+                <th data-i18n="assists">{t.assists}</th>
+                <th data-i18n="rebounds">{t.rebounds}</th>
+                <th data-i18n="steals">{t.steals}</th>
+                <th data-i18n="turnovers">{t.turnovers}</th>
+                <th data-i18n="fouls">{t.fouls}</th>
+                <th data-i18n="rating">{t.rating}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {stats && stats.map((stat) => {
+                const playerName = `${stat.players.nombre} ${stat.players.apellido}`;
+                const isMVP = stat.player_id === mvpPlayer?.player_id;
+                
+                return (
+                    <tr>
+                        <td>{stat.players.dorsal}</td>
+                        <td>
+                            {isMVP && <span class="mvp-crown-table">👑</span>}
+                            {playerName}
+                        </td>
+                        <td>{formatMinutes(stat.minutes)}</td>
+                        <td>{stat.points ?? 0}</td>
+                        <td>{stat.t2_made ?? 0}</td>
+                        <td>{stat.t3_made ?? 0}</td>
+                        <td>{stat.ft_made ?? 0}</td>
+                        <td>{stat.ft_att ?? 0}</td>
+                        <td>{stat.assists ?? 0}</td>
+                        <td>{stat.rebounds ?? 0}</td>
+                        <td>{stat.steals ?? 0}</td>
+                        <td>{stat.turnovers ?? 0}</td>
+                        <td>{stat.fouls ?? 0}</td>
+                        <td>{stat.valuation ?? 0}</td>
+                    </tr>
+                );
+            })}
+        </tbody>
+    </table>
+
+    <div class="mobile-cards">
+        {stats && stats.map((stat) => {
+            const playerName = `${stat.players.nombre} ${stat.players.apellido}`;
+            const isMVP = stat.player_id === mvpPlayer?.player_id;
+            
+            return (
+                <div class="player-card">
+                    <div class="player-name">
+                        {isMVP && <div class="mvp-crown-top">👑</div>}
+                        {playerName} <span class="player-number">{stat.players.dorsal}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label" data-i18n="minutesLabel">{t.minutesLabel}</span>
+                        <span class="stat-value">{formatMinutes(stat.minutes)}</span>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="pointsLabel">{t.pointsLabel}</span>
+                            <span class="stat-value">{stat.points ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="ratingLabel">{t.ratingLabel}</span>
+                            <span class="stat-value">{stat.valuation ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="t2">{t.t2}:</span>
+                            <span class="stat-value">{stat.t2_made ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="t3">{t.t3}:</span>
+                            <span class="stat-value">{stat.t3_made ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="freeThrows">{t.freeThrows}</span>
+                            <span class="stat-value">{stat.ft_made ?? 0}/{stat.ft_att ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="assistsLabel">{t.assistsLabel}</span>
+                            <span class="stat-value">{stat.assists ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="reboundsLabel">{t.reboundsLabel}</span>
+                            <span class="stat-value">{stat.rebounds ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="stealsLabel">{t.stealsLabel}</span>
+                            <span class="stat-value">{stat.steals ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="turnoversLabel">{t.turnoversLabel}</span>
+                            <span class="stat-value">{stat.turnovers ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="foulsLabel">{t.foulsLabel}</span>
+                            <span class="stat-value">{stat.fouls ?? 0}</span>
+                        </div>
+                    </div>
+                </div>
+            );
+        })}
+    </div>
+  </div>
+</JornadaPost>
+
+<script>
+    import { initJornadaLanguageSync } from '../../scripts/jornadaLanguageSync';
+    initJornadaLanguageSync();
+</script>

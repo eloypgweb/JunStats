@@ -83,6 +83,7 @@ export const translations = {
       steals: 'Robos',
       turnovers: 'Pérdidas',
       fouls: 'Faltas',
+      minutes: 'Minutos',
       rating: 'Valoración',
       
       // Mobile cards
@@ -100,6 +101,7 @@ export const translations = {
       stealsLabel: 'Robos:',
       turnoversLabel: 'Pérdidas:',
       foulsLabel: 'Faltas:',
+      minutesLabel: 'Minutos:',
     },
     
     // Jugadas page
@@ -316,6 +318,7 @@ export const translations = {
       steals: 'Steals',
       turnovers: 'Turnovers',
       fouls: 'Fouls',
+      minutes: 'Minutes',
       rating: 'Rating',
       
       // Mobile cards
@@ -333,6 +336,7 @@ export const translations = {
       stealsLabel: 'Steals:',
       turnoversLabel: 'Turnovers:',
       foulsLabel: 'Fouls:',
+      minutesLabel: 'Minutes:',
     },
     
     // Jugadas page
