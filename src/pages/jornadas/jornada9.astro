@@ -121,6 +121,7 @@ function formatMinutes(totalSeconds: number | null): string {
                 <th data-i18n="rebounds">{t.rebounds}</th>
                 <th data-i18n="steals">{t.steals}</th>
                 <th data-i18n="turnovers">{t.turnovers}</th>
+                <th data-i18n="blocks">{t.blocks}</th>
                 <th data-i18n="fouls">{t.fouls}</th>
                 <th data-i18n="rating">{t.rating}</th>
             </tr>
@@ -147,6 +148,7 @@ function formatMinutes(totalSeconds: number | null): string {
                         <td>{stat.rebounds ?? 0}</td>
                         <td>{stat.steals ?? 0}</td>
                         <td>{stat.turnovers ?? 0}</td>
+                        <td>{stat.blocks ?? 0}</td>
                         <td>{stat.fouls ?? 0}</td>
                         <td>{stat.valuation ?? 0}</td>
                     </tr>
@@ -206,6 +208,10 @@ function formatMinutes(totalSeconds: number | null): string {
                         <div class="stat-item">
                             <span class="stat-label" data-i18n="turnoversLabel">{t.turnoversLabel}</span>
                             <span class="stat-value">{stat.turnovers ?? 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="blocksLabel">{t.blocksLabel}</span>
+                            <span class="stat-value">{stat.blocks ?? 0}</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label" data-i18n="foulsLabel">{t.foulsLabel}</span>
