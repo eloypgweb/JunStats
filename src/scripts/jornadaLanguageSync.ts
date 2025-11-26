@@ -1,5 +1,5 @@
-import { translations } from '../../i18n/translations';
-import type { Language } from '../../i18n/translations';
+import { translations } from '../i18n/translations';
+import type { Language } from '../i18n/translations';
 
 export function initJornadaLanguageSync() {
 	function updatePageLanguage(lang: Language) {
