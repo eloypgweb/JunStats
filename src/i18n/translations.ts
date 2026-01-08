@@ -45,6 +45,11 @@ export const translations = {
       ctaDescription: 'Descubre todas las estadísticas y jugadas de nuestro equipo',
       ctaBtnAllMatches: '📊 Ver Todas las Jornadas',
       ctaBtnLearnPlays: '🎯 Aprender Jugadas',
+      
+      // Update notice section
+      updateTitle: 'La web está siendo actualizada',
+      updateDescription: 'Estamos mejorando JunStats para ofrecerte una experiencia aún mejor. Mientras tanto, puedes disfrutar de todas las jornadas que ya hemos jugado y consultar las estadísticas de los jugadores.',
+      
       // Contact section
       contactTitle: 'Contacta con nosotros',
       contactSuccessMessage: '¡Mensaje enviado! Gracias por contactarnos.',
@@ -282,6 +287,11 @@ export const translations = {
       ctaDescription: 'Discover all the statistics and plays of our team',
       ctaBtnAllMatches: '📊 View All Match Days',
       ctaBtnLearnPlays: '🎯 Learn Plays',
+      
+      // Update notice section
+      updateTitle: 'The website is being updated',
+      updateDescription: 'We are improving JunStats to offer you an even better experience. In the meantime, you can enjoy all the match days we have already played and check player statistics.',
+      
       // Contact section
       contactTitle: 'Contact us',
       contactSuccessMessage: 'Message sent! Thanks for contacting us.',

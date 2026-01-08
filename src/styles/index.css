@@ -1260,3 +1260,117 @@
 	border-color: var(--hero-accent);
 	box-shadow: 0 14px 50px rgba(59,130,246,0.18);
 }
+
+/* Update Notice Section */
+.update-notice {
+	padding: 60px 20px;
+	background: linear-gradient(135deg, #f0fdf4 0%, #f5f3ff 50%, #fdf2f8 100%);
+}
+
+.update-notice .container {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.update-card {
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+	border-radius: var(--radius-xl);
+	padding: 50px 40px;
+	text-align: center;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+	border: 2px solid rgba(59, 130, 246, 0.1);
+	transition: all var(--transition-normal);
+	animation: slideInUp 0.6s ease-out;
+}
+
+.update-card:hover {
+	box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+	border-color: rgba(59, 130, 246, 0.2);
+	transform: translateY(-5px);
+}
+
+.update-icon {
+	font-size: 3rem;
+	margin-bottom: 20px;
+	display: block;
+	animation: spinReverse 2s linear infinite;
+}
+
+.update-title {
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: rgb(var(--text-primary));
+	margin-bottom: 15px;
+	background: linear-gradient(45deg, var(--accent), #7c3aed);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.update-description {
+	font-size: 1.1rem;
+	color: rgb(var(--text-secondary));
+	margin-bottom: 40px;
+	line-height: 1.8;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.update-features {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 25px;
+	margin-top: 35px;
+}
+
+.feature-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	padding: 20px;
+	background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+	border-radius: var(--radius-lg);
+	transition: all var(--transition-normal);
+}
+
+.feature-item:hover {
+	background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+	transform: translateY(-3px);
+}
+
+.feature-icon {
+	font-size: 2.5rem;
+	animation: bounce 2s infinite;
+}
+
+.feature-icon:nth-child(1) { animation-delay: 0s; }
+.feature-icon:nth-child(2) { animation-delay: 0.2s; }
+.feature-icon:nth-child(3) { animation-delay: 0.4s; }
+
+.feature-text {
+	font-weight: 600;
+	color: rgb(var(--text-primary));
+	font-size: 0.95rem;
+}
+
+@keyframes slideInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes spinReverse {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
+	}
+}
