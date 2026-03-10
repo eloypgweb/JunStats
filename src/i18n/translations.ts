@@ -36,7 +36,7 @@ export const translations = {
       teamDescription: 'El <strong>Junior C Masculino</strong> del CDE Leganés está compuesto por jóvenes talentosos que trabajan día a día para mejorar su técnica, táctica y trabajo en equipo.',
       statMatchesWon: 'Partidos Ganados',
       statMatchesLost: 'Partidos Perdidos',
-      statPlays: 'Jugadas',
+      statPlays: 'Jugadas activas',
       
       quote: '"El talento gana partidos, pero el trabajo en equipo y la inteligencia ganan campeonatos."',
       quoteAuthor: 'Michael Jordan',
