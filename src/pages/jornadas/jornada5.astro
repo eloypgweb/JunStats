@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
 import JornadaPost from '../../layouts/JornadaPost.astro';
-import presJ5 from '../../assets/jornadas/presJ5.png';
 import '../../styles/jornadas-shared.css';
 // i18n
 import { getTranslations } from '../../i18n/translations';
@@ -12,7 +10,6 @@ const t = getTranslations('es').jornadas;
   title="Jornada 5"
   description="Resumen de la quinta jornada de la temporada."
   pubDate={new Date('2025-10-19')}
-  heroImage={presJ5}
 >
   <div class="match-info">
     <h3><span data-i18n="vs">{t.vs}</span> CB Fuenlabrada</h3>

@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
 import JornadaPost from '../../layouts/JornadaPost.astro';
-import presJ1 from '../../assets/jornadas/presJ1.png';
 import '../../styles/jornadas-shared.css';
 // i18n
 import { getTranslations } from '../../i18n/translations';
@@ -12,7 +10,6 @@ const t = getTranslations('es').jornadas;
   title="Jornada 1"
   description="Resumen de la primera jornada de la temporada."
   pubDate={new Date('2025-09-21')}
-  heroImage={presJ1}
 >
     <div class="match-info">
         <h3><span data-i18n="vs">{t.vs}</span> San Martín de la Vega</h3>

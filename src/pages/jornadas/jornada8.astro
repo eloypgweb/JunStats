@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
 import JornadaPost from '../../layouts/JornadaPost.astro';
-import presJ8 from '../../assets/jornadas/presJ8.png';
 import '../../styles/jornadas-shared.css';
 // i18n
 import { getTranslations } from '../../i18n/translations';
@@ -14,7 +12,6 @@ const youtubeUrl = 'https://youtu.be/2dtL3DFEoK8';
   title="Jornada 8"
   description="Resumen de la octava jornada de la temporada."
   pubDate={new Date('2025-11-15')}
-  heroImage={presJ8}
 >
     <div class="match-info">
         <h3><span data-i18n="vs">{t.vs}</span> Valcude Alcobendas</h3>

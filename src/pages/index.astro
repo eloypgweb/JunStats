@@ -8,8 +8,7 @@ import logoLega from '../assets/logolega.jpg';
 import '../styles/index.css';
 
 // Última jornada disponible
-// import lastMatch from '../assets/jornadas/presJ10.png';
-import lastMatch from '../assets/jornadas/presJ9.png';
+import lastMatch from '../assets/jornadas/presJ21.png';
 
 // i18n
 import { getTranslations } from '../i18n/translations';
@@ -47,8 +46,8 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 				</div>
 			</div>
 		</section>
-
-		<!-- Update Notice Section -->
+		<!--
+		Update Notice Section 
 		<section class="update-notice section--white">
 			<div class="container">
 				<div class="update-card">
@@ -56,26 +55,11 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 					<h2 class="update-title" data-i18n="updateTitle">La web está siendo actualizada</h2>
 					<p class="update-description" data-i18n="updateDescription">
 						Estamos mejorando JunStats para ofrecerte una experiencia aún mejor. Mientras tanto, puedes disfrutar de todas las jornadas que ya hemos jugado y consultar las estadísticas de los jugadores.
-					</p>
-					<!--  
-					<div class="update-features">
-						<div class="feature-item">
-							<span class="feature-icon">📊</span>
-							<span class="feature-text">Revisa todas las jornadas jugadas</span>
-						</div>
-						<div class="feature-item">
-							<span class="feature-icon">🎬</span>
-							<span class="feature-text">Visualiza las mejores jugadas</span>
-						</div>
-						<div class="feature-item">
-							<span class="feature-icon">👥</span>
-							<span class="feature-text">Consulta estadísticas de jugadores</span>
-						</div>
-					</div>
-					-->
+					</p>				
 				</div>
 			</div>
 		</section>
+		-->
 
 		<!-- Latest Match Section -->
 		<section class="latest-match section--white">
@@ -99,14 +83,14 @@ const t = getTranslations('es').index; // Por defecto español, se cambiará con
 							</div>
 						</div>
 						<div class="latest-match-actions">
-							<a href="/jornadas/jornada9" class="btn btn-primary btn-large" data-i18n="btnViewFullStats">
+							<a href="/jornadas/jornada21" class="btn btn-primary btn-large" data-i18n="btnViewFullStats">
 								{t.btnViewFullStats}
 							</a>
 						</div>
 					</div>
 					<div class="latest-match-visual">
 						<div class="match-image-container">
-							<img src={lastMatch.src} alt="Jornada 8 - Valcude Alcobendas" class="match-preview" />
+							<img src={lastMatch.src} alt="Jornada 21 - San Blas Basket" class="match-preview" />
 							<div class="match-overlay">
 								<div class="match-result">
 									<span class="result-label" data-i18n="matchResultLabel">{t.matchResultLabel}</span>
