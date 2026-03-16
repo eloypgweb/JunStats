@@ -100,12 +100,12 @@ nav a:hover {
 }
 
 /* Mostrar solo en desktop */
-.desktop-only {
+nav > .desktop-only {
 	display: flex;
 }
 
 @media (max-width: 720px) {
-	.desktop-only {
+	nav > .desktop-only {
 		display: none;
 	}
 }
@@ -125,5 +125,21 @@ nav a:hover {
 	
 	.internal-links {
 		display: none;
+	}
+
+	/* En movil: solo titulo y boton hamburguesa en la navbar */
+	header nav .social-links.desktop-only {
+		display: none !important;
+	}
+
+	header nav .hamburger-container {
+		display: block !important;
+		margin-left: auto;
+	}
+}
+
+@media (min-width: 721px) {
+	header nav .hamburger-container {
+		display: none !important;
 	}
 }
