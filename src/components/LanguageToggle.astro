@@ -18,6 +18,7 @@ import '../styles/LanguageToggle.css';
 <script>
 	// Tipos para el idioma
 	type Language = 'es' | 'en';
+	let languageTransitionTimeout: number | undefined;
 
 	// Función para obtener el idioma preferido
 	function getPreferredLanguage(): Language {
@@ -35,6 +36,17 @@ import '../styles/LanguageToggle.css';
 
 	// Función para aplicar el idioma
 	function setLanguage(lang: Language): void {
+		const root = document.documentElement;
+		root.classList.add('language-switching');
+
+		if (languageTransitionTimeout) {
+			window.clearTimeout(languageTransitionTimeout);
+		}
+
+		requestAnimationFrame(() => {
+			root.classList.add('language-switching-active');
+		});
+
 		document.documentElement.setAttribute('data-language', lang);
 		if (typeof localStorage !== 'undefined') {
 			localStorage.setItem('language', lang);
@@ -51,6 +63,11 @@ import '../styles/LanguageToggle.css';
 		window.dispatchEvent(new CustomEvent('languageChanged', { 
 			detail: { language: lang } 
 		}));
+
+		languageTransitionTimeout = window.setTimeout(() => {
+			root.classList.remove('language-switching-active');
+			root.classList.remove('language-switching');
+		}, 180);
 	}
 
 	// Función para alternar idioma

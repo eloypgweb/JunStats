@@ -188,7 +188,7 @@ body {
 	color: rgb(var(--text-primary));
 	font-size: 20px;
 	line-height: 1.7;
-	transition: background var(--transition-theme), color var(--transition-theme);
+	transition: background var(--transition-theme), color var(--transition-theme), opacity 0.16s ease;
 }
 main {
 	width: 720px;
@@ -249,6 +249,37 @@ a:hover {
 	color: var(--accent-hover);
 	transform: translateY(-1px);
 }
+
+/* Transición sutil al cambiar idioma */
+[data-i18n],
+[data-i18n-header],
+[data-i18n-placeholder] {
+	transition: opacity 0.14s ease;
+}
+
+html.language-switching.language-switching-active [data-i18n],
+html.language-switching.language-switching-active [data-i18n-header],
+html.language-switching.language-switching-active [data-i18n-placeholder] {
+	opacity: 0.45;
+}
+
+html.theme-switching.theme-switching-active main,
+html.theme-switching.theme-switching-active footer {
+	opacity: 0.88;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-i18n],
+	[data-i18n-header],
+	[data-i18n-placeholder] {
+		transition: none;
+	}
+
+	body {
+		transition: background var(--transition-theme), color var(--transition-theme);
+	}
+}
+
 p {
 	margin-bottom: 1em;
 }

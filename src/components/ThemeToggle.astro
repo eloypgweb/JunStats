@@ -18,6 +18,7 @@ import '../styles/ThemeToggle.css';
 <script>
 	// Tipos para el tema
 	type Theme = 'light' | 'dark';
+	let themeTransitionTimeout: number | undefined;
 
 	// Función para obtener el tema preferido
 	function getPreferredTheme(): Theme {
@@ -35,6 +36,17 @@ import '../styles/ThemeToggle.css';
 
 	// Función para aplicar el tema
 	function setTheme(theme: Theme): void {
+		const root = document.documentElement;
+		root.classList.add('theme-switching');
+
+		if (themeTransitionTimeout) {
+			window.clearTimeout(themeTransitionTimeout);
+		}
+
+		requestAnimationFrame(() => {
+			root.classList.add('theme-switching-active');
+		});
+
 		document.documentElement.setAttribute('data-theme', theme);
 		if (typeof localStorage !== 'undefined') {
 			localStorage.setItem('theme', theme);
@@ -46,6 +58,11 @@ import '../styles/ThemeToggle.css';
 			button.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
 			button.classList.toggle('dark-mode', theme === 'dark');
 		});
+
+		themeTransitionTimeout = window.setTimeout(() => {
+			root.classList.remove('theme-switching-active');
+			root.classList.remove('theme-switching');
+		}, 180);
 	}
 
 	// Función para alternar tema

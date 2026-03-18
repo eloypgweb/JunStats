@@ -1,6 +1,15 @@
 // Traducciones para la aplicación
 export const translations = {
   es: {
+    // Header / Navbar
+    header: {
+      home: 'Inicio',
+      jornadas: 'Jornadas',
+      partidos: 'Partidos',
+      jugadas: 'Jugadas',
+      galeria: 'Galería',
+    },
+
     // Index page
     index: {
       heroTitle: 'JunStats',
@@ -243,6 +252,15 @@ export const translations = {
     }
   },
   en: {
+    // Header / Navbar
+    header: {
+      home: 'Home',
+      jornadas: 'Match Days',
+      partidos: 'Matches',
+      jugadas: 'Plays',
+      galeria: 'Gallery',
+    },
+
     // Index page
     index: {
       heroTitle: 'JunStats',
