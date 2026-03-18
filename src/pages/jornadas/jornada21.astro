@@ -15,7 +15,7 @@ const players = [
   { number: 17, name: 'Álvaro Zamorano', points: 10, t2: 2, t3: 2, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 6 },
   { number: 20, name: 'Daniel Chamizo', points: 4, t2: 2, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 1, valuation: 3 },
   { number: 30, name: 'Álvaro Fernández', points: 3, t2: 0, t3: 1, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 3, valuation: 0 },
-  { number: 33, name: 'Roberto García', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
+  { number: 33, name: 'Roberto García', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0, isAbsent: true },
   { number: 56, name: 'Víctor Guardeño', points: 2, t2: 1, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 1, valuation: 1 },
   { number: 91, name: 'Rodrigo Díaz', points: 8, t2: 4, t3: 0, ftMade: 0, ftAtt: 2, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 6 }
 ];
@@ -64,78 +64,99 @@ const mvpNumber = 17;
       </thead>
       <tbody>
         {players.map((player) => (
-          <tr>
-            <td>{player.number}</td>
-            <td>
-              {player.number === mvpNumber && <span class="mvp-crown-table">👑</span>}
-              {player.name}
-            </td>
-            <td>{player.points}</td>
-            <td>{player.t2}</td>
-            <td>{player.t3}</td>
-            <td>{player.ftMade}</td>
-            <td>{player.ftAtt}</td>
-            <td>{player.assists}</td>
-            <td>{player.rebounds}</td>
-            <td>{player.steals}</td>
-            <td>{player.turnovers}</td>
-            <td>{player.fouls}</td>
-            <td>{player.valuation}</td>
-          </tr>
+          player.isAbsent ? (
+            <tr class="ausente-row">
+              <td>{player.number}</td>
+              <td>{player.name}</td>
+              <td colspan="11" class="ausente-cell">
+                <span class="ausente-badge" data-i18n="absent">{t.absent}</span>
+              </td>
+            </tr>
+          ) : (
+            <tr>
+              <td>{player.number}</td>
+              <td>
+                {player.number === mvpNumber && <span class="mvp-crown-table">👑</span>}
+                {player.name}
+              </td>
+              <td>{player.points}</td>
+              <td>{player.t2}</td>
+              <td>{player.t3}</td>
+              <td>{player.ftMade}</td>
+              <td>{player.ftAtt}</td>
+              <td>{player.assists}</td>
+              <td>{player.rebounds}</td>
+              <td>{player.steals}</td>
+              <td>{player.turnovers}</td>
+              <td>{player.fouls}</td>
+              <td>{player.valuation}</td>
+            </tr>
+          )
         ))}
       </tbody>
     </table>
 
     <div class="mobile-cards">
       {players.map((player) => (
-        <div class="player-card">
-          <div class="player-name">
-            {player.number === mvpNumber && <div class="mvp-crown-top">👑</div>}
-            {player.name} <span class="player-number">{player.number}</span>
-          </div>
-          <div class="stats-grid">
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="pointsLabel">{t.pointsLabel}</span>
-              <span class="stat-value">{player.points}</span>
+        player.isAbsent ? (
+          <div class="player-card ausente-card">
+            <div class="player-name">
+              {player.name} <span class="player-number">{player.number}</span>
             </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="ratingLabel">{t.ratingLabel}</span>
-              <span class="stat-value">{player.valuation}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="t2">{t.t2}:</span>
-              <span class="stat-value">{player.t2}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="t3">{t.t3}:</span>
-              <span class="stat-value">{player.t3}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="freeThrows">{t.freeThrows}</span>
-              <span class="stat-value">{player.ftMade}/{player.ftAtt}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="assistsLabel">{t.assistsLabel}</span>
-              <span class="stat-value">{player.assists}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="reboundsLabel">{t.reboundsLabel}</span>
-              <span class="stat-value">{player.rebounds}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="stealsLabel">{t.stealsLabel}</span>
-              <span class="stat-value">{player.steals}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="turnoversLabel">{t.turnoversLabel}</span>
-              <span class="stat-value">{player.turnovers}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label" data-i18n="foulsLabel">{t.foulsLabel}</span>
-              <span class="stat-value">{player.fouls}</span>
+            <div class="stats-grid ausente-mobile">
+              <span class="ausente-badge" data-i18n="absent">{t.absent}</span>
             </div>
           </div>
-        </div>
+        ) : (
+          <div class="player-card">
+            <div class="player-name">
+              {player.number === mvpNumber && <div class="mvp-crown-top">👑</div>}
+              {player.name} <span class="player-number">{player.number}</span>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="pointsLabel">{t.pointsLabel}</span>
+                <span class="stat-value">{player.points}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="ratingLabel">{t.ratingLabel}</span>
+                <span class="stat-value">{player.valuation}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="t2">{t.t2}:</span>
+                <span class="stat-value">{player.t2}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="t3">{t.t3}:</span>
+                <span class="stat-value">{player.t3}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="freeThrows">{t.freeThrows}</span>
+                <span class="stat-value">{player.ftMade}/{player.ftAtt}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="assistsLabel">{t.assistsLabel}</span>
+                <span class="stat-value">{player.assists}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="reboundsLabel">{t.reboundsLabel}</span>
+                <span class="stat-value">{player.rebounds}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="stealsLabel">{t.stealsLabel}</span>
+                <span class="stat-value">{player.steals}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="turnoversLabel">{t.turnoversLabel}</span>
+                <span class="stat-value">{player.turnovers}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label" data-i18n="foulsLabel">{t.foulsLabel}</span>
+                <span class="stat-value">{player.fouls}</span>
+              </div>
+            </div>
+          </div>
+        )
       ))}
     </div>
   </div>
