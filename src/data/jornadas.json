@@ -102,9 +102,9 @@
     "id": "jornada21",
     "title": "Jornada 21 - San Blas Basket",
     "description": "Resumen de la jornada 21 de la temporada.",
-    "pubDate": "2026-03-16",
+    "pubDate": "2026-03-15",
     "heroImage": "/src/assets/jornadas/presJ21.png",
-    "time": "--:--",
+    "time": "13:00",
     "opponent": "San Blas Basket",
     "slug": "jornada21",
     "available": true
