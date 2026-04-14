@@ -63,7 +63,10 @@ const mvpNumber = 20;
         {players.map((player) => (
           <tr>
             <td>{player.number}</td>
-            <td>{player.name}</td>
+            <td>
+                {player.number === mvpNumber && <span class="mvp-crown-table">👑</span>}
+                {player.name}
+              </td>
             <td>{player.points}</td>
             <td>{player.t2}</td>
             <td>{player.t3}</td>
@@ -78,10 +81,21 @@ const mvpNumber = 20;
 
     <div class="mobile-cards">
       {players.map((player) => (
-        <div class="player-card">
-          <div class="player-name">
-            {player.name} <span class="player-number">{player.number}</span>
+        player.isAbsent ? (
+          <div class="player-card ausente-card">
+            <div class="player-name">
+              {player.name} <span class="player-number">{player.number}</span>
+            </div>
+            <div class="stats-grid ausente-mobile">
+              <span class="ausente-badge" data-i18n="absent">{t.absent}</span>
+            </div>
           </div>
+        ) : (
+          <div class="player-card">
+          <div class="player-name">
+              {player.number === mvpNumber && <div class="mvp-crown-top">👑</div>}
+              {player.name} <span class="player-number">{player.number}</span>
+            </div>
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-label" data-i18n="pointsLabel">{t.pointsLabel}</span>
@@ -109,7 +123,7 @@ const mvpNumber = 20;
             </div>
           </div>
         </div>
-      ))}
+      )))}
     </div>
   </div>
 </JornadaPost>
