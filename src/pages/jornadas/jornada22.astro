@@ -1,0 +1,120 @@
+---
+import JornadaPost from '../../layouts/JornadaPost.astro';
+import '../../styles/jornadas-shared.css';
+// i18n
+import { getTranslations } from '../../i18n/translations';
+const t = getTranslations('es').jornadas;
+
+const players = [
+  { number: 1, name: 'Hugo Arias', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 4, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 1, valuation: -10 },
+  { number: 8, name: 'Sergio Redondo', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: -4 },
+  { number: 12, name: 'Pablo Fernández', points: 6, t2: 1, t3: 1, ftMade: 1, ftAtt: 5, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 1, valuation: 24 },
+  { number: 13, name: 'Tristán Redondo', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 2, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 1, valuation: -13 },
+  { number: 15, name: 'Uyi', points: 2, t2: 1, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 1, valuation: -18 },
+  { number: 16, name: 'David Ortega', points: 1, t2: 0, t3: 0, ftMade: 1, ftAtt: 2, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 4, valuation: 1 },
+  { number: 17, name: 'Álvaro Zamorano', points: 9, t2: 3, t3: 1, ftMade: 0, ftAtt: 2, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 3, valuation: -8 },
+  { number: 20, name: 'Daniel Chamizo', points: 9, t2: 4, t3: 0, ftMade: 1, ftAtt: 1, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 1, valuation: 26 },
+  { number: 30, name: 'Álvaro Fernández', points: 10, t2: 3, t3: 1, ftMade: 1, ftAtt: 2, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 18 },
+  { number: 33, name: 'Roberto García', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: -14 },
+  { number: 56, name: 'Víctor Guardeño', points: 6, t2: 3, t3: 0, ftMade: 0, ftAtt: 3, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 5, valuation: 16 },
+  { number: 91, name: 'Rodrigo Díaz', points: 11, t2: 4, t3: 0, ftMade: 3, ftAtt: 7, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 2, valuation: 22 }
+];
+
+const mvpNumber = 20;
+
+---
+
+<JornadaPost 
+  title="Jornada 22"
+  description="Resumen de la jornada 22 de la temporada."
+  pubDate={new Date('2026-04-12')}
+>
+  <div class="match-info">
+    <h3><span data-i18n="vs">{t.vs}</span> Vicálvaro Baloncesto</h3>
+    <div class="match-result victory">
+      <div class="score-container">
+        <span class="team-score opponent">46</span>
+        <span class="score-separator">-</span>
+        <span class="team-score home winner">54</span>
+      </div>
+      <div class="result-badge">
+        <span class="badge-icon">🏆</span>
+        <span class="badge-text" data-i18n="victory">{t.victory}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="jornada-table">
+      <thead>
+        <tr>
+          <th data-i18n="number">{t.number}</th>
+          <th data-i18n="player">{t.player}</th>
+          <th data-i18n="points">{t.points}</th>
+          <th data-i18n="t2">{t.t2}</th>
+          <th data-i18n="t3">{t.t3}</th>
+          <th data-i18n="freeThrowsMade">{t.freeThrowsMade}</th>
+          <th data-i18n="freeThrowsAttempted">{t.freeThrowsAttempted}</th>
+          <th data-i18n="fouls">{t.fouls}</th>
+          <th data-i18n="rating">{t.rating}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {players.map((player) => (
+          <tr>
+            <td>{player.number}</td>
+            <td>{player.name}</td>
+            <td>{player.points}</td>
+            <td>{player.t2}</td>
+            <td>{player.t3}</td>
+            <td>{player.ftMade}</td>
+            <td>{player.ftAtt}</td>
+            <td>{player.fouls}</td>
+            <td>{player.valuation}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <div class="mobile-cards">
+      {players.map((player) => (
+        <div class="player-card">
+          <div class="player-name">
+            {player.name} <span class="player-number">{player.number}</span>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-label" data-i18n="pointsLabel">{t.pointsLabel}</span>
+              <span class="stat-value">{player.points}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label" data-i18n="ratingLabel">{t.ratingLabel}</span>
+              <span class="stat-value">{player.valuation}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label" data-i18n="t2">{t.t2}:</span>
+              <span class="stat-value">{player.t2}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label" data-i18n="t3">{t.t3}:</span>
+              <span class="stat-value">{player.t3}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label" data-i18n="freeThrows">{t.freeThrows}</span>
+              <span class="stat-value">{player.ftMade}/{player.ftAtt}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label" data-i18n="foulsLabel">{t.foulsLabel}</span>
+              <span class="stat-value">{player.fouls}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</JornadaPost>
+
+<script>
+  import { initJornadaLanguageSync } from '../../scripts/jornadaLanguageSync';
+  initJornadaLanguageSync();
+</script>

@@ -108,5 +108,16 @@
     "opponent": "San Blas Basket",
     "slug": "jornada21",
     "available": true
+  },
+  {
+    "id": "jornada22",
+    "title": "Jornada 22 - Vicálvaro Baloncesto",
+    "description": "Resumen de la jornada 22 de la temporada.",
+    "pubDate": "2026-04-12",
+    "heroImage": "/src/assets/jornadas/presJ22.png",
+    "time": "13:30",
+    "opponent": "Vicálvaro Baloncesto",
+    "slug": "jornada22",
+    "available": true
   }
 ]
