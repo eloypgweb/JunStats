@@ -7,6 +7,12 @@ export function initJugadasLanguageSync() {
 		
 		// Actualizar título de la página
 		document.title = t.pageTitle + ' | JunStats';
+
+		// Actualizar el titulo visible renderizado por el layout JornadaPost
+		const pageTitle = document.querySelector('article .prose .title h1');
+		if (pageTitle) {
+			pageTitle.textContent = t.pageTitle;
+		}
 		
 		// Actualizar elementos con data-i18n
 		document.querySelectorAll('[data-i18n]').forEach(element => {

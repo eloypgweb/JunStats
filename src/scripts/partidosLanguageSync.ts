@@ -65,6 +65,20 @@ export function initPartidosLanguageSync() {
 			}
 		});
 
+		// actualizar resultados pendientes
+		document.querySelectorAll('.partidos-result.pending').forEach(el => {
+			(el as HTMLElement).textContent = t.pending;
+		});
+
+		// actualizar status traducido en cada tarjeta
+		document.querySelectorAll('.partidos-status').forEach(el => {
+			const key = (el.getAttribute('data-status-key') || 'por_jugar').toLowerCase();
+			const mapped = (t as any).statusValues?.[key];
+			if (typeof mapped === 'string') {
+				(el as HTMLElement).textContent = mapped;
+			}
+		});
+
 		// actualizar locations vacías
 		document.querySelectorAll('.partidos-location').forEach(el => {
 			const raw = el.getAttribute('data-location') || '';

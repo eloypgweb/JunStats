@@ -141,9 +141,9 @@ const overallSub = (t.partidos as any).overallSub ?? '';
     <Header />
     <main>
       <section class="partidos-container">
-  <h1 style="margin-bottom:1rem;">{t.partidos.pageTitle}</h1>
+  <h1 style="margin-bottom:1rem;" data-i18n="partidos.pageTitle">{t.partidos.pageTitle}</h1>
         {error ? (
-          <div class="error">{t.partidos.errorLoading} {error}</div>
+          <div class="error"><span data-i18n="partidos.errorLoading">{t.partidos.errorLoading}</span> {error}</div>
         ) : games.length === 0 ? (
           <div data-i18n="partidos.noGames">{t.partidos.noGames}</div>
         ) : (
@@ -151,16 +151,16 @@ const overallSub = (t.partidos as any).overallSub ?? '';
               <div class="partidos-overall">
               <div class="partidos-overall-card">
                   <div class="overall-left">
-                  <div class="overall-title">{overallTitle}</div>
-                  <div class="overall-sub">{overallSub}</div>
+                  <div class="overall-title" data-i18n="partidos.overallTitle">{overallTitle}</div>
+                  <div class="overall-sub" data-i18n="partidos.overallSub">{overallSub}</div>
                 </div>
                 <div class="overall-stats">
                   <div class="overall-item overall-wins">
-                    <div class="overall-label">{(overallWins === 1) ? (t.partidos as any).wonSingular : (t.partidos as any).wonPlural}</div>
+                    <div class="overall-label" data-i18n-count="partidos.won" data-count={String(overallWins)}>{(overallWins === 1) ? (t.partidos as any).wonSingular : (t.partidos as any).wonPlural}</div>
                     <div class="overall-value">{overallWins}</div>
                   </div>
                   <div class="overall-item overall-losses">
-                    <div class="overall-label">{(overallLosses === 1) ? (t.partidos as any).lostSingular : (t.partidos as any).lostPlural}</div>
+                    <div class="overall-label" data-i18n-count="partidos.lost" data-count={String(overallLosses)}>{(overallLosses === 1) ? (t.partidos as any).lostSingular : (t.partidos as any).lostPlural}</div>
                     <div class="overall-value">{overallLosses}</div>
                   </div>
                   {/* <div class="overall-item overall-pending">
@@ -199,7 +199,7 @@ const overallSub = (t.partidos as any).overallSub ?? '';
                 <p style="margin:0.6rem 0;color:#475569;font-size:0.95rem" data-our={g.our} data-their={g.their}>{g.teamPerspective}</p>
 
                 <div class="partidos-footer">
-                  <div class="partidos-tags"><span>{t.partidos.statusLabel}</span> <span class="partidos-status">{g.statusDisplayText}</span></div>
+                  <div class="partidos-tags"><span data-i18n="partidos.statusLabel">{t.partidos.statusLabel}</span> <span class="partidos-status" data-status-key={g.statusDisplayKey}>{g.statusDisplayText}</span></div>
                   <div style="font-size:0.8rem;color:#94a3b8" data-date={g.displayDateRaw}>{g.displayDateRaw ? new Date(g.displayDateRaw).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'es-ES') : ''}</div>
                 </div>
               </article>
@@ -210,6 +210,9 @@ const overallSub = (t.partidos as any).overallSub ?? '';
       </section>
     </main>
     <Footer />
-    <!-- client-side translation sync removed for this page -->
+    <script>
+      import { initPartidosLanguageSync } from '../scripts/partidosLanguageSync';
+      initPartidosLanguageSync();
+    </script>
   </body>
 </html>
