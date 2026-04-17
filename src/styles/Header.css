@@ -26,6 +26,39 @@ h2 a.active {
 	color: rgb(var(--text-primary));
 }
 
+.brand-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.25rem 0;
+	font-weight: 700;
+}
+
+.brand-link::after {
+	display: none;
+}
+
+.brand-link:hover,
+.brand-link.active {
+	color: rgb(var(--text-primary));
+	transform: none;
+	border-bottom-color: transparent;
+}
+
+.brand-logo {
+	width: 32px;
+	height: 32px;
+	object-fit: contain;
+	border-radius: 8px;
+	box-shadow: var(--shadow-sm);
+	transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.brand-link:hover .brand-logo {
+	transform: scale(1.04);
+	box-shadow: var(--shadow-md);
+}
+
 nav {
 	display: flex;
 	align-items: center;
@@ -121,6 +154,11 @@ nav > .desktop-only {
 	
 	h2 {
 		font-size: 1em;
+	}
+
+	.brand-logo {
+		width: 28px;
+		height: 28px;
 	}
 	
 	.internal-links {
