@@ -26,7 +26,8 @@ import presJ8 from '../../assets/jornadas/presJ8.png';
 import presJ9 from '../../assets/jornadas/presJ9.png';
 import presJ10 from '../../assets/jornadas/presJ10.png';
 import presJ21 from '../../assets/jornadas/presJ21.png';
-import presJ22 from '../../assets/jornadas/presJ22.png';
+import presJ22 from '../../assets/jornadas/presJ22.webp';
+import presJ23 from '../../assets/jornadas/presJ23.webp';
 
 // Mapear las imágenes
 const imageMap: Record<string, any> = {
@@ -41,7 +42,8 @@ const imageMap: Record<string, any> = {
 	'/src/assets/jornadas/presJ9.png': presJ9,
 	'/src/assets/jornadas/presJ10.png': presJ10,
 	'/src/assets/jornadas/presJ21.png': presJ21,
-	'/src/assets/jornadas/presJ22.png': presJ22,
+	'/src/assets/jornadas/presJ22.webp': presJ22,
+	'/src/assets/jornadas/presJ23.webp': presJ23,
 };
 
 // Ordenar jornadas por fecha (más recientes primero)
@@ -66,13 +68,21 @@ const sortedJornadas = jornadas
 			<section>
 				<ul>
 					{
-						sortedJornadas.map((jornada) => (
+						sortedJornadas.map((jornada, index) => (
 							<li class={!jornada.available ? 'jornada-unavailable' : ''}>
 								{jornada.available ? (
 									<a href={`/jornadas/${jornada.slug}/`}>
 										{jornada.heroImage && (
 											<div class="jornada-thumb">
-												<Image width={720} height={360} src={jornada.heroImage} alt="" />
+												<Image
+													src={jornada.heroImage}
+													alt=""
+													width={index === 0 ? 1200 : 720}
+													height={index === 0 ? 600 : 360}
+													widths={index === 0 ? [720, 960, 1200, 1600] : [360, 540, 720, 960]}
+													sizes={index === 0 ? '(max-width: 720px) 100vw, 960px' : '(max-width: 720px) 100vw, 480px'}
+													quality={95}
+												/>
 											</div>
 										)}
 										<div class="content">
@@ -86,7 +96,15 @@ const sortedJornadas = jornadas
 									<div>
 										{jornada.heroImage && (
 											<div class="jornada-thumb">
-												<Image width={720} height={360} src={jornada.heroImage} alt="" />
+												<Image
+													src={jornada.heroImage}
+													alt=""
+													width={index === 0 ? 1200 : 720}
+													height={index === 0 ? 600 : 360}
+													widths={index === 0 ? [720, 960, 1200, 1600] : [360, 540, 720, 960]}
+													sizes={index === 0 ? '(max-width: 720px) 100vw, 960px' : '(max-width: 720px) 100vw, 480px'}
+													quality={95}
+												/>
 											</div>
 										)}
 										<div class="content">

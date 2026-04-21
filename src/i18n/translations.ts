@@ -19,13 +19,13 @@ export const translations = {
       teamBadge: 'Temporada 2025-26',
       
       latestMatchBadge: '🔥 Última Jornada Disponible',
-      latestMatchTitle: '<span class="gradient-text">Jornada 22</span> vs Vicálvaro Baloncesto',
-      latestMatchDescription: '¡Descubre las estadísticas completas de nuestro encuentro número 22 de la temporada! Análisis detallado del rendimiento de cada jugador, jugadas clave y momentos decisivos que marcaron la diferencia en la cancha.',
+      latestMatchTitle: '<span class="gradient-text">Jornada 23</span> vs Distrito Carabanchel D',
+      latestMatchDescription: '¡Descubre las estadísticas completas de nuestro encuentro número 23 de la temporada! Análisis detallado del rendimiento de cada jugador, jugadas clave y momentos decisivos que marcaron la diferencia en la cancha.',
       highlightStats: '📊 Estadísticas completas',
       highlightMVP: '👑 MVP de la jornada',
       btnViewFullStats: '📊 Ver Estadísticas Completas',
-      matchResultLabel: 'Jornada 22',
-      matchResultDate: '12 Abr 2026',
+      matchResultLabel: 'Jornada 23',
+      matchResultDate: '18 Abr 2026',
       
       whatYouFindTitle: '📈 ¿Qué encontrarás?',
       
@@ -104,6 +104,7 @@ export const translations = {
       // Mobile cards
       freeThrows: 'TL:',
       absent: '🕘 FALTA',
+        injured: '🤕 LESION',
 
   // Sancionado / suspended badge
   sancionado: '🚫 SANCIONADO',
@@ -270,13 +271,13 @@ export const translations = {
       teamBadge: '2025-26 Season',
       
       latestMatchBadge: '🔥 Latest Match Available',
-      latestMatchTitle: '<span class="gradient-text">Match Day 22</span> vs Vicálvaro Baloncesto',
-      latestMatchDescription: 'Discover the complete statistics of our 22nd match of the season! Detailed analysis of each player\'s performance, key plays and decisive moments that made the difference on the court.',
+      latestMatchTitle: '<span class="gradient-text">Match Day 23</span> vs Distrito Carabanchel D',
+      latestMatchDescription: 'Discover the complete statistics of our 23rd match of the season! Detailed analysis of each player\'s performance, key plays and decisive moments that made the difference on the court.',
       highlightStats: '📊 Complete statistics',
       highlightMVP: '👑 Match MVP',
       btnViewFullStats: '📊 View Complete Statistics',
-      matchResultLabel: 'Match Day 22',
-      matchResultDate: 'Apr 12, 2026',
+      matchResultLabel: 'Match Day 23',
+      matchResultDate: 'Apr 18, 2026',
       
       whatYouFindTitle: '📈 What will you find?',
       
@@ -355,6 +356,7 @@ export const translations = {
       // Mobile cards
       freeThrows: 'FT:',
       absent: '🕘 ABSENT',
+        injured: '🤕 INJURED',
 
   // Sancionado / suspended badge
   sancionado: '🚫 SUSPENDED',

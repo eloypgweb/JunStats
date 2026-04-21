@@ -33,6 +33,11 @@ export function initJornadaLanguageSync() {
 		document.querySelectorAll('.ausente-badge').forEach(badge => {
 			badge.textContent = t.absent;
 		});
+
+		// Actualizar badges de lesion
+		document.querySelectorAll('.lesion-badge').forEach(badge => {
+			badge.textContent = t.injured;
+		});
 	}
 	
 	// Sincronizar idioma al cargar
