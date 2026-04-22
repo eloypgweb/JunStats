@@ -5,22 +5,28 @@ import '../../styles/jornadas-shared.css';
 import { getTranslations } from '../../i18n/translations';
 const t = getTranslations('es').jornadas;
 
+function formatMinutes(value: string | undefined): string {
+  if (!value) return '00:00';
+  const [minutes = '00', seconds = '00'] = value.split(':');
+  return `${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+}
+
 const players = [
-  { number: 1, name: 'Hugo Arias', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0, isAbsent: true },
-  { number: 8, name: 'Sergio Redondo', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 12, name: 'Pablo Fernández', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 13, name: 'Tristán Redondo', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 15, name: 'Uyi', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 16, name: 'David Ortega', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 17, name: 'Álvaro Zamorano', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 20, name: 'Daniel Chamizo', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 30, name: 'Álvaro Fernández', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 33, name: 'Roberto García', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0, isInjured: true },
-  { number: 56, name: 'Víctor Guardeño', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 },
-  { number: 91, name: 'Rodrigo Díaz', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, valuation: 0 }
+  { number: 1, name: 'Hugo Arias', minutes: '', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, isAbsent: true },
+  { number: 8, name: 'Sergio Redondo', minutes: '12:17:14', points: 6, t2: 3, t3: 0, ftMade: 0, ftAtt: 0, assists: 1, rebounds: 1, steals: 1, turnovers: 2, fouls: 0 },
+  { number: 12, name: 'Pablo Fernández', minutes: '12:18:30', points: 4, t2: 2, t3: 0, ftMade: 0, ftAtt: 0, assists: 4, rebounds: 2, steals: 1, turnovers: 0, fouls: 1 },
+  { number: 13, name: 'Tristán Redondo', minutes: '12:20:40', points: 2, t2: 0, t3: 0, ftMade: 2, ftAtt: 4, assists: 1, rebounds: 0, steals: 0, turnovers: 3, fouls: 0 },
+  { number: 15, name: 'Uyi', minutes: '12:16:49', points: 3, t2: 1, t3: 0, ftMade: 1, ftAtt: 2, assists: 0, rebounds: 7, steals: 3, turnovers: 3, fouls: 1 },
+  { number: 16, name: 'David Ortega', minutes: '12:17:14', points: 3, t2: 1, t3: 0, ftMade: 1, ftAtt: 2, assists: 0, rebounds: 1, steals: 0, turnovers: 0, fouls: 3 },
+  { number: 17, name: 'Álvaro Zamorano', minutes: '12:21:29', points: 12, t2: 4, t3: 1, ftMade: 1, ftAtt: 1, assists: 2, rebounds: 2, steals: 2, turnovers: 0, fouls: 1 },
+  { number: 20, name: 'Daniel Chamizo', minutes: '12:24:13', points: 8, t2: 4, t3: 0, ftMade: 0, ftAtt: 2, assists: 1, rebounds: 10, steals: 3, turnovers: 3, fouls: 2 },
+  { number: 30, name: 'Álvaro Fernández', minutes: '12:21:43', points: 20, t2: 10, t3: 0, ftMade: 0, ftAtt: 1, assists: 0, rebounds: 4, steals: 0, turnovers: 0, fouls: 0 },
+  { number: 33, name: 'Roberto García', minutes: '', points: 0, t2: 0, t3: 0, ftMade: 0, ftAtt: 0, assists: 0, rebounds: 0, steals: 0, turnovers: 0, fouls: 0, isInjured: true },
+  { number: 56, name: 'Víctor Guardeño', minutes: '12:22:45', points: 3, t2: 0, t3: 0, ftMade: 3, ftAtt: 4, assists: 2, rebounds: 4, steals: 0, turnovers: 2, fouls: 1 },
+  { number: 91, name: 'Rodrigo Díaz', minutes: '12:19:19', points: 5, t2: 2, t3: 0, ftMade: 1, ftAtt: 2, assists: 1, rebounds: 1, steals: 1, turnovers: 0, fouls: 2 }
 ];
 
-const mvpNumber = -1;
+const mvpNumber = 30;
 ---
 
 <JornadaPost 
@@ -30,15 +36,15 @@ const mvpNumber = -1;
 >
   <div class="match-info">
     <h3><span data-i18n="vs">{t.vs}</span> Distrito Carabanchel D</h3>
-    <div class="match-result defeat">
+    <div class="match-result victory">
       <div class="score-container">
-        <span class="team-score opponent">0</span>
+        <span class="team-score home winner">66</span>
         <span class="score-separator">-</span>
-        <span class="team-score home">0</span>
+        <span class="team-score opponent">37</span>
       </div>
       <div class="result-badge">
-        <span class="badge-icon">📊</span>
-        <span class="badge-text">Pendiente de actualizar</span>
+        <span class="badge-icon">🏆</span>
+        <span class="badge-text">Victoria</span>
       </div>
     </div>
   </div>
@@ -49,6 +55,7 @@ const mvpNumber = -1;
         <tr>
           <th data-i18n="number">{t.number}</th>
           <th data-i18n="player">{t.player}</th>
+          <th data-i18n="minutes">{t.minutes}</th>
           <th data-i18n="points">{t.points}</th>
           <th data-i18n="t2">{t.t2}</th>
           <th data-i18n="t3">{t.t3}</th>
@@ -59,7 +66,6 @@ const mvpNumber = -1;
           <th data-i18n="steals">{t.steals}</th>
           <th data-i18n="turnovers">{t.turnovers}</th>
           <th data-i18n="fouls">{t.fouls}</th>
-          <th data-i18n="rating">{t.rating}</th>
         </tr>
       </thead>
       <tbody>
@@ -87,6 +93,7 @@ const mvpNumber = -1;
                 {player.number === mvpNumber && <span class="mvp-crown-table">👑</span>}
                 {player.name}
               </td>
+              <td>{formatMinutes(player.minutes)}</td>
               <td>{player.points}</td>
               <td>{player.t2}</td>
               <td>{player.t3}</td>
@@ -97,7 +104,6 @@ const mvpNumber = -1;
               <td>{player.steals}</td>
               <td>{player.turnovers}</td>
               <td>{player.fouls}</td>
-              <td>{player.valuation}</td>
             </tr>
           )
         ))}
@@ -136,8 +142,8 @@ const mvpNumber = -1;
                 <span class="stat-value">{player.points}</span>
               </div>
               <div class="stat-item">
-                <span class="stat-label" data-i18n="ratingLabel">{t.ratingLabel}</span>
-                <span class="stat-value">{player.valuation}</span>
+                <span class="stat-label" data-i18n="minutesLabel">{t.minutesLabel}</span>
+                <span class="stat-value">{formatMinutes(player.minutes)}</span>
               </div>
               <div class="stat-item">
                 <span class="stat-label" data-i18n="t2">{t.t2}:</span>
