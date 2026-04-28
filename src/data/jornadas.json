@@ -103,7 +103,7 @@
     "title": "Jornada 21 - San Blas Basket",
     "description": "Resumen de la jornada 21 de la temporada.",
     "pubDate": "2026-03-15",
-    "heroImage": "/src/assets/jornadas/presJ21.webp",
+    "heroImage": "/src/assets/jornadas/epic/presJ21Epic.webp",
     "time": "13:00",
     "opponent": "San Blas Basket",
     "slug": "jornada21",
@@ -130,5 +130,27 @@
     "opponent": "Distrito Carabanchel D",
     "slug": "jornada23",
     "available": true
+  },
+  {
+    "id": "jornada24",
+    "title": "Jornada 24 - Vicálvaro Baloncesto",
+    "description": "Resumen de la jornada 24 de la temporada.",
+    "pubDate": "2026-04-25",
+    "heroImage": "/src/assets/jornadas/epic/presJ24Epic.webp",
+    "time": "16:00",
+    "opponent": "Vicálvaro Baloncesto",
+    "slug": "jornada24",
+    "available": true
+  },
+  {
+    "id": "jornada25",
+    "title": "Jornada 25 - Distrito Carabanchel D",
+    "description": "Resumen de la jornada 25 de la temporada.",
+    "pubDate": "2026-05-10",
+    "heroImage": "/src/assets/jornadas/epic/presJ25EpicNoOne.webp",
+    "time": "13:15",
+    "opponent": "Distrito Carabanchel D",
+    "slug": "jornada25",
+    "available": false
   }
 ]
