@@ -94,6 +94,17 @@ Todos los comandos se ejecutan desde la raíz del proyecto en la terminal:
 | `npm run astro ...`       | Ejecuta comandos CLI de Astro                    |
 | `npm run astro -- --help` | Ayuda sobre comandos de Astro                    |
 
+### Formulario de contacto
+
+El formulario de contacto usa Resend para enviar los mensajes.
+
+Variables de entorno requeridas:
+
+- `RESEND_API_KEY` - clave API de Resend
+- `RESEND_FROM` - remitente verificado, por ejemplo `JunStats <contacto@tu-dominio.com>`
+- `CONTACT_TO` - correo que recibe los mensajes
+- `CONTACT_REPLY_TO` - opcional, correo de respuesta por defecto
+
 ## 📁 Estructura del Proyecto
 
 ```text
