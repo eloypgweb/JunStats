@@ -1,6 +1,7 @@
 // @ts-check
 
 import mdx from '@astrojs/mdx';
+import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import { defineConfig } from 'astro/config';
@@ -11,5 +12,5 @@ export default defineConfig({
 	// Usar salida en modo servidor y registrar el adaptador de Vercel
 	output: 'server',
 	adapter: vercel(),
-	integrations: [mdx(), sitemap()],
+	integrations: [tailwind(), mdx(), sitemap()],
 });

@@ -13,6 +13,27 @@ main {
 	color: rgb(var(--gray-dark));
 }
 
+/* Las jornadas necesitan un contenedor más ancho para que la tabla escale de verdad */
+.prose:has(.table-container),
+.prose:has(.mobile-cards) {
+	width: min(98vw, 1860px);
+	max-width: calc(100vw - 1rem);
+	padding: clamp(1rem, 0.75rem + 0.6vw, 1.5rem);
+}
+
+/* Retrasar el pintado de bloques grandes para reducir el coste inicial */
+.prose:has(.table-container) .table-container,
+.prose:has(.mobile-cards) .mobile-cards {
+	content-visibility: auto;
+	contain: layout paint style;
+	contain-intrinsic-size: 1200px 900px;
+}
+
+.prose:has(.table-container) .jornada-table,
+.prose:has(.mobile-cards) .player-card {
+	contain: layout paint;
+}
+
 /* Responsive: permitir que las tablas y contenido usen el ancho disponible */
 .prose .table-container,
 .prose .jornada-header {
