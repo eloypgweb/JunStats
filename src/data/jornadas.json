@@ -99,6 +99,116 @@
     "available": true
   }
   ,{
+    "id": "jornada10",
+    "title": "Jornada 10 - San Blas Basket",
+    "description": "Resumen de la décima jornada de la temporada.",
+    "pubDate": "2025-11-29",
+    "heroImage": "/src/assets/jornadas/presJ10.webp",
+    "time": "17:45",
+    "opponent": "San Blas Basket",
+    "slug": "jornada10",
+    "available": false
+  }
+  ,{
+    "id": "jornada12",
+    "title": "Jornada 12 - San Martín de la Vega",
+    "description": "Resumen de la duodécima jornada de la temporada.",
+    "pubDate": "2026-01-10",
+    "heroImage": "/src/assets/jornadas/presJ12.webp",
+    "time": "16:00",
+    "opponent": "San Martín de la Vega",
+    "slug": "jornada12",
+    "available": false
+  }
+  ,{
+    "id": "jornada13",
+    "title": "Jornada 13 - Torrejón Basket Azul",
+    "description": "Resumen de la decimotercera jornada de la temporada.",
+    "pubDate": "2026-01-18",
+    "heroImage": "/src/assets/jornadas/presJ13.webp",
+    "time": "19:30",
+    "opponent": "Torrejón Basket Azul",
+    "slug": "jornada13",
+    "available": false
+  }
+  ,{
+    "id": "jornada14",
+    "title": "Jornada 14 - Colegio Los Sauces",
+    "description": "Resumen de la decimocuarta jornada de la temporada.",
+    "pubDate": "2026-01-24",
+    "heroImage": "/src/assets/jornadas/presJ14.webp",
+    "time": "17:45",
+    "opponent": "Colegio Los Sauces",
+    "slug": "jornada14",
+    "available": false
+  }
+  ,{
+    "id": "jornada15",
+    "title": "Jornada 15 - Distrito Carabanchel D",
+    "description": "Resumen de la decimoquinta jornada de la temporada.",
+    "pubDate": "2026-02-01",
+    "heroImage": "/src/assets/jornadas/presJ15.webp",
+    "time": "16:30",
+    "opponent": "Distrito Carabanchel D",
+    "slug": "jornada15",
+    "available": false
+  }
+  ,{
+    "id": "jornada16",
+    "title": "Jornada 16 - Baloncesto Fuenlabrada",
+    "description": "Resumen de la decimo sexta jornada de la temporada.",
+    "pubDate": "2026-02-08",
+    "heroImage": "/src/assets/jornadas/presJ16.webp",
+    "time": "19:30",
+    "opponent": "Baloncesto Fuenlabrada",
+    "slug": "jornada16",
+    "available": false
+  }
+  ,{
+    "id": "jornada17",
+    "title": "Jornada 17 - Club Europeo Baloncesto",
+    "description": "Resumen de la decimo séptima jornada de la temporada.",
+    "pubDate": "2026-03-03",
+    "heroImage": "/src/assets/jornadas/presJ17.webp",
+    "time": "18:30",
+    "opponent": "Club Europeo Baloncesto",
+    "slug": "jornada17",
+    "available": false
+  }
+  ,{
+    "id": "jornada18",
+    "title": "Jornada 18 - Femenino Fuenlabrada",
+    "description": "Resumen de la decimo octava jornada de la temporada.",
+    "pubDate": "2026-02-21",
+    "heroImage": "/src/assets/jornadas/presJ18.webp",
+    "time": "10:45",
+    "opponent": "Femenino Fuenlabrada",
+    "slug": "jornada18",
+    "available": false
+  }
+  ,{
+    "id": "jornada19",
+    "title": "Jornada 19 - Valcude Alcobendas",
+    "description": "Resumen de la decimo novena jornada de la temporada.",
+    "pubDate": "2026-02-28",
+    "heroImage": "/src/assets/jornadas/presJ19.webp",
+    "time": "19:30",
+    "opponent": "Valcude Alcobendas",
+    "slug": "jornada19",
+    "available": false
+  }
+  ,{
+    "id": "jornada20",
+    "title": "Jornada 20 - Repick Sanse",
+    "description": "Resumen de la vigésima jornada de la temporada.",
+    "pubDate": "2026-03-07",
+    "heroImage": "/src/assets/jornadas/presJ20.webp",
+    "time": "19:30",
+    "opponent": "Repick Sanse",
+    "slug": "jornada20",
+    "available": false
+  }
+  ,{
     "id": "jornada21",
     "title": "Jornada 21 - San Blas Basket",
     "description": "Resumen de la jornada 21 de la temporada.",

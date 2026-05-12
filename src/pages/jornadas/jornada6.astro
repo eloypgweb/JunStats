@@ -4,6 +4,30 @@ import '../../styles/jornadas-shared.css';
 // i18n
 import { getTranslations } from '../../i18n/translations';
 const t = getTranslations('es').jornadas;
+
+function formatMinutes(value: string | undefined): string {
+  if (!value) return '00:00';
+  const [minutes = '00', seconds = '00'] = value.split(':');
+  return `${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+}
+
+const players = [
+  { number: 1, name: 'Hugo Arias', isSancionado: true },
+
+  { number: 8, name: 'Sergio Redondo', minutes: '', points: 2, t2: 1, t3: 0, ft: '0/0', assists: 1, rebounds: 1, steals: 0, turnovers: 4, fouls: 0 },
+  { number: 12, name: 'Pablo Fernández', minutes: '', points: 4, t2: 2, t3: 0, ft: '0/0', assists: 2, rebounds: 2, steals: 0, turnovers: 0, fouls: 1 },
+  { number: 13, name: 'Tristán Redondo', minutes: '', points: 4, t2: 0, t3: 0, ft: '4/5', assists: 0, rebounds: 1, steals: 3, turnovers: 5, fouls: 2 },
+  { number: 15, name: 'Uyi', minutes: '', points: 2, t2: 1, t3: 0, ft: '0/2', assists: 0, rebounds: 3, steals: 4, turnovers: 4, fouls: 4 },
+  { number: 16, name: 'David Ortega', minutes: '', points: 8, t2: 4, t3: 0, ft: '0/0', assists: 0, rebounds: 0, steals: 2, turnovers: 1, fouls: 3 },
+  { number: 17, name: 'Álvaro Zamorano', minutes: '', points: 6, t2: 0, t3: 2, ft: '0/0', assists: 1, rebounds: 2, steals: 2, turnovers: 1, fouls: 1 },
+  { number: 20, name: 'Daniel Chamizo', minutes: '', points: 2, t2: 1, t3: 0, ft: '0/0', assists: 1, rebounds: 2, steals: 0, turnovers: 3, fouls: 4 },
+  { number: 30, name: 'Álvaro Fernández', minutes: '', points: 3, t2: 1, t3: 0, ft: '1/3', assists: 0, rebounds: 2, steals: 0, turnovers: 1, fouls: 4 },
+  { number: 33, name: 'Roberto García', minutes: '', points: 2, t2: 1, t3: 0, ft: '2/6', assists: 0, rebounds: 0, steals: 2, turnovers: 2, fouls: 3 },
+  { number: 56, name: 'Víctor Guardeño', minutes: '', points: 4, t2: 2, t3: 0, ft: '0/2', assists: 0, rebounds: 5, steals: 0, turnovers: 3, fouls: 3 },
+  { number: 91, name: 'Rodrigo Díaz', minutes: '', points: 8, t2: 4, t3: 0, ft: '0/0', assists: 0, rebounds: 3, steals: 1, turnovers: 0, fouls: 2 }
+];
+
+const mvpNumber = 91;
 ---
 
 <JornadaPost 
@@ -13,756 +37,150 @@ const t = getTranslations('es').jornadas;
 >
   <div class="match-info">
     <h3><span data-i18n="vs">{t.vs}</span> Club Europeo Baloncesto</h3>
+
     <div class="match-result defeat">
       <div class="score-container">
         <span class="team-score home">45</span>
         <span class="score-separator">-</span>
         <span class="team-score opponent winner">84</span>
       </div>
-            <div class="result-badge">
-                <span class="badge-icon">😔</span>
-                <span class="badge-text" data-i18n="defeat">{t.defeat}</span>
-            </div>
+
+      <div class="result-badge">
+        <span class="badge-icon">😔</span>
+        <span class="badge-text" data-i18n="defeat">{t.defeat}</span>
+      </div>
     </div>
   </div>
 
   <div class="table-container">
     <table class="jornada-table">
-        <thead>
-            <tr>
-                <th data-i18n="number">{t.number}</th>
-                <th data-i18n="player">{t.player}</th>
-                <th data-i18n="points">{t.points}</th>
-                <th data-i18n="t2">{t.t2}</th>
-                <th data-i18n="t3">{t.t3}</th>
-                <th data-i18n="freeThrowsMade">{t.freeThrowsMade}</th>
-                <th data-i18n="freeThrowsAttempted">{t.freeThrowsAttempted}</th>
-                <th data-i18n="assists">{t.assists}</th>
-                <th data-i18n="rebounds">{t.rebounds}</th>
-                <th data-i18n="steals">{t.steals}</th>
-                <th data-i18n="turnovers">{t.turnovers}</th>
-                <th data-i18n="fouls">{t.fouls}</th>
-                <th data-i18n="rating">{t.rating}</th>
-            </tr>
-        </thead>
-        <tbody>
+      <thead>
+        <tr>
+          <th data-i18n="number">{t.number}</th>
+          <th data-i18n="player">{t.player}</th>
+          <th data-i18n="minutes">{t.minutes}</th>
+          <th data-i18n="points">{t.points}</th>
+          <th data-i18n="t2">{t.t2}</th>
+          <th data-i18n="t3">{t.t3}</th>
+          <th data-i18n="freeThrows">{t.freeThrows}</th>
+          <th data-i18n="assists">{t.assists}</th>
+          <th data-i18n="rebounds">{t.rebounds}</th>
+          <th data-i18n="steals">{t.steals}</th>
+          <th data-i18n="turnovers">{t.turnovers}</th>
+          <th data-i18n="fouls">{t.fouls}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {players.map((player) =>
+          player.isSancionado ? (
             <tr class="sancionado-row">
-                <td>1</td>
-                <td>Hugo Arias</td>
-                <td colspan="11" class="sancionado-cell">
-                    <span class="sancionado-badge" data-i18n="sancionado">{t.sancionado}</span>
-                </td>
+              <td>{player.number}</td>
+              <td>{player.name}</td>
+              <td colspan="11" class="sancionado-cell">
+                <span class="sancionado-badge" data-i18n="sancionado">{t.sancionado}</span>
+              </td>
             </tr>
+          ) : (
             <tr>
-                <td>8</td>
-                <td>Sergio Redondo</td>
-                <td>2</td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>1</td>
-                <td>1</td>
-                <td>0</td>
-                <td>4</td>
-                <td>0</td>
-                <td>2</td>
+              <td>{player.number}</td>
+              <td>
+                {player.number === mvpNumber && <span class="mvp-crown-table">👑</span>}
+                {player.name}
+              </td>
+              <td>{formatMinutes(player.minutes)}</td>
+              <td>{player.points}</td>
+              <td>{player.t2}</td>
+              <td>{player.t3}</td>
+              <td>{player.ft}</td>
+              <td>{player.assists}</td>
+              <td>{player.rebounds}</td>
+              <td>{player.steals}</td>
+              <td>{player.turnovers}</td>
+              <td>{player.fouls}</td>
             </tr>
-            <tr>
-                <td>12</td>
-                <td>Pablo Fernández</td>
-                <td>4</td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>2</td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td>1</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td>Tristán Redondo</td>
-                <td>4</td>
-                <td>0</td>
-                <td>0</td>
-                <td>4</td>
-                <td>5</td>
-                <td>0</td>
-                <td>1</td>
-                <td>3</td>
-                <td>5</td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td>Uyi</td>
-                <td>2</td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td>2</td>
-                <td>0</td>
-                <td>3</td>
-                <td>4</td>
-                <td>4</td>
-                <td>4</td>
-                <td>-4</td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td>David Ortega</td>
-                <td>8</td>
-                <td>4</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>2</td>
-                <td>1</td>
-                <td>3</td>
-                <td>5</td>
-            </tr>
-            <tr>
-                <td>17</td>
-                <td>Álvaro Zamorano</td>
-                <td>6</td>
-                <td>0</td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-                <td>1</td>
-                <td>1</td>
-                <td>5</td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td>Daniel Chamizo</td>
-                <td>2</td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>1</td>
-                <td>2</td>
-                <td>0</td>
-                <td>3</td>
-                <td>4</td>
-                <td>-2</td>
-            </tr>
-            <tr>
-                <td>30</td>
-                <td>Álvaro Fernández</td>
-                <td>3</td>
-                <td>1</td>
-                <td>0</td>
-                <td>1</td>
-                <td>3</td>
-                <td>0</td>
-                <td>2</td>
-                <td>0</td>
-                <td>1</td>
-                <td>4</td>
-                <td>-3</td>
-            </tr>
-            <tr>
-                <td>33</td>
-                <td>Roberto García</td>
-                <td>2</td>
-                <td>1</td>
-                <td>0</td>
-                <td>2</td>
-                <td>6</td>
-                <td>0</td>
-                <td>0</td>
-                <td>2</td>
-                <td>2</td>
-                <td>3</td>
-                <td>-5</td>
-            </tr>
-            <tr>
-                <td>56</td>
-                <td>Víctor Guardeño</td>
-                <td>4</td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td>2</td>
-                <td>0</td>
-                <td>5</td>
-                <td>0</td>
-                <td>3</td>
-                <td>3</td>
-                <td>-1</td>
-            </tr>
-            <tr>
-                <td>91</td>
-                <td><span class="mvp-crown-table">👑</span> Rodrigo Díaz</td>
-                <td>8</td>
-                <td>4</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>3</td>
-                <td>1</td>
-                <td>0</td>
-                <td>2</td>
-                <td>6</td>
-            </tr>
-        </tbody>
+          )
+        )}
+      </tbody>
     </table>
 
     <div class="mobile-cards">
-        <div class="player-card sancionado-row">
+      {players.map((player) =>
+        player.isSancionado ? (
+          <div class="player-card sancionado-card">
             <div class="player-name">
-                Hugo Arias <span class="player-number">1</span>
+              {player.name} <span class="player-number">{player.number}</span>
             </div>
-            <div class="stats-grid sancionado-cell" style="display:flex;justify-content:center;align-items:center;">
-                <span class="sancionado-badge" data-i18n="sancionado">{t.sancionado}</span>
+            <div class="stats-grid sancionado-mobile">
+              <span class="sancionado-badge" data-i18n="sancionado">{t.sancionado}</span>
             </div>
-        </div>
+          </div>
+        ) : (
+          <div class="player-card">
+            <div class="player-name">
+              {player.number === mvpNumber && <div class="mvp-crown-top">👑</div>}
+              {player.name} <span class="player-number">{player.number}</span>
+            </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Sergio Redondo <span class="player-number">8</span>
-            </div>
             <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="pointsLabel">{t.pointsLabel}</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="ratingLabel">{t.ratingLabel}</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="t2">{t.t2}:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="t3">{t.t3}:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="freeThrows">{t.freeThrows}</span>
-                    <span class="stat-value">0/0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="assistsLabel">{t.assistsLabel}</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="reboundsLabel">{t.reboundsLabel}</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="stealsLabel">{t.stealsLabel}</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="turnoversLabel">{t.turnoversLabel}</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label" data-i18n="foulsLabel">{t.foulsLabel}</span>
-                    <span class="stat-value">0</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.pointsLabel}</span>
+                <span class="stat-value">{player.points}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Pablo Fernández <span class="player-number">12</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">0/0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">1</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.minutesLabel}</span>
+                <span class="stat-value">{formatMinutes(player.minutes)}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Tristán Redondo <span class="player-number">13</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">4/5</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">5</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">2</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.t2}:</span>
+                <span class="stat-value">{player.t2}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Uyi <span class="player-number">15</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">-4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">0/2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">4</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.t3}:</span>
+                <span class="stat-value">{player.t3}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                David Ortega <span class="player-number">16</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">8</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">5</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">0/0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">3</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.freeThrows}</span>
+                <span class="stat-value">{player.ft}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Álvaro Zamorano <span class="player-number">17</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">6</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">5</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">0/0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">1</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.assistsLabel}</span>
+                <span class="stat-value">{player.assists}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Daniel Chamizo <span class="player-number">20</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">-2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">0/0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">4</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.reboundsLabel}</span>
+                <span class="stat-value">{player.rebounds}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Álvaro Fernández <span class="player-number">30</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">-3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">1/3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">4</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.stealsLabel}</span>
+                <span class="stat-value">{player.steals}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Roberto García <span class="player-number">33</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">-5</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">2/6</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">3</span>
-                </div>
-            </div>
-        </div>
+              <div class="stat-item">
+                <span class="stat-label">{t.turnoversLabel}</span>
+                <span class="stat-value">{player.turnovers}</span>
+              </div>
 
-        <div class="player-card">
-            <div class="player-name">
-                Víctor Guardeño <span class="player-number">56</span>
+              <div class="stat-item">
+                <span class="stat-label">{t.foulsLabel}</span>
+                <span class="stat-value">{player.fouls}</span>
+              </div>
             </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">-1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">0/2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">5</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">3</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="player-card">
-            <div class="player-name">
-                <div class="mvp-crown-top">👑</div> Rodrigo Díaz <span class="player-number">91</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Puntos:</span>
-                    <span class="stat-value">8</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Valoración:</span>
-                    <span class="stat-value">6</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T2:</span>
-                    <span class="stat-value">4</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">T3:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">TL:</span>
-                    <span class="stat-value">0/0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Assists:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Rebotes:</span>
-                    <span class="stat-value">3</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Robos:</span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Pérdidas:</span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Faltas:</span>
-                    <span class="stat-value">2</span>
-                </div>
-            </div>
-        </div>
+          </div>
+        )
+      )}
     </div>
   </div>
 </JornadaPost>
 
 <script>
-	import { initJornadaLanguageSync } from '../../scripts/jornadaLanguageSync';
-	initJornadaLanguageSync();
+  import { initJornadaLanguageSync } from '../../scripts/jornadaLanguageSync';
+  initJornadaLanguageSync();
 </script>
